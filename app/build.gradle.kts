@@ -4,8 +4,10 @@ plugins {
 
 android {
     namespace = "com.example.faindsapplication"
-    compileSdk = 33
-
+    compileSdk = 34
+    viewBinding{
+        enable=true
+    }
     defaultConfig {
         applicationId = "com.example.faindsapplication"
         minSdk = 24
