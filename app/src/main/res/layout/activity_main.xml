@@ -34,7 +34,7 @@
         app:srcCompat="@drawable/logo_title" />
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/fl"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -48,6 +48,8 @@
         android:id="@+id/bnv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:itemIconTint="@drawable/item_color"
+        app:itemTextColor="@drawable/item_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
