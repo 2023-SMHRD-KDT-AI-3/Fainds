@@ -10,7 +10,7 @@ import com.example.faindsapplication.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
-        private ActivityLoginBinding binding;
+    private ActivityLoginBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
