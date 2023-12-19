@@ -27,5 +27,15 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        //회원가입 버튼 누르면 회원가입 JoinActivity 이동
+        binding.loginTvJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(LoginActivity.this, JoinActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
