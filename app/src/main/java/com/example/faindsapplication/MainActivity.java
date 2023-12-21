@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+//import com.example.faindsapplication.databinding.ActivityMainBinding;
 import com.example.faindsapplication.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(
                 // 1) 어디에
-                R.id.fl,
+                R.id.rv,
                 // 2)어떤 프래그먼트
                 new HomeFragment()
         ).commit();
@@ -34,23 +35,23 @@ public class MainActivity extends AppCompatActivity {
                 if (R.id.tab1 == item.getItemId()){
                     getSupportFragmentManager().beginTransaction().replace(
                             // 1) 어디에
-                            R.id.fl,
+                            R.id.rv,
                             // 2)어떤 프래그먼트
                             new HomeFragment()
                     ).commit();
                 }else if(R.id.tab2 == item.getItemId()){
                     getSupportFragmentManager().beginTransaction().replace(
-                            R.id.fl,
+                            R.id.rv,
                             new RegisterFragment()
                     ).commit();
                 }else if(R.id.tab3 == item.getItemId()){
                     getSupportFragmentManager().beginTransaction().replace(
-                            R.id.fl,
+                            R.id.rv,
                             new BoardFragment()
                     ).commit();
                 }else if(R.id.tab4 == item.getItemId()) {
                     getSupportFragmentManager().beginTransaction().replace(
-                            R.id.fl,
+                            R.id.rv,
                             new SettingFragment()
                     ).commit();
                 }

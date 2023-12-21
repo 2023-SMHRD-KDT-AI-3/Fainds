@@ -25,7 +25,8 @@
         android:layout_width="140dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        android:layout_marginBottom="118dp"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,28 +34,64 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/logo_title" />
 
-    <FrameLayout
-        android:id="@+id/fl"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline">
-
-    </FrameLayout>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:itemIconTint="@drawable/item_color"
-        app:itemTextColor="@drawable/item_color"
+        android:background="#FFFFFF"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@drawable/nav_color"
+        app:itemPaddingBottom="8dp"
+        app:itemTextColor="@drawable/nav_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:menu="@menu/item_list" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/rv"
+        app:layout_constraintGuide_percent="0.27"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="260dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/mainTitle"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
