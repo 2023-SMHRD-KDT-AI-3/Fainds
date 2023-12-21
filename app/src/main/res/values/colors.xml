@@ -3,5 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0A569D</color>
-    <color name="navColor">#888888</color>
+    <color name="navColor">#858888</color>
+    <color name="background">#F5F5F5</color>
 </resources>

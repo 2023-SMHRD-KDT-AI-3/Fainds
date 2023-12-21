@@ -25,5 +25,7 @@
     <string name="joinBtnJoin">회원가입</string>
     <string name="joinTvBack">뒤로가기</string>
 
+    <!-- main -->
+    <string name="mainTitle">님의 보관함</string>
 </resources>
 
