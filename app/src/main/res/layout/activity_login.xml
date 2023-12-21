@@ -9,39 +9,42 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="308dp"
-        android:layout_height="289dp"
+        android:layout_width="256dp"
+        android:layout_height="246dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.138"
+        app:layout_constraintVertical_bias="0.183"
         app:srcCompat="@drawable/logo_main" />
 
     <EditText
         android:id="@+id/loginIdHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
         android:layout_marginTop="29dp"
         android:ems="10"
         android:hint="@string/loginIdHint"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="5dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/loginPwHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/loginPwHint"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="5dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/loginIdHint"
+        app:layout_constraintStart_toStartOf="@+id/loginIdHint"
         app:layout_constraintTop_toBottomOf="@+id/loginIdHint" />
 
     <Button
@@ -49,9 +52,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/blue"
         android:text="@string/loginBtnLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/loginPwHint"
+        app:layout_constraintStart_toStartOf="@+id/loginPwHint"
         app:layout_constraintTop_toBottomOf="@+id/loginPwHint" />
 
     <TextView
