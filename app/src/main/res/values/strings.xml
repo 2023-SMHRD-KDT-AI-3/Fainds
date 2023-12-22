@@ -31,7 +31,7 @@
     <!-- Question 게시글- 게시글 작성 질문-->
     <string name="edtTv">제목을 입력해주세요</string>
     <string name="edtContent">내용을 입력해주세요</string>
-    <string name="btnSave">질문 저장</string>
+    <string name="btnSave">작성하기</string>
 
     <!--Modif 더보기-->
     <string name="edtEmail">이메일 수정</string>
