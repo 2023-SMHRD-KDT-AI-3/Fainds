@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent="0.08" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/imageView3"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -24,4 +24,5 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

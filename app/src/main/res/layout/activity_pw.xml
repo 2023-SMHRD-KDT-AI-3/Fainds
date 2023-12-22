@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/boardCmtNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="새 비밀번호 재입력"
@@ -109,8 +109,8 @@
         android:inputType="text"
         android:paddingLeft="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/boardCmtNum"
+        app:layout_constraintTop_toBottomOf="@+id/boardCmtNum" />
 
     <Button
         android:id="@+id/btnPw"

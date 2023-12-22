@@ -16,38 +16,38 @@
         app:srcCompat="@drawable/line" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/imgCmt"
         android:layout_width="15dp"
         android:layout_height="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/board_comment"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/boardContent"
+        app:layout_constraintTop_toTopOf="@+id/boardCmtNum"
         app:layout_constraintVertical_bias="0.235"
         app:srcCompat="@drawable/icon_comment" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/boardCmtNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="8dp"
         android:text="10"
         app:layout_constraintBottom_toTopOf="@+id/imageView10"
-        app:layout_constraintStart_toEndOf="@+id/imageView11" />
+        app:layout_constraintStart_toEndOf="@+id/imgCmt" />
 
     <TextView
-        android:id="@+id/board_title"
+        android:id="@+id/boardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="제목"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/board_comment"
+        app:layout_constraintStart_toStartOf="@+id/boardContent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/board_comment"
+        android:id="@+id/boardContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -55,19 +55,19 @@
         android:layout_marginBottom="40dp"
         android:text="내용"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/boardCmtNum"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/board_title"
+        app:layout_constraintTop_toBottomOf="@+id/boardTitle"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/board_time"
+        android:id="@+id/boardTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="236dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/boardCmtNum"
+        app:layout_constraintStart_toEndOf="@+id/boardCmtNum"
+        app:layout_constraintTop_toTopOf="@+id/boardCmtNum"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
