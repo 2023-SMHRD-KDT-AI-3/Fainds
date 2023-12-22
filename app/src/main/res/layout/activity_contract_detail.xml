@@ -48,8 +48,9 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-        app:layout_constraintTop_toTopOf="@+id/imgBack"
-        tools:layout_editor_absoluteX="51dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintStart_toEndOf="@+id/imgBack"
+        app:layout_constraintTop_toTopOf="@+id/imgBack" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contractDetailRV"
