@@ -12,18 +12,45 @@
     <!-- Join-->
     <string name="joinIdHint">아이디를 입력하세요.</string>
     <string name="joinPwHint">비밀번호를 입력하세요.</string>
-    <string name="joinNickHint">닉네임을 입력하세요.</string>
+    <string name="joinNameHint">이름을 입력하세요.</string>
     <string name="joinEmailHint">이메일을 입력하세요.</string>
     <string name="joinTelNumHint">전화번호를 입력하세요.</string>
     <string name="joinTvId">아이디</string>
     <string name="joinTvJoin">회원가입</string>
     <string name="joinTvPw">비밀번호</string>
-    <string name="joinTvNick">닉네임</string>
+    <string name="joinTvName">이름</string>
     <string name="joinTvEmail">이메일</string>
     <string name="joinTvTelNum">휴대폰 번호</string>
     <string name="joinBtnAuth">본인인증</string>
     <string name="joinBtnJoin">회원가입</string>
     <string name="joinTvBack">뒤로가기</string>
+
+    <!-- main -->
+    <string name="mainTitle">님의 보관함</string>
+
+    <!-- Question 게시글- 게시글 작성 질문-->
+    <string name="edtTv">제목을 입력해주세요</string>
+    <string name="edtContent">내용을 입력해주세요</string>
+    <string name="btnSave">질문 저장</string>
+
+    <!--Modif 더보기-->
+    <string name="edtEmail">이메일 수정</string>
+    <string name="edtPw">비밀번호 수정</string>
+    <string name="edtChannel1">신고채널1</string>
+    <string name="edtChannel2">신고채널2</string>
+    <string name="edtChannel3">신고채널3</string>
+    <string name="edtSal">급여 계산기</string>
+
+    <!--Email 더보기-이메일 수정-->
+    <string name="currentEmail">현재 이메일을 입력해주세요</string>
+    <string name="newEmail">새 이메일을 입력해주세요</string>
+    <string name="btnEmail">이메일 수정</string>
+
+    <!--Pw 더보기-비밀번호 수정-->
+    <string name="currentPw">현재 비번을 입력해주세요</string>
+    <string name="newPw">새 비번을 입력해주세요</string>
+    <string name="confirmPw">비밀번호 확인</string>
+    <string name="btnPw">비밀번호 수정</string>
 
 </resources>
 
