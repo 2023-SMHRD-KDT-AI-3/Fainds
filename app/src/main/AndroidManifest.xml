@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".PopupActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
             android:name=".ContractDetail.ContractDetailActivity"
             android:exported="false" />
         <activity

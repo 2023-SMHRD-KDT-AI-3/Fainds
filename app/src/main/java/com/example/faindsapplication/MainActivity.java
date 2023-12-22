@@ -23,6 +23,48 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getSupportFragmentManager().beginTransaction().replace(
+                // 1) 어디에
+                R.id.fl,
+                // 2)어떤 프래그먼트
+                new HomeFragment()
+        ).commit();
+
+        binding.bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (R.id.tab1 == item.getItemId()){
+                    getSupportFragmentManager().beginTransaction().replace(
+                            // 1) 어디에
+                            R.id.fl,
+                            // 2)어떤 프래그먼트
+                            new HomeFragment()
+                    ).commit();
+                }else if(R.id.tab2 == item.getItemId()){
+                    getSupportFragmentManager().beginTransaction().replace(
+                            // 1) 어디에
+                            R.id.fl,
+                            // 2)어떤 프래그먼트
+                            new RegisterFragment()
+                    ).commit();
+                }else if(R.id.tab3 == item.getItemId()){
+                    getSupportFragmentManager().beginTransaction().replace(
+                            // 1) 어디에
+                            R.id.fl,
+                            // 2)어떤 프래그먼트
+                            new BoardFragment()
+                    ).commit();
+                }else if(R.id.tab4 == item.getItemId()) {
+                    getSupportFragmentManager().beginTransaction().replace(
+                            // 1) 어디에
+                            R.id.fl,
+                            // 2)어떤 프래그먼트
+                            new SettingFragment()
+                    ).commit();
+                }
+                return true;
+            }
+        });
 
 
     }

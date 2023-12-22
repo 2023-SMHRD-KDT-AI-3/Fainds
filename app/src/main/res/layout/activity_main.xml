@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="59dp" />
+        app:layout_constraintGuide_end="672dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -36,17 +36,16 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:menu="@menu/item_list" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="160dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo_new" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
