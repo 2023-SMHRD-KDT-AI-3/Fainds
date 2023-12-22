@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://3.145.203.141:27017/login",
+                        "http://192.168.219.54:8089/login",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -72,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
                         String id = binding.loginIdHint.getText().toString();
                         String pw = binding.loginPwHint.getText().toString();
                         Map<String,String> params = new HashMap<>();
-                        params.put("id",id);
-                        params.put("pw",pw);
+                        params.put("userId",id);
+                        params.put("userPw",pw);
                         //Spring서버에서도 "id","pw"로 받아야 함
                         return params;
                     }
