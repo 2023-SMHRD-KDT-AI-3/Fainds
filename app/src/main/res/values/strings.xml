@@ -12,13 +12,13 @@
     <!-- Join-->
     <string name="joinIdHint">아이디를 입력하세요.</string>
     <string name="joinPwHint">비밀번호를 입력하세요.</string>
-    <string name="joinNickHint">닉네임을 입력하세요.</string>
+    <string name="joinNameHint">이름을 입력하세요.</string>
     <string name="joinEmailHint">이메일을 입력하세요.</string>
     <string name="joinTelNumHint">전화번호를 입력하세요.</string>
     <string name="joinTvId">아이디</string>
     <string name="joinTvJoin">회원가입</string>
     <string name="joinTvPw">비밀번호</string>
-    <string name="joinTvNick">닉네임</string>
+    <string name="joinTvName">이름</string>
     <string name="joinTvEmail">이메일</string>
     <string name="joinTvTelNum">휴대폰 번호</string>
     <string name="joinBtnAuth">본인인증</string>

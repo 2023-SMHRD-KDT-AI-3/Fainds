@@ -11,67 +11,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="140dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo_title" />
-
-    <TextView
-        android:id="@+id/joinTvJoin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/joinTvJoin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintGuide_percent="0.08" />
 
     <EditText
-        android:id="@+id/joinIdHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:id="@+id/inputJoinID"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/joinIdHint"
         android:inputType="text"
-        android:text="@string/joinIdHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/joinTvId"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/joinTvId"
         app:layout_constraintTop_toBottomOf="@+id/joinTvId" />
-
-    <TextView
-        android:id="@+id/joinTvBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/joinTvBack"
-        app:layout_constraintEnd_toStartOf="@+id/joinTvJoin"
-        app:layout_constraintHorizontal_bias="0.566"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <TextView
         android:id="@+id/joinTvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="@string/joinTvId"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinTvBack" />
+        app:layout_constraintStart_toStartOf="@+id/imgBack"
+        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
     <TextView
         android:id="@+id/joinTvPw"
@@ -79,113 +43,119 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/joinTvPw"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinIdHint" />
+        app:layout_constraintEnd_toEndOf="@+id/inputJoinID"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputJoinID"
+        app:layout_constraintTop_toBottomOf="@+id/inputJoinID" />
 
     <EditText
-        android:id="@+id/joinPwHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/inputJoinPw"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/joinPwHint"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/joinTvPw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/joinTvPw"
         app:layout_constraintTop_toBottomOf="@+id/joinTvPw" />
 
     <TextView
         android:id="@+id/joinTvNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/joinTvNick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinPwHint" />
+        android:layout_marginTop="16dp"
+        android:text="@string/joinTvName"
+        app:layout_constraintEnd_toEndOf="@+id/inputJoinPw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputJoinPw"
+        app:layout_constraintTop_toBottomOf="@+id/inputJoinPw" />
 
     <EditText
-        android:id="@+id/joinNickHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:id="@+id/inputJoinName"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="@string/joinNameHint"
         android:inputType="text"
-        android:text="@string/joinNickHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/joinTvNick"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/joinTvNick"
         app:layout_constraintTop_toBottomOf="@+id/joinTvNick" />
 
     <TextView
         android:id="@+id/joinTvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/joinTvEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinNickHint" />
+        app:layout_constraintEnd_toEndOf="@+id/inputJoinName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputJoinName"
+        app:layout_constraintTop_toBottomOf="@+id/inputJoinName" />
 
     <EditText
-        android:id="@+id/joinEmailHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:id="@+id/inputJoinEmail"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/joinEmailHint"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/joinTvEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/joinTvEmail"
         app:layout_constraintTop_toBottomOf="@+id/joinTvEmail" />
-
-    <TextView
-        android:id="@+id/joinTvTelNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/joinTvTelNum"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinEmailHint" />
-
-    <EditText
-        android:id="@+id/joinTelNumHint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:text="@string/joinTelNumHint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinTvTelNum" />
-
-    <Button
-        android:id="@+id/joinBtnAuth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="@string/joinBtnAuth"
-        app:layout_constraintBottom_toBottomOf="@+id/joinTelNumHint"
-        app:layout_constraintStart_toEndOf="@+id/joinTelNumHint"
-        app:layout_constraintTop_toTopOf="@+id/joinTelNumHint" />
 
     <Button
         android:id="@+id/joinBtnJoin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/joinBtnJoin"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinTelNumHint" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo_new" />
+
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
+        app:srcCompat="@drawable/icon_back"
+        tools:layout_editor_absoluteY="72dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:text="회원가입"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="@+id/imgBack" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
