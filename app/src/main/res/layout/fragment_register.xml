@@ -32,6 +32,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/icon_back"
+        app:layout_constraintBottom_toTopOf="@+id/guideline19"
         app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
@@ -64,6 +65,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_begin="126dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
