@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.faindsapplication.ContractDetail.ContractDetailAdapter;
 import com.example.faindsapplication.ContractDetail.ContractDetailVO;
@@ -20,11 +22,25 @@ public class RegisterDetailActivity extends AppCompatActivity {
     private ActivityRegisterDetailBinding binding;
     private ArrayList<RegisterDetailVO> dataset;
     private RegisterDetailAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        ImageView imgTest = findViewById(R.id.imgTest);
+        Intent intent = getIntent();
+        String imgUriString = intent.getStringExtra("TestImgUri");
+
+        if (imgUriString != null) {
+            // 이미지 URI를 Uri 객체로 변환
+            Uri imgUri = Uri.parse(imgUriString);
+
+            // 이미지뷰에 이미지 설정
+            binding.imgTest.setImageURI(imgUri);
+        }
+
+
 
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +60,9 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         dataset = new ArrayList<>();
 
-        dataset.add(new RegisterDetailVO(1,"계약서 종류","표준근로계약서(미성년자)"));
-        dataset.add(new RegisterDetailVO(1,"시급","10500원"));
-        dataset.add(new RegisterDetailVO(1,"근무시간","18시 00분 부터 21시 00분 까지(휴게시간 : 없음"));
+        dataset.add(new RegisterDetailVO(1, "계약서 종류", "표준근로계약서(미성년자)"));
+        dataset.add(new RegisterDetailVO(1, "시급", "10500원"));
+        dataset.add(new RegisterDetailVO(1, "근무시간", "18시 00분 부터 21시 00분 까지(휴게시간 : 없음"));
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         binding.RegisterDetailRV.setLayoutManager(manager);
