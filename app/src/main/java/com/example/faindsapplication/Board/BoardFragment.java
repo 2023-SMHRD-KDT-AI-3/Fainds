@@ -1,5 +1,6 @@
 package com.example.faindsapplication.Board;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.BoardWriteActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterAdapter;
 import com.example.faindsapplication.Register.RegisterVO;
@@ -55,7 +57,12 @@ public class BoardFragment extends Fragment {
         }
         getBoardData();
 
-
+        binding.imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), BoardWriteActivity.class);
+            }
+        });
 
        // dataset.add(new BoardVO("제목","내용",""));
 
