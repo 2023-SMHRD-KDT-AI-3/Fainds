@@ -3,5 +3,5 @@ package com.example.faindsapplication.Board;
 import android.view.View;
 
 public interface BoardItemClickListener {
-    void onBoardItemClickListener(View v,int position);
+    void onItemClickListener(View v, int position);
 }
