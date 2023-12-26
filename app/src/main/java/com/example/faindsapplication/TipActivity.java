@@ -32,7 +32,7 @@ public class TipActivity extends AppCompatActivity implements View.OnClickListen
         if(viewId == R.id.btnWorkRepo1){
             //실행될 액티비티에 전달할 값을 정의
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.moel.go.kr/policy/policydata/view.do?bbs_seq=20190700008"));
-        }else if(viewId == R.id.btnWorkRepo2) {
+        }else {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m.work.go.kr/workContract/workContractInfoNew.do"));
 
         }
