@@ -1,5 +1,8 @@
 package com.example.faindsapplication.Board;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -74,20 +77,21 @@ public class BoardFragment extends Fragment {
 
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
-
+                                Log.d("qwer",jsonArray.toString());
                                 // 파싱한 데이터를 데이터셋에 추가
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-
+                                    Log.d("qwer",jsonObject.toString());
                                     // 각 필요한 데이터를 추출
                                     int boardSeq = jsonObject.getInt("boardSeq");
                                     String boardTitle = jsonObject.getString("boardTitle");
                                     String boardContent = jsonObject.getString("boardContent");
-                                    int boardViews = jsonObject.getInt("boardViews");
+
                                     String createdAt = jsonObject.getString("createdAt");
+                                    int boardCmtNum = jsonObject.getInt("boardCmtNum");
 
                                     // 데이터셋에 추가
-                                    dataset.add(new BoardVO(boardTitle, boardContent, createdAt));
+                                    dataset.add(new BoardVO(boardTitle, boardContent,createdAt,boardCmtNum));
                                 }
 
                                 // 어댑터에 데이터셋 변경을 알림
@@ -106,4 +110,6 @@ public class BoardFragment extends Fragment {
             );
             queue.add(request);
         }
+
+
 }

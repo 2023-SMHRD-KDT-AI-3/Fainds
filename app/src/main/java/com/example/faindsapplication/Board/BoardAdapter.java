@@ -33,16 +33,20 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
         String boardTitle = dataset.get(position).getBoardTitle();
         String boardContent = dataset.get(position).getBoardContent();
-        //String boardCmtNum = dataset.get(position).getBoardCmtNum();
+        int boardCmtNum = dataset.get(position).getBoardCmtNum();
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
-      //  holder.getBoardCmtNum().setText(boardCmtNum);
+        holder.getBoardCmtNum().setText(String.valueOf(boardCmtNum));
         holder.listener = new BoardItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
-                //Intent intent = new Intent(v.getContext());
-                //v.getContext().startActivity(intent);
+                Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
+                intent.putExtra("boardTitle",boardTitle);
+                intent.putExtra("boardContent",boardContent);
+
+                v.getContext().startActivity(intent);
             }
+
         };
 
 

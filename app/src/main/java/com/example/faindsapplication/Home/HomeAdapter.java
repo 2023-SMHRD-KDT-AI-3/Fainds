@@ -9,9 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.faindsapplication.Board.BoardItemClickListener;
-import com.example.faindsapplication.Board.BoardVO;
-import com.example.faindsapplication.Board.BoardViewHolder;
-import com.example.faindsapplication.BoardDetailActivity;
 import com.example.faindsapplication.ContractDetail.ContractDetailActivity;
 import com.example.faindsapplication.R;
 
