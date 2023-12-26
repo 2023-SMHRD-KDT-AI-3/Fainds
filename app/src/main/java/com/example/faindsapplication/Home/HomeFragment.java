@@ -1,5 +1,8 @@
 package com.example.faindsapplication.Home;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +32,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater,container,false);
         dataset = new ArrayList<>();
 
+        binding.tvUserName.setText(getUserId());
 
 
         dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
@@ -39,4 +43,10 @@ public class HomeFragment extends Fragment {
         binding.homeRV.setAdapter(adapter);
         return binding.getRoot();
     }
+    public String getUserId() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserID", null);
+    }
+
 }
