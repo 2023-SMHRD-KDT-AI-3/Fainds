@@ -5,19 +5,18 @@ import java.util.Date;
 public class BoardVO {
     private String boardTitle;
     private String boardContent;
-    //private Date created_at;
-    private int cmtSeq;
-    private String cmtContent;
+   // private Date created_at;
+    private String boardWriter;
+    //private int boardCmtNum; // 댓글 수
+   // private int boardSeq;
 
-    private String boardCmtNum;
-
-    public BoardVO(String boardTitle, String boardContent, int cmtSeq, String cmtContent,String boardCmtNum) {
+    public BoardVO(String boardTitle, String boardContent, String boardWriter) {
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
-        //this.created_at = created_at;
-        this.cmtSeq = cmtSeq;
-        this.cmtContent = cmtContent;
-        this.boardCmtNum = boardCmtNum;
+      //  this.created_at = created_at;
+        this.boardWriter = boardWriter;
+      //  this.boardCmtNum = boardCmtNum;
+      //  this.boardSeq = boardSeq;
     }
 
     public String getBoardTitle() {
@@ -28,19 +27,19 @@ public class BoardVO {
         return boardContent;
     }
 
-//    public Date getCreated_at() {
-//        return created_at;
+   // public Date getCreated_at() {
+    //    return created_at;
+   // }
+
+    public String getBoardWriter() {
+        return boardWriter;
+    }
+
+//    public int getBoardCmtNum() {
+//        return boardCmtNum;
 //    }
-
-    public int getCmtSeq() {
-        return cmtSeq;
-    }
-
-    public String getCmtContent() {
-        return cmtContent;
-    }
-
-    public String getBoardCmtNum() {
-        return boardCmtNum;
-    }
+//
+//    public int getBoardSeq() {
+//        return boardSeq;
+//    }
 }
