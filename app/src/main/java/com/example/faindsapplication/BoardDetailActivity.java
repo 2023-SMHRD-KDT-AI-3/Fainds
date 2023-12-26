@@ -4,17 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.faindsapplication.databinding.ActivityEmailBinding;
+import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
 
-public class EmailActivity extends AppCompatActivity {
+public class BoardDetailActivity extends AppCompatActivity {
 
-    private ActivityEmailBinding binding;
-
-
+    private ActivityBoardDetailBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEmailBinding.inflate(getLayoutInflater());
+        binding=ActivityBoardDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
 }
