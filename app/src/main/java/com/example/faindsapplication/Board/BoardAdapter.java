@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.faindsapplication.BoardDetailActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterViewHolder;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
@@ -34,16 +33,15 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
         String boardTitle = dataset.get(position).getBoardTitle();
         String boardContent = dataset.get(position).getBoardContent();
-        String boardCmtNum = dataset.get(position).getBoardCmtNum();
+        //String boardCmtNum = dataset.get(position).getBoardCmtNum();
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
-        holder.getBoardCmtNum().setText(boardCmtNum);
+      //  holder.getBoardCmtNum().setText(boardCmtNum);
         holder.listener = new BoardItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
-                Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
-
-                v.getContext().startActivity(intent);
+                //Intent intent = new Intent(v.getContext());
+                //v.getContext().startActivity(intent);
             }
         };
 
