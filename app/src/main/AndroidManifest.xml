@@ -34,10 +34,10 @@
             android:name=".EmailActivity"
             android:exported="false" />
         <activity
-            android:name=".BoardWriteActivity"
+            android:name=".ModifActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".BoardWriteActivity"
             android:exported="false" />
         <activity
             android:name=".JoinActivity"
@@ -49,7 +49,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ModifActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
