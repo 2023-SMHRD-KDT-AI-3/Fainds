@@ -24,11 +24,11 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_setting, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-       // TextView name = view.findViewById(R.id.tvUserName);
+        TextView name = view.findViewById(R.id.tvUserName);
 
-       // name.setText(getUserId());
+        name.setText(getUserId());
 
 
 
