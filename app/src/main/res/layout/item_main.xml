@@ -34,7 +34,7 @@
                 app:srcCompat="@drawable/icon_icon" />
 
             <LinearLayout
-                android:layout_width="350dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:gravity="center|left"
                 android:orientation="vertical">
@@ -76,7 +76,7 @@
 
                 <ImageView
                     android:id="@+id/imageView15"
-                    android:layout_width="25dp"
+                    android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
