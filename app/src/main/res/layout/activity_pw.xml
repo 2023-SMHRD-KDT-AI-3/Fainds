@@ -41,9 +41,11 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="@+id/imgBack"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imgBack"
-        app:layout_constraintTop_toTopOf="@+id/imgBack" />
+        app:layout_constraintTop_toTopOf="@+id/imgBack"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/currentPw"
@@ -123,7 +125,7 @@
         tools:layout_editor_absoluteY="499dp" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imgLogo"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -137,7 +139,7 @@
         android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:layout_constraintStart_toStartOf="@+id/imgBack"
         app:srcCompat="@drawable/icon_back"
         tools:layout_editor_absoluteY="94dp" />
 
