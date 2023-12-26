@@ -15,14 +15,16 @@ import com.example.faindsapplication.Register.RegisterVO;
 import com.example.faindsapplication.databinding.FragmentBoardBinding;
 import com.example.faindsapplication.databinding.FragmentRegisterBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class BoardFragment extends Fragment {
 
     private FragmentBoardBinding binding = null;
-    private ArrayList<RegisterVO> dataset = null;
-    private RegisterAdapter adapter = null;
+    private ArrayList<BoardVO> dataset = null;
+    private BoardAdapter adapter = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,9 +32,12 @@ public class BoardFragment extends Fragment {
         binding = FragmentBoardBinding.inflate(inflater,container,false);
         dataset = new ArrayList<>();
 
+
+        dataset.add(new BoardVO("w제목","내용",1,"1","1"));
+
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.boardRV.setLayoutManager(manager);
-        adapter = new RegisterAdapter(dataset);
+        adapter = new BoardAdapter(dataset);
         binding.boardRV.setAdapter(adapter);
         return binding.getRoot();
     }

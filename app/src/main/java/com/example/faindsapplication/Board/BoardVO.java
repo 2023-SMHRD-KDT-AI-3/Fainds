@@ -5,16 +5,19 @@ import java.util.Date;
 public class BoardVO {
     private String boardTitle;
     private String boardContent;
-    private Date created_at;
+    //private Date created_at;
     private int cmtSeq;
     private String cmtContent;
 
-    public BoardVO(String boardTitle, String boardContent, Date created_at, int cmtSeq, String cmtContent) {
+    private String boardCmtNum;
+
+    public BoardVO(String boardTitle, String boardContent, int cmtSeq, String cmtContent,String boardCmtNum) {
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
-        this.created_at = created_at;
+        //this.created_at = created_at;
         this.cmtSeq = cmtSeq;
         this.cmtContent = cmtContent;
+        this.boardCmtNum = boardCmtNum;
     }
 
     public String getBoardTitle() {
@@ -25,9 +28,9 @@ public class BoardVO {
         return boardContent;
     }
 
-    public Date getCreated_at() {
-        return created_at;
-    }
+//    public Date getCreated_at() {
+//        return created_at;
+//    }
 
     public int getCmtSeq() {
         return cmtSeq;
@@ -35,5 +38,9 @@ public class BoardVO {
 
     public String getCmtContent() {
         return cmtContent;
+    }
+
+    public String getBoardCmtNum() {
+        return boardCmtNum;
     }
 }
