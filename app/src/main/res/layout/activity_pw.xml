@@ -62,31 +62,36 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="현재 비밀번호"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/currentPw"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imgBack"
-        tools:layout_editor_absoluteY="156dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="새 비밀번호"
+        app:layout_constraintBottom_toTopOf="@+id/newPw"
         app:layout_constraintStart_toStartOf="@+id/currentPw"
-        tools:layout_editor_absoluteY="267dp" />
+        app:layout_constraintTop_toBottomOf="@+id/currentPw" />
 
     <EditText
         android:id="@+id/newPw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/newPw"
         android:inputType="text"
         android:paddingLeft="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/currentPw"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -94,20 +99,23 @@
         android:id="@+id/boardCmtNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="새 비밀번호 재입력"
+        app:layout_constraintBottom_toTopOf="@+id/confirmPw"
         app:layout_constraintStart_toStartOf="@+id/newPw"
-        tools:layout_editor_absoluteY="386dp" />
+        app:layout_constraintTop_toBottomOf="@+id/newPw" />
 
     <EditText
         android:id="@+id/confirmPw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="@string/confirmPw"
         android:inputType="text"
         android:paddingLeft="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/newPw"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/boardCmtNum"
         app:layout_constraintTop_toBottomOf="@+id/boardCmtNum" />
 
@@ -120,7 +128,7 @@
         app:layout_constraintEnd_toEndOf="@+id/confirmPw"
         app:layout_constraintStart_toStartOf="@+id/confirmPw"
         app:layout_constraintTop_toBottomOf="@+id/confirmPw"
-        app:layout_constraintVertical_bias="0.302" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -138,6 +146,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="@+id/textView8"
         app:srcCompat="@drawable/icon_back" />
@@ -147,6 +156,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_end="607dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
