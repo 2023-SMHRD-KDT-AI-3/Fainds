@@ -40,6 +40,13 @@ public class BoardWriteActivity extends AppCompatActivity {
         binding=ActivityBoardWriteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         if(queue==null){
             queue = Volley.newRequestQueue(this);
         }
