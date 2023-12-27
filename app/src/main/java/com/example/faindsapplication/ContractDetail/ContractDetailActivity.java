@@ -27,8 +27,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ContractDetailActivity.this, HomeFragment.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -37,6 +36,7 @@ public class ContractDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ContractDetailActivity.this, HomeFragment.class);
                 startActivity(intent);
+                finish();
             }
         });
 

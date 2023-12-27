@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
 
         binding.tvUserName.setText(getUserId());
 
+
         dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
         dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
