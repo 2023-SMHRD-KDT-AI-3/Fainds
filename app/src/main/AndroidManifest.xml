@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".BoardDetailActivity"
+            android:name=".Board.BoardDetailActivity"
             android:exported="false" />
         <activity
             android:name=".TipActivity"

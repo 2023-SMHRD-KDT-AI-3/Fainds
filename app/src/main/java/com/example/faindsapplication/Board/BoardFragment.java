@@ -1,6 +1,9 @@
 package com.example.faindsapplication.Board;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -39,6 +42,7 @@ public class BoardFragment extends Fragment {
     private FragmentBoardBinding binding = null;
     private ArrayList<BoardVO> dataset = null;
     private BoardAdapter adapter = null;
+
     private RequestQueue queue;
 
 
@@ -59,17 +63,22 @@ public class BoardFragment extends Fragment {
         binding.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), BoardWriteActivity.class);
+                Intent intent = new Intent(getActivity(),BoardWriteActivity.class);
                 startActivity(intent);
+
             }
         });
 
-       // dataset.add(new BoardVO("제목","내용",""));
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.boardRV.setLayoutManager(manager);
         binding.boardRV.setAdapter(adapter);
          return binding.getRoot();
+    }
+    public String getUserId() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserID", null);
     }
         public void getBoardData(){
             StringRequest request = new StringRequest(
@@ -81,20 +90,22 @@ public class BoardFragment extends Fragment {
 
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
-
+                                Log.d("qwer",jsonArray.toString());
                                 // 파싱한 데이터를 데이터셋에 추가
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-
+                                    Log.d("qwer",jsonObject.toString());
                                     // 각 필요한 데이터를 추출
-                                    int boardSeq = jsonObject.getInt("boardSeq");
+                                     int boardSeq = jsonObject.getInt("boardSeq");
                                     String boardTitle = jsonObject.getString("boardTitle");
                                     String boardContent = jsonObject.getString("boardContent");
-                                    int boardViews = jsonObject.getInt("boardViews");
+                                    String boardWriter = getUserId();
                                     String createdAt = jsonObject.getString("createdAt");
+                                    int boardCmtNum = jsonObject.getInt("boardCmtNum");
 
                                     // 데이터셋에 추가
-                                    dataset.add(new BoardVO(boardTitle, boardContent, createdAt));
+                                    dataset.add(new BoardVO(boardTitle, boardContent,createdAt,boardWriter,boardCmtNum,boardSeq));
+
                                 }
 
                                 // 어댑터에 데이터셋 변경을 알림
@@ -112,5 +123,9 @@ public class BoardFragment extends Fragment {
             }
             );
             queue.add(request);
+
+
         }
+
+
 }
