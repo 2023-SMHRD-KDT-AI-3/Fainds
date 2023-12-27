@@ -72,7 +72,7 @@ public class SettingFragment extends Fragment {
 //            }
 //        });
 
-//        //로그아웃 클릭시
+        //로그아웃 클릭시
 //        binding.settingCalculator.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
