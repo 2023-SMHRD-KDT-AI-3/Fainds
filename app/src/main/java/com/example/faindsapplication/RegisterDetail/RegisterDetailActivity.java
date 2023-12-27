@@ -57,7 +57,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
             bitmap = (Bitmap) intent.getParcelableExtra("TestImg");
             binding.imgTest.setImageBitmap(bitmap);
         }else {
-            Uri uri = intent.getParcelableExtra("ImgUri");
+            Uri uri = intent.getParcelableExtra("TestImgUri");
             binding.imgTest.setImageURI(uri);
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
