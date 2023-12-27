@@ -13,26 +13,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="672dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="72dp" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:itemIconTint="@drawable/nav_color"
-        app:itemTextColor="@drawable/nav_color"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:menu="@menu/item_list" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -101,11 +81,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnEmail"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="@+id/newEmail"
         app:layout_constraintStart_toStartOf="@+id/newEmail"
-        app:layout_constraintTop_toBottomOf="@+id/newEmail"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/newEmail" />
 
     <ImageView
         android:id="@+id/imageView8"
