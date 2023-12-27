@@ -21,7 +21,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         String boardcontent = getIntent().getStringExtra("boardContent");
 
         binding.boardDetailTitle.setText(boardtitle);
-        // binding.이름.setText(boardcontent);
+         binding.boardDetailContent.setText(boardcontent);
 
         setContentView(binding.getRoot());
 

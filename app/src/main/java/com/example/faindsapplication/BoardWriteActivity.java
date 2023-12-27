@@ -52,7 +52,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Intent intent = new Intent(BoardWriteActivity.this,MainActivity.class);
+                                Intent intent = new Intent(BoardWriteActivity.this, BoardFragment.class);
                                 startActivity(intent);
 
                             }
