@@ -67,8 +67,8 @@ public class PwActivity extends AppCompatActivity {
                         // Map<String,String> 앞은 Key 뒤는 Value 임
                         // Map은 인터페이스 Map을 상속받은 클래스가 HashMap
                         Map<String,String> params = new HashMap<>();
-                        params.put("currentpw",currentpw);
-                        params.put("userPw",newpw);
+                        params.put("currentPw",currentpw);
+                        params.put("newPw",newpw);
                         params.put("confirmPw",confirmpw);
                         //Spring서버에서도 "currentpw","userpw"로 받아야 함
 
