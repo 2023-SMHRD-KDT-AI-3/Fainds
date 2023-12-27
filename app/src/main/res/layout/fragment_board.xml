@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".Board.BoardFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -29,45 +30,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
-
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/icon_back"
-        app:layout_constraintBottom_toTopOf="@+id/guideline20"
-        app:layout_constraintStart_toStartOf="@+id/imgLogo"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+        app:layout_constraintGuide_percent="0.17099863" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="64dp"
         android:text="질문게시판"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline20"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imgBack"
-        app:layout_constraintTop_toTopOf="@+id/imgBack" />
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/boardRV"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="411dp"
+        android:layout_height="608dp"
+        android:background="@color/background"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline20" />
+        app:layout_constraintTop_toTopOf="@+id/guideline20"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imgAdd"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/icon_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
