@@ -13,26 +13,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08071136" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="659dp" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:itemIconTint="@drawable/nav_color"
-        app:itemTextColor="@drawable/nav_color"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:menu="@menu/item_list" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -40,20 +20,22 @@
         android:text="비밀번호 수정"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBack"
         app:layout_constraintStart_toEndOf="@+id/imgBack"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/imgBack" />
 
     <EditText
         android:id="@+id/currentPw"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/boardstyle"
         android:ems="10"
         android:hint="@string/currentPw"
         android:inputType="text"
-        android:paddingLeft="8dp"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -77,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="새 비밀번호"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newPw"
         app:layout_constraintStart_toStartOf="@+id/currentPw"
         app:layout_constraintTop_toBottomOf="@+id/currentPw" />
@@ -84,13 +67,15 @@
     <EditText
         android:id="@+id/newPw"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/boardstyle"
         android:ems="10"
         android:hint="@string/newPw"
         android:inputType="text"
-        android:paddingLeft="8dp"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -101,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="새 비밀번호 재입력"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/confirmPw"
         app:layout_constraintStart_toStartOf="@+id/newPw"
         app:layout_constraintTop_toBottomOf="@+id/newPw" />
@@ -108,13 +94,15 @@
     <EditText
         android:id="@+id/confirmPw"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/boardstyle"
         android:ems="10"
         android:hint="@string/confirmPw"
         android:inputType="text"
-        android:paddingLeft="8dp"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/boardCmtNum"
         app:layout_constraintTop_toBottomOf="@+id/boardCmtNum" />
@@ -123,12 +111,13 @@
         android:id="@+id/btnPw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/blue"
         android:text="@string/btnPw"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/confirmPw"
         app:layout_constraintStart_toStartOf="@+id/confirmPw"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPw"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPw" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -139,16 +128,19 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logo_new" />
 
     <ImageView
         android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_back" />
 
     <androidx.constraintlayout.widget.Guideline
