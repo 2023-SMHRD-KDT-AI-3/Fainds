@@ -1,6 +1,9 @@
 package com.example.faindsapplication.Setting;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.faindsapplication.EmailActivity;
+import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.PwActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.databinding.ActivityEmailBinding;
@@ -73,13 +77,20 @@ public class SettingFragment extends Fragment {
 //        });
 
         //로그아웃 클릭시
-//        binding.settingCalculator.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(getActivity(),);
-//                startActivity(intent);
-//            }
-//        });
+        binding.settingCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeUserId();
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         return binding.getRoot();
+    }
+    public void removeUserId() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("UserID");
+        editor.apply();
     }
 }

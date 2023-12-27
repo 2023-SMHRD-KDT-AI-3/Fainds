@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/contractDetailKey"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -36,7 +36,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/contractDetailValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

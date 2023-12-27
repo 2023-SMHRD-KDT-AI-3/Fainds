@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout4"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Board.BoardFragment">
@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent="0.08" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imgLogo"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -32,12 +32,12 @@
         app:layout_constraintGuide_percent="0.17" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/icon_back"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
@@ -46,11 +46,11 @@
         android:layout_height="wrap_content"
         android:text="질문게시판"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+        app:layout_constraintStart_toEndOf="@+id/imgBack"
+        app:layout_constraintTop_toTopOf="@+id/imgBack" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/boardRV"
@@ -61,4 +61,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline20" />
+
+    <ImageView
+        android:id="@+id/imgAdd"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/icon_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
