@@ -28,25 +28,18 @@ public class RegisterDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        ImageView imgTest = findViewById(R.id.imgTest);
+
         Intent intent = getIntent();
-        String imgUriString = intent.getStringExtra("TestImgUri");
+        Uri imgUri = intent.getParcelableExtra("TestImgUri");
+        binding.imgTest.setImageURI(imgUri);
 
-        if (imgUriString != null) {
-            // 이미지 URI를 Uri 객체로 변환
-            Uri imgUri = Uri.parse(imgUriString);
-
-            // 이미지뷰에 이미지 설정
-            binding.imgTest.setImageURI(imgUri);
-        }
 
 
 
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterDetailActivity.this, RegisterFragment.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -55,6 +48,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterDetailActivity.this, RegisterFragment.class);
                 startActivity(intent);
+                finish();
             }
         });
 

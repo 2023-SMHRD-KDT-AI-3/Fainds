@@ -13,7 +13,7 @@
         app:layout_constraintGuide_percent="0.08481532" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/imgLogo"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -31,11 +31,11 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <ImageView
-        android:id="@+id/board_back"
+        android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_back" />
@@ -48,7 +48,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline20"
-        app:layout_constraintStart_toEndOf="@+id/board_back"
+        app:layout_constraintStart_toEndOf="@+id/imgBack"
         app:layout_constraintTop_toTopOf="@+id/guideline19" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -69,7 +69,7 @@
         app:layout_constraintVertical_bias="0.504" />
 
     <TextView
-        android:id="@+id/bdDetail_title"
+        android:id="@+id/boardDetailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -87,26 +87,41 @@
         android:layout_marginTop="12dp"
         android:text="2023-12-23"
         android:textColor="@color/navColor"
-        app:layout_constraintStart_toStartOf="@+id/bdDetail_title"
-        app:layout_constraintTop_toBottomOf="@+id/bdDetail_title" />
+        app:layout_constraintStart_toStartOf="@+id/boardDetailTitle"
+        app:layout_constraintTop_toBottomOf="@+id/boardDetailTitle" />
 
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/line"
-        tools:layout_editor_absoluteY="223dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:srcCompat="@drawable/line" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="내용"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+
+    <TextView
+        android:id="@+id/boardDetailContent"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        android:textColor="@color/navColor"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13"
-        tools:layout_editor_absoluteX="285dp" />
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

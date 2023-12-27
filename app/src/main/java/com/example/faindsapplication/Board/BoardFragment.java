@@ -39,7 +39,6 @@ public class BoardFragment extends Fragment {
     private FragmentBoardBinding binding = null;
     private ArrayList<BoardVO> dataset = null;
     private BoardAdapter adapter = null;
-
     private RequestQueue queue;
 
 
@@ -61,6 +60,7 @@ public class BoardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), BoardWriteActivity.class);
+                startActivity(intent);
             }
         });
 

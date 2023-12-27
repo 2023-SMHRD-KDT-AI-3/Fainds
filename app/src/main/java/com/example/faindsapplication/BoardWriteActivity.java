@@ -3,6 +3,7 @@ package com.example.faindsapplication;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.Board.BoardFragment;
 import com.example.faindsapplication.databinding.ActivityBoardWriteBinding;
 
 import java.util.HashMap;
@@ -31,6 +33,21 @@ public class BoardWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityBoardWriteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoardWriteActivity.this,BoardFragment.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         if(queue==null){
             queue = Volley.newRequestQueue(this);

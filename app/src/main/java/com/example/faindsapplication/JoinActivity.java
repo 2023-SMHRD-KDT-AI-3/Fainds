@@ -33,8 +33,7 @@ public class JoinActivity extends AppCompatActivity {
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -48,7 +47,7 @@ public class JoinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.54:8089/join",
+                        "http://192.168.219.47:8089/join",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
