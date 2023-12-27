@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 //import com.example.faindsapplication.databinding.ActivityMainBinding;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.d("Navigation", "Selected Item ID: " + item.getItemId());
                 if (R.id.tab1 == item.getItemId()){
                     getSupportFragmentManager().beginTransaction().replace(
                             // 1) 어디에
@@ -68,4 +70,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }

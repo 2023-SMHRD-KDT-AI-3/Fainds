@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.databinding.ActivityLoginBinding;
 
 import java.util.HashMap;
@@ -51,9 +52,10 @@ public class LoginActivity extends AppCompatActivity {
                                 if (response.equals("true")) {
                                     String id = binding.loginIdHint.getText().toString();
                                     // 로그인 성공
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     saveUserId(id);
+                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
+
                                 } else {
                                     // 로그인 실패
                                     Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();

@@ -2,6 +2,7 @@ package com.example.faindsapplication.Board;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.BoardWriteActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterAdapter;
 import com.example.faindsapplication.Register.RegisterVO;
@@ -58,14 +60,25 @@ public class BoardFragment extends Fragment {
         }
         getBoardData();
 
+        binding.imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),BoardWriteActivity.class);
+                startActivity(intent);
 
+            }
+        });
 
-       // dataset.add(new BoardVO("제목","내용",""));
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.boardRV.setLayoutManager(manager);
         binding.boardRV.setAdapter(adapter);
          return binding.getRoot();
+    }
+    public String getUserId() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserID", null);
     }
         public void getBoardData(){
             StringRequest request = new StringRequest(
@@ -83,15 +96,16 @@ public class BoardFragment extends Fragment {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     Log.d("qwer",jsonObject.toString());
                                     // 각 필요한 데이터를 추출
-                                    int boardSeq = jsonObject.getInt("boardSeq");
+                                     int boardSeq = jsonObject.getInt("boardSeq");
                                     String boardTitle = jsonObject.getString("boardTitle");
                                     String boardContent = jsonObject.getString("boardContent");
-
+                                    String boardWriter = getUserId();
                                     String createdAt = jsonObject.getString("createdAt");
                                     int boardCmtNum = jsonObject.getInt("boardCmtNum");
 
                                     // 데이터셋에 추가
-                                    dataset.add(new BoardVO(boardTitle, boardContent,createdAt,boardCmtNum));
+                                    dataset.add(new BoardVO(boardTitle, boardContent,createdAt,boardWriter,boardCmtNum,boardSeq));
+
                                 }
 
                                 // 어댑터에 데이터셋 변경을 알림
@@ -109,6 +123,8 @@ public class BoardFragment extends Fragment {
             }
             );
             queue.add(request);
+
+
         }
 
 

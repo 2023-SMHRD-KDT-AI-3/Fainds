@@ -34,16 +34,20 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         String boardTitle = dataset.get(position).getBoardTitle();
         String boardContent = dataset.get(position).getBoardContent();
         int boardCmtNum = dataset.get(position).getBoardCmtNum();
+        String createdAt = dataset.get(position).getCreated_at().substring(0,10) +" " +dataset.get(position).getCreated_at().substring(12,16);
+        int boardSeq=dataset.get(position).getBoardSeq();
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
         holder.getBoardCmtNum().setText(String.valueOf(boardCmtNum));
+        holder.getBoardTime().setText(createdAt);
         holder.listener = new BoardItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
                 Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
                 intent.putExtra("boardTitle",boardTitle);
                 intent.putExtra("boardContent",boardContent);
-
+                intent.putExtra("createdAt",createdAt);
+                intent.putExtra("boardSeq",boardSeq);
                 v.getContext().startActivity(intent);
             }
 
