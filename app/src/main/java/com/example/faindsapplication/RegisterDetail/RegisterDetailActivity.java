@@ -72,7 +72,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
         //binding.imgTest.setImageResource(imgTest);
 
         //=============================================================================
-        String url ="http://192.168.219.46:8089/getimg";
+        String url ="http://192.168.219.54:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, byteArrayOutputStream); // JPEG 형식, 품질 100으로 설정
