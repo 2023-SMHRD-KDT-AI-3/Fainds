@@ -43,7 +43,7 @@ public class EmailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.48:8089/saveEmail",
+                        "http://192.168.219.48:8089/chemail",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {

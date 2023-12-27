@@ -42,7 +42,7 @@ public class PwActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.48:8089/savePw",
+                        "http://192.168.219.48:8089/chepw",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
