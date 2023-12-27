@@ -50,7 +50,9 @@ public class PopupActivity extends AppCompatActivity {
                         // 기본 갤러리에서 선택한 이미지를 Uri값으로 가져온 후 ImageView에 초기화
                         Intent data = result.getData();
                         Uri imgUri = data.getData();
-
+                        Intent intent = new Intent(PopupActivity.this, RegisterDetailActivity.class);
+                        intent.putExtra("ImgUri", imgUri);
+                        startActivity(intent);
                     }
                 }
             }
