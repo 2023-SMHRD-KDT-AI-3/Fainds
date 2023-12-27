@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.faindsapplication.Board.BoardFragment;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
 
 public class BoardDetailActivity extends AppCompatActivity {
@@ -18,9 +20,26 @@ public class BoardDetailActivity extends AppCompatActivity {
         String boardtitle = getIntent().getStringExtra("boardTitle");
         String boardcontent = getIntent().getStringExtra("boardContent");
 
-        binding.bdDetailTitle.setText(boardtitle);
+        binding.boardDetailTitle.setText(boardtitle);
         // binding.이름.setText(boardcontent);
 
         setContentView(binding.getRoot());
+
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoardDetailActivity.this,BoardFragment.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 }

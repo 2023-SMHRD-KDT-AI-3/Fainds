@@ -43,6 +43,9 @@
             android:name=".BoardWriteActivity"
             android:exported="false" />
         <activity
+            android:name=".RegisterDetail.RegisterDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".JoinActivity"
             android:exported="false" />
         <activity
