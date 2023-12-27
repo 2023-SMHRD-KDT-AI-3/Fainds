@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.databinding.ActivityLoginBinding;
 
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.46:8089/login",
+                        "http://192.168.219.47:8089/login",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -51,9 +52,10 @@ public class LoginActivity extends AppCompatActivity {
                                 if (response.equals("true")) {
                                     String id = binding.loginIdHint.getText().toString();
                                     // 로그인 성공
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     saveUserId(id);
+                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
+
                                 } else {
                                     // 로그인 실패
                                     Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
@@ -76,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                         params.put("userPw",pw);
                         //Spring서버에서도 "id","pw"로 받아야 함
                         return params;
+
                     }
                 };
 

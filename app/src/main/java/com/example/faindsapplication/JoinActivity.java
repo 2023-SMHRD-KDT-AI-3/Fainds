@@ -30,6 +30,13 @@ public class JoinActivity extends AppCompatActivity {
         binding = ActivityJoinBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         if(queue==null){
             queue = Volley.newRequestQueue(this);
         }
@@ -40,7 +47,7 @@ public class JoinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.46:8089/join",
+                        "http://192.168.219.47:8089/join",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -71,8 +78,6 @@ public class JoinActivity extends AppCompatActivity {
                         params.put("userEmail",email);
                         params.put("userName",name);
                         //Spring서버에서도 "id","pw"로 받아야 함
-
-
 
                         return params;
                     }

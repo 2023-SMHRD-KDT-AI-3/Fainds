@@ -33,7 +33,7 @@ public class RegisterAdapter extends RecyclerView.Adapter<RegisterViewHolder> {
         String RegisterName = dataset.get(position).getContractName();
         String RegisterExample = dataset.get(position).getContractExample();
         int RegisterTypeImg = dataset.get(position).getContractImg();
-        holder.getTvRegisterName().setText(RegisterExample);
+        holder.getTvRegisterName().setText(RegisterName);
         holder.getTvRegisterExample().setText(RegisterExample);
         holder.getImgRegisterType().setImageResource(RegisterTypeImg);
         holder.listener = new RegisterItemClickListener() {

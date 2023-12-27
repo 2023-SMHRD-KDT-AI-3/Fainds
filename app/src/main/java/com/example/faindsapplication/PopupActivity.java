@@ -50,9 +50,12 @@ public class PopupActivity extends AppCompatActivity {
                         // 기본 갤러리에서 선택한 이미지를 Uri값으로 가져온 후 ImageView에 초기화
                         Intent data = result.getData();
                         Uri imgUri = data.getData();
+                        // RegisterDetailActivity로 이미지 URI를 전달
+
                         Intent intent = new Intent(PopupActivity.this, RegisterDetailActivity.class);
-                        intent.putExtra("ImgUri", imgUri);
+                        intent.putExtra("TestImgUri", imgUri);
                         startActivity(intent);
+
                     }
                 }
             }
@@ -70,29 +73,30 @@ public class PopupActivity extends AppCompatActivity {
         String data = ((Intent) intent).getStringExtra("RegisterName");
         txt.setText(data);
 
+        // 카메라 버튼
         binding.btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 cameraLauncher.launch(intent);
+
             }
         });
-
+        // 갤러리 버튼
         binding.btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI,"image/*");
                 // 선택한 이미지를 다시 받아올 수 있도록
                 albumLauncher.launch(intent);
             }
         });
 
+        // 닫기 버튼
         binding.btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(PopupActivity.this, RegisterFragment.class);
-                startActivity(intent1);
                 finish();
             }
         });

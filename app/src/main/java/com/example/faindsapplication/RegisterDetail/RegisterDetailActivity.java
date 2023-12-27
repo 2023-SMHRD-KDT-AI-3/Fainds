@@ -1,15 +1,20 @@
 package com.example.faindsapplication.RegisterDetail;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.example.faindsapplication.ContractDetail.ContractDetailAdapter;
+import com.example.faindsapplication.ContractDetail.ContractDetailVO;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,8 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.Register.RegisterFragment;
+import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
 import com.example.faindsapplication.VolleyMultipartRequest;
 import com.example.faindsapplication.databinding.ActivityRegisterDetailBinding;
+
+import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +41,9 @@ import java.util.Map;
 
 public class RegisterDetailActivity extends AppCompatActivity {
     private ActivityRegisterDetailBinding binding;
+    private ArrayList<RegisterDetailVO> dataset;
+    private RegisterDetailAdapter adapter;
+
     @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,46 +108,34 @@ public class RegisterDetailActivity extends AppCompatActivity {
         queue.add(multipartRequest);
 
 
-        // 전송할 JSON 데이터
-//        JSONObject postData = new JSONObject();
-//        try {
-//            postData.put("Data", bitmap);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // JSON Request 생성 및 전송
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        // 응답 처리
-//                        Log.d("Response", response.toString());
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                // 에러 처리
-//                Log.d("Error.Response", error.toString());
-//            }
-//        });
-//
-//        jsonObjectRequest.setRetryPolicy(new com.android.volley.DefaultRetryPolicy(
-//
-//                50000,
-//
-//                com.android.volley.DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//
-//                com.android.volley.DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//
-//        // 요청을 요청 큐에 추가
-//        queue.add(jsonObjectRequest);
 
 
 
-        //=============================================================================
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterDetailActivity.this, RegisterFragment.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
+        dataset = new ArrayList<>();
 
+        dataset.add(new RegisterDetailVO(1, "계약서 종류", "표준근로계약서(미성년자)"));
+        dataset.add(new RegisterDetailVO(1, "시급", "10500원"));
+        dataset.add(new RegisterDetailVO(1, "근무시간", "18시 00분 부터 21시 00분 까지(휴게시간 : 없음"));
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        binding.RegisterDetailRV.setLayoutManager(manager);
+        adapter = new RegisterDetailAdapter(dataset);
+        binding.RegisterDetailRV.setAdapter(adapter);
     }
 }

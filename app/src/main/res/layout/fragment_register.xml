@@ -26,27 +26,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/icon_back"
-        app:layout_constraintStart_toStartOf="@+id/imgLogo"
-        app:layout_constraintTop_toTopOf="@+id/guideline7" />
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="계약서 등록"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imgBack"
-        app:layout_constraintTop_toTopOf="@+id/imgBack" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline19"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/registerRV"
@@ -56,14 +46,16 @@
         android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline19" />
+        app:layout_constraintTop_toTopOf="@+id/guideline19"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_percent="0.17236662" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
