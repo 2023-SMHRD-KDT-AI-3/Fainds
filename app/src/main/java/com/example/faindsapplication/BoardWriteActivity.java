@@ -48,6 +48,13 @@ public class BoardWriteActivity extends AppCompatActivity {
             }
         });
 
+        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         if(queue==null){
             queue = Volley.newRequestQueue(this);
         }
