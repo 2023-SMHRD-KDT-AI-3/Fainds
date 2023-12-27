@@ -40,6 +40,11 @@ public class BoardDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        // 제목 변경
+        binding.boardDetailTitle.setText("test");
+        // 내용 변경
+
+
 
     }
 }
