@@ -4,8 +4,9 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -59,9 +60,10 @@ public class BoardWriteActivity extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Intent intent = new Intent(BoardWriteActivity.this,MainActivity.class);
-                                startActivity(intent);
-
+                                FragmentManager manager = getSupportFragmentManager();
+                                FragmentTransaction transaction = manager.beginTransaction();
+                                BoardFragment boardFragment = new BoardFragment();
+                                transaction.replace(R.id.frameLayout2,boardFragment).commit();
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -85,30 +87,14 @@ public class BoardWriteActivity extends AppCompatActivity {
 
                         return params;
                     }
-
-
                 };
                 queue.add(request);
             }
-
-
-        }
-
-        );
-
-
-
-
-
-
-
-
-
+        });
     }
     public String getUserId() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
-
 }
