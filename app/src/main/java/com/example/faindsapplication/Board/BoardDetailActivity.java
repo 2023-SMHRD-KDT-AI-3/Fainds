@@ -20,7 +20,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         String boardtitle = getIntent().getStringExtra("boardTitle");
         String boardcontent = getIntent().getStringExtra("boardContent");
 
-        binding.bdDetailTitle.setText(boardtitle);
+        binding.boardDetailTitle.setText(boardtitle);
         // binding.이름.setText(boardcontent);
 
         setContentView(binding.getRoot());
