@@ -58,92 +58,67 @@
             android:id="@+id/settingEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="50sp"
-            android:paddingTop="30sp"
-            android:paddingBottom="20sp"
+            android:paddingStart="20sp"
+            android:paddingTop="25sp"
+            android:paddingBottom="25sp"
             android:text="이메일 수정"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/imageView14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line" />
+        <View
+            android:id="@+id/Line"
+            android:layout_width="375dp"
+            android:layout_height="2px" />
 
         <TextView
             android:id="@+id/settingPw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="50sp"
-            android:paddingTop="20sp"
-            android:paddingBottom="20sp"
+            android:paddingStart="20dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="비밀번호 수정"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imageView17"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/settingDeclaration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="50sp"
-            android:paddingTop="20sp"
-            android:paddingBottom="20sp"
+            android:paddingStart="20dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="신고채널 1"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imageView18"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/settingDeclaration2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="50sp"
-            android:paddingTop="20sp"
-            android:paddingBottom="20sp"
+            android:paddingStart="20dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="신고채널 2"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imageView19"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/settingDeclaration3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="50sp"
-            android:paddingTop="20sp"
-            android:paddingBottom="20sp"
+            android:paddingStart="20dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="급여 계산기"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imageView21"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/line" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/settingCalculator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="50sp"
-            android:paddingTop="20sp"
-            android:paddingBottom="20sp"
+            android:paddingStart="20dp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
             android:text="로그아웃"
-            android:textColor="#FF0000"
-            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
