@@ -34,9 +34,9 @@
         android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/imgLogo"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="@+id/guideline19"
         app:srcCompat="@drawable/icon_back" />
 
     <TextView
@@ -82,27 +82,16 @@
         app:layout_constraintStart_toStartOf="@+id/boardDetailTitle"
         app:layout_constraintTop_toBottomOf="@+id/boardDetailTitle" />
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="375dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWriteTime"
-        app:srcCompat="@drawable/line" />
-
     <TextView
         android:id="@+id/boardDetailContent"
         android:layout_width="365dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWriteTime" />
 
     <EditText
         android:id="@+id/tvCmtWrite"
@@ -129,6 +118,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/tvCmtWrite"
         app:layout_constraintTop_toTopOf="@+id/tvCmtWrite"
-        app:srcCompat="@drawable/icon_cmt" />
+        app:srcCompat="@drawable/icon_cmt1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

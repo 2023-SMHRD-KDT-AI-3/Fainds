@@ -17,13 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.183"
-        app:srcCompat="@drawable/logo_main" />
+        app:srcCompat="@drawable/logo_main2" />
 
     <EditText
         android:id="@+id/loginIdHint"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="29dp"
+        android:background="@drawable/loginstyle"
         android:ems="10"
         android:hint="@string/loginIdHint"
         android:inputType="text"
@@ -37,19 +38,21 @@
         android:id="@+id/loginPwHint"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/loginstyle"
         android:ems="10"
         android:hint="@string/loginPwHint"
         android:inputType="textPassword"
         android:padding="5dp"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/loginIdHint"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/loginIdHint"
         app:layout_constraintTop_toBottomOf="@+id/loginIdHint" />
 
     <Button
         android:id="@+id/loginBtnLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/blue"
@@ -63,10 +66,11 @@
         android:id="@+id/loginTvJoin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="@string/loginTvJoin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintEnd_toStartOf="@+id/loginTvFindPw"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtnLogin" />
 
@@ -74,10 +78,11 @@
         android:id="@+id/loginTvFindPw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
         android:text="@string/loginTvFindPw"
+        app:layout_constraintBottom_toBottomOf="@+id/loginTvJoin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/loginTvJoin"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtnLogin" />
+        app:layout_constraintTop_toTopOf="@+id/loginTvJoin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

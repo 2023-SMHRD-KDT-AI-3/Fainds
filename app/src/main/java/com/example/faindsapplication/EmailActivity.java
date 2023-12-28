@@ -3,11 +3,8 @@ package com.example.faindsapplication;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,29 +27,28 @@ public class EmailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityEmailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         if(queue==null){
             queue = Volley.newRequestQueue(this);
         }
 
-        setContentView(binding.getRoot());
-
         binding.btnEmail.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.54:8089/chemail",
+                        "http://192.168.219.48:8089/chemail",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Log.d("LoginActivity", response);
-
 
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
                     }
                 }
 
@@ -60,19 +56,22 @@ public class EmailActivity extends AppCompatActivity {
                     @Nullable
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
-                        String currentEmail = binding.currentEmail.getText().toString();
-                        String newEmail = binding.newEmail.getText().toString();
+                        String currentemail = binding.currentEmail.getText().toString();
+                        String newemail = binding.newEmail.getText().toString();
+                        //전송방식을 POST로 지정했을 때 사용하는 메소드
+                        //데이터를 전송할 때 Map형태로 구성하여 리턴해줘야 한다.
+                        // Map<String,String> 앞은 Key 뒤는 Value 임
+                        // Map은 인터페이스 Map을 상속받은 클래스가 HashMap
                         Map<String,String> params = new HashMap<>();
-                        params.put("currentEmail",currentEmail);
-                        params.put("newEmail",newEmail);
-                        //Spring서버에서도 "id","pw"로 받아야 함
-                        return params;
+                        params.put("currentEmail",currentemail);
+                        params.put("newEmail",newemail);
+                        //Spring서버에서도 "currentemail","newemail"로 받아야 함
 
+                        return params;
                     }
                 };
 
                 queue.add(request);
-
             }
         });
 
