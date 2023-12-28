@@ -2,6 +2,7 @@ package com.example.faindsapplication.Board;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,18 +19,22 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardFragment;
+import com.example.faindsapplication.Cmt.CmtAdapter;
+import com.example.faindsapplication.Cmt.CmtVO;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BoardDetailActivity extends AppCompatActivity {
 
     private ActivityBoardDetailBinding binding;
-
+    private ArrayList<CmtVO> dataset;
+    private CmtAdapter adapter;
     private RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +111,15 @@ public class BoardDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        dataset = new ArrayList<>();
+        dataset.add(new CmtVO("test","내용",6));
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        binding.cmtRV.setLayoutManager(manager);
+        adapter = new CmtAdapter(dataset);
+        binding.cmtRV.setAdapter(adapter);
+
+
     }
 
 

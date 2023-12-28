@@ -37,12 +37,13 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
     public void onBindViewHolder(@NonNull CmtViewHolder holder, int position) {
         String cmtWriter = dataset.get(position).getCmtWriter();
         String cmtContent = dataset.get(position).getCmtContent();
-        String createdAt = dataset.get(position).getCmtCreated_at();
-        String formatTime = timeDi(createdAt);
+        // createdAt
+//        String createdAt = dataset.get(position).getCmtCreated_at();
+      //  String formatTime = timeDi(createdAt);
 
         holder.getCmtWriter().setText(cmtWriter);
         holder.getCmtContent().setText(cmtContent);
-        holder.getCmtTime().setText(formatTime);
+        //holder.getCmtTime().setText(formatTime);
 
         holder.listener = new CmtItemClickListener() {
             @Override
@@ -50,7 +51,7 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
                 Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
                 intent.putExtra("cmtWriter",cmtWriter);
                 intent.putExtra("cmtContent",cmtContent);
-                intent.putExtra("createdAt",formatTime);
+                //intent.putExtra("createdAt",formatTime);
 
                 v.getContext().startActivity(intent);
             }
