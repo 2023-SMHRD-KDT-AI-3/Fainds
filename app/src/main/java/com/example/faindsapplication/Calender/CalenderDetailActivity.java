@@ -2,6 +2,7 @@ package com.example.faindsapplication.Calender;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.StringBuilderPrinter;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.WorkPopupActivity;
 import com.example.faindsapplication.databinding.ActivityCalenderBinding;
 import com.example.faindsapplication.databinding.ActivityCalenderDetailBinding;
 
@@ -20,13 +22,30 @@ public class CalenderDetailActivity extends AppCompatActivity {
     private TimePicker startTimePicker, endTimePicker;
 
     private ActivityCalenderDetailBinding binding;
+    private int workStartTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCalenderDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.tvStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalenderDetailActivity.this, WorkPopupActivity.class);
+                intent.putExtra("workStartTime", workStartTime);
+                v.getContext().startActivity(intent);
+            }
+        });
+        binding.tvEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+
+
+/*
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,8 +64,8 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 calculateWorkDuration();
             }
         });
-    }
 
+    }
     private void calculateWorkDuration() {
         // 현재 시간을 가져와서 시작 시간과 끝 시간을 설정
 //        Calendar calendar = Calendar.getInstance();
@@ -88,5 +107,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
 
         // 결과 텍스트뷰에 표시
         binding.tvStartTime.setText(result);
+        */
+
     }
 }
