@@ -23,8 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".PopupActivity"
-            />
-
+            android:theme="@style/PopupTheme" />
         <activity
             android:name=".ContractDetail.ContractDetailActivity"
             android:exported="false" />

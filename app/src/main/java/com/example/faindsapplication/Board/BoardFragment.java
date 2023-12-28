@@ -22,6 +22,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.BoardWriteActivity;
+import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterAdapter;
 import com.example.faindsapplication.Register.RegisterVO;
@@ -42,6 +43,8 @@ public class BoardFragment extends Fragment {
     private FragmentBoardBinding binding = null;
     private ArrayList<BoardVO> dataset = null;
     private BoardAdapter adapter = null;
+
+
 
     private RequestQueue queue;
 

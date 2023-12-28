@@ -21,6 +21,8 @@ import com.example.faindsapplication.databinding.ActivityPopupBinding;
 public class PopupActivity extends AppCompatActivity {
     private TextView txt;
     private ActivityPopupBinding binding;
+
+
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -65,11 +67,10 @@ public class PopupActivity extends AppCompatActivity {
         binding = ActivityPopupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        txt = (TextView) findViewById(R.id.btnTest);
-
         Intent intent = getIntent();
         String data = ((Intent) intent).getStringExtra("RegisterName");
-        txt.setText(data);
+
+        
 
         // 카메라 버튼
         binding.btnCamera.setOnClickListener(new View.OnClickListener() {
