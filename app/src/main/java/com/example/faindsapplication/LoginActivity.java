@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 Log.d("LoginActivity", response);
+
                                 // 응답이 "true"이면 로그인 성공, "false"이면 실패
                                 if (response.equals("true")) {
                                     String id = binding.loginIdHint.getText().toString();
