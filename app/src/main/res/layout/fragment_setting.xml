@@ -46,106 +46,315 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.17099863" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline8">
+        app:layout_constraintTop_toTopOf="@+id/guideline8"
+        app:layout_constraintVertical_bias="1.0">
+
 
         <TextView
             android:id="@+id/settingEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="3dp"
-            android:background="#f2f2f2"
-            android:paddingStart="20sp"
-            android:paddingTop="25sp"
-            android:paddingBottom="25sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/settingstyle1"
+            android:paddingStart="50sp"
+            android:paddingTop="12sp"
+            android:paddingBottom="12dp"
             android:text="이메일 수정"
-            android:textSize="16sp" />
-
-        <View
-            android:id="@+id/Line"
-            android:layout_width="375dp"
-            android:layout_height="2px" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
         <TextView
             android:id="@+id/settingPw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="3dp"
-            android:background="#f2f2f2"
-            android:paddingStart="20dp"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/settingstyle2"
+            android:paddingStart="50dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             android:text="비밀번호 수정"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingEmail" />
 
         <TextView
             android:id="@+id/settingDeclaration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="3dp"
-            android:background="#f2f2f2"
-            android:paddingStart="20dp"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/settingstyle1"
+            android:paddingStart="50dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="신고채널 1"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
         <TextView
             android:id="@+id/settingDeclaration2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="3dp"
-            android:background="#f2f2f2"
-            android:paddingStart="20dp"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/settingstyle2"
+            android:paddingStart="50dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="신고채널 2"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingDeclaration" />
 
         <TextView
             android:id="@+id/settingDeclaration3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="3dp"
-            android:background="#f2f2f2"
-            android:paddingStart="20dp"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/settingstyle2"
+            android:paddingStart="50dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="급여 계산기"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingTip" />
 
         <TextView
             android:id="@+id/settingCalculator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="3dp"
-            android:background="#f2f2f2"
-            android:paddingStart="20dp"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/settingstyle3"
+            android:paddingStart="50dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="로그아웃"
             android:textColor="#000000"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingDeclaration3" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="회원정보수정"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_line"
+            app:layout_constraintBottom_toBottomOf="@+id/settingPw"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settingEmail"
+            app:layout_constraintVertical_bias="0.505" />
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_line"
+            app:layout_constraintBottom_toBottomOf="@+id/settingDeclaration2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settingDeclaration" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_line"
+            app:layout_constraintBottom_toBottomOf="@+id/settingDeclaration3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.774"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settingTip" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_email"
+            app:layout_constraintBottom_toBottomOf="@+id/settingEmail"
+            app:layout_constraintEnd_toEndOf="@+id/settingEmail"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settingEmail"
+            app:layout_constraintTop_toTopOf="@+id/settingEmail" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_pw"
+            app:layout_constraintBottom_toBottomOf="@+id/settingPw"
+            app:layout_constraintEnd_toEndOf="@+id/settingPw"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settingPw"
+            app:layout_constraintTop_toTopOf="@+id/settingPw"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="계약서 미작성 신고"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingPw" />
+
+        <TextView
+            android:id="@+id/settingTip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/settingstyle1"
+            android:paddingStart="50dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Tip게시판"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="부가기능"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingDeclaration2" />
+
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_tip"
+            app:layout_constraintBottom_toTopOf="@+id/settingDeclaration3"
+            app:layout_constraintEnd_toEndOf="@+id/settingTip"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settingTip"
+            app:layout_constraintTop_toTopOf="@+id/settingTip" />
+
+        <ImageView
+            android:id="@+id/imageView22"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_singo"
+            app:layout_constraintBottom_toBottomOf="@+id/settingDeclaration"
+            app:layout_constraintEnd_toEndOf="@+id/settingDeclaration"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settingDeclaration"
+            app:layout_constraintTop_toTopOf="@+id/settingDeclaration" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_singo2"
+            app:layout_constraintBottom_toBottomOf="@+id/settingDeclaration2"
+            app:layout_constraintEnd_toEndOf="@+id/settingDeclaration2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settingDeclaration2"
+            app:layout_constraintTop_toTopOf="@+id/settingDeclaration2" />
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_money"
+            app:layout_constraintBottom_toBottomOf="@+id/settingDeclaration3"
+            app:layout_constraintEnd_toEndOf="@+id/settingDeclaration3"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settingDeclaration3"
+            app:layout_constraintTop_toTopOf="@+id/settingDeclaration3"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icon_logout"
+            app:layout_constraintBottom_toBottomOf="@+id/settingCalculator"
+            app:layout_constraintEnd_toEndOf="@+id/settingCalculator"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/settingCalculator"
+            app:layout_constraintTop_toTopOf="@+id/settingCalculator"
+            app:layout_constraintVertical_bias="0.25" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
