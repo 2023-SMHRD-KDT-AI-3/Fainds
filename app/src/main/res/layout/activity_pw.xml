@@ -156,6 +156,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="비밀번호가 일치합니다!"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/currentPw"
         app:layout_constraintHorizontal_bias="0.0"
@@ -168,8 +170,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="비밀번호가 일치합니다!"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPw"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="@+id/confirmPw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/confirmPw"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPw" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

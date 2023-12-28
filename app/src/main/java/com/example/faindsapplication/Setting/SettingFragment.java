@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.Calender.CalenderActivity;
 import com.example.faindsapplication.EmailActivity;
 import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.PwActivity;
@@ -63,6 +64,7 @@ public class SettingFragment extends Fragment {
                             public void onResponse(String response) {
                                 Log.d("responseEmail",response.toString());
                                 Intent intent = new Intent(getActivity(), EmailActivity.class);
+                                intent.putExtra("LoginEmail",response);
                                 startActivity(intent);
                             }
                         }, new Response.ErrorListener() {
@@ -114,14 +116,14 @@ public class SettingFragment extends Fragment {
             }
         });
 
-//        //급여 계산기 클릭시
-//        binding.settingDeclaration3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(getActivity(),);
-//                startActivity(intent);
-//            }
-//        });
+        //급여 계산기 클릭시
+        binding.settingDeclaration3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), CalenderActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //로그아웃 클릭시
         binding.settingCalculator.setOnClickListener(new View.OnClickListener() {
