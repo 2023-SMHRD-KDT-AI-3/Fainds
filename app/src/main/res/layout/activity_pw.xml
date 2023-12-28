@@ -33,7 +33,7 @@
         android:background="@drawable/boardstyle"
         android:ems="10"
         android:hint="@string/currentPw"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,10 +54,10 @@
         app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/newPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="새 비밀번호"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newPw"
@@ -73,18 +73,18 @@
         android:background="@drawable/boardstyle"
         android:ems="10"
         android:hint="@string/newPw"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toStartOf="@+id/newPW"
+        app:layout_constraintTop_toBottomOf="@+id/newPW" />
 
     <TextView
         android:id="@+id/boardCmtNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="새 비밀번호 재입력"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/confirmPw"
@@ -100,7 +100,7 @@
         android:background="@drawable/boardstyle"
         android:ems="10"
         android:hint="@string/confirmPw"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingLeft="10dp"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +111,7 @@
         android:id="@+id/btnPw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/blue"
         android:text="@string/btnPw"
         app:cornerRadius="10dp"
@@ -149,5 +149,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="607dp" />
+
+    <TextView
+        android:id="@+id/tvPwCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="비밀번호가 일치합니다!"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/currentPw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/currentPw"
+        app:layout_constraintTop_toBottomOf="@+id/currentPw" />
+
+    <TextView
+        android:id="@+id/tvNewPwCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="비밀번호가 일치합니다!"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPw"
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

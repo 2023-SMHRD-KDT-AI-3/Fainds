@@ -14,10 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+import com.example.faindsapplication.Calender.CalenderActivity;
 import com.example.faindsapplication.EmailActivity;
 import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.PwActivity;
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.TipActivity;
 import com.example.faindsapplication.databinding.ActivityEmailBinding;
 import com.example.faindsapplication.databinding.FragmentSettingBinding;
 
@@ -66,15 +69,23 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        // tip게시판 클릭시
+        binding.settingTip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), TipActivity.class);
+                startActivity(intent);
+            }
+        });
 
-//        //급여 계산기 클릭시
-//        binding.settingDeclaration3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(getActivity(),);
-//                startActivity(intent);
-//            }
-//        });
+        //급여 계산기 클릭시
+        binding.settingDeclaration3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(v.getContext(), CalenderActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //로그아웃 클릭시
         binding.settingCalculator.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +96,8 @@ public class SettingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
         return binding.getRoot();
     }
     public void removeUserId() {
