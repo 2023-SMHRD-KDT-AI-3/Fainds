@@ -59,6 +59,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 intent.putExtra("boardContent",boardContent);
                 intent.putExtra("createdAt",createdAt);
                 intent.putExtra("boardSeq",boardSeq);
+                Log.d("boardSeq", String.valueOf(boardSeq));
                 v.getContext().startActivity(intent);
             }
 
@@ -95,23 +96,17 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 // 하루 미만이면 "몇 시간 전"
                 return hours + "시간 전";
             } else if(hours<48){
-                long hours1 = hours-24;
-                return "1일"+hours1+"시간 전";
+                return "1일전";
             } else if(hours<72){
-                long hours1 = hours-48;
-                return "2일"+hours1+"시간 전";
+                return "2일전";
             } else if(hours<96){
-                long hours1 = hours-72;
-                return "3일"+hours1+"시간 전";
+                return "3일전";
             } else if(hours<120){
-                long hours1 = hours-96;
-                return "4일"+hours1+"시간 전";
+                return "4일전";
             } else if(hours<144){
-                long hours1 = hours-120;
-                return "5일"+hours1+"시간 전";
+                return "5일전";
             } else if(hours<168){
-                long hours1 = hours-144;
-                return "6일"+hours1+"시간 전";
+                return "6일전";
             } else {
                 // 그 이상이면 "yyyy-MM-dd HH:mm" 형식으로 표시
                 SimpleDateFormat displayFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
