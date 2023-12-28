@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,8 +21,6 @@ import java.util.Map;
 public class EmailActivity extends AppCompatActivity {
 
     private ActivityEmailBinding binding;
-    private EditText currentEmail,newEmail;
-    private Button btnEmail;
     private RequestQueue queue;
 
     @Override
