@@ -9,8 +9,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="408dp"
+        android:layout_height="172dp"
         android:backgroundTint="@color/white"
         android:foregroundGravity="bottom"
         app:cardCornerRadius="10dp"
@@ -48,7 +48,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:orientation="horizontal"
@@ -62,7 +62,6 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
                     app:srcCompat="@drawable/icon_camera" />
 
                 <TextView

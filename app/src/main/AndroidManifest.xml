@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".WorkPopupActivity"
+            android:theme="@style/WorkTheme" />
+        <activity
             android:name=".Calender.CalenderDetailActivity"
             android:exported="false" />
         <activity
