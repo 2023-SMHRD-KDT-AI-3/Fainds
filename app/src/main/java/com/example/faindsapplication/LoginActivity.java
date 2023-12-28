@@ -52,8 +52,9 @@ public class LoginActivity extends AppCompatActivity {
                                 // 응답이 "true"이면 로그인 성공, "false"이면 실패
                                 if (response.equals("true")) {
                                     String id = binding.loginIdHint.getText().toString();
+                                    String pw = binding.loginPwHint.getText().toString();
                                     // 로그인 성공
-                                    saveUserId(id);
+                                    saveUserId(id,pw);
                                      Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
 
@@ -96,12 +97,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         }
-    public void saveUserId(String userId) {
+    public void saveUserId(String userId, String userPw) {
         // SharedPreferences 인스턴스 얻기
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // Editor를 사용하여 값을 저장
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("UserID", userId);
+        editor.putString("UserPW",userPw);
         editor.apply();
     }
 }
