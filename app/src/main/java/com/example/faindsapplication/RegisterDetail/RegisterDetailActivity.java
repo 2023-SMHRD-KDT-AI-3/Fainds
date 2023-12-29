@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -22,6 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.FlaskConnect;
+import com.example.faindsapplication.FlaskResponseListener;
+import com.example.faindsapplication.ProgressDialog;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterFragment;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
@@ -68,12 +73,16 @@ public class RegisterDetailActivity extends AppCompatActivity {
         }
 
 
+        ProgressDialog progressDialog = new ProgressDialog(this); //다이얼로그 선언
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); //백그라운를 투명하게
+        progressDialog.setCancelable(false); //다이얼로그 외부 클릭으로 종료되지 않게
+        progressDialog.show();
 
         //int imgTest = intent.getIntExtra("TestImg",R);
         //binding.imgTest.setImageResource(imgTest);
 
         //=============================================================================
-        String url ="http://192.168.219.54:8089/getimg";
+        String url ="http://192.168.219.63:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, byteArrayOutputStream); // JPEG 형식, 품질 100으로 설정
@@ -88,6 +97,20 @@ public class RegisterDetailActivity extends AppCompatActivity {
                         // 성공적으로 이미지가 전송되었을 때의 처리
                         String responseData = new String(response.data, StandardCharsets.UTF_8);
                         Log.d("ResponseSuccess", "onResponse: "+responseData);
+                        FlaskConnect flask = new FlaskConnect();
+                        flask.flaskconn(responseData, RegisterDetailActivity.this, new FlaskResponseListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                progressDialog.dismiss();
+                                updateUI(response);
+                            }
+                            @Override
+                            public void onError(String error) {
+                                Log.d("flaskerror", "onError: flask error");
+                                progressDialog.dismiss();
+                            }
+                        });
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -111,7 +134,8 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
 
 
-
+    }
+    public void updateUI(JSONObject response){
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +160,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         dataset = new ArrayList<>();
         try {
-            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONObject jsonObject = response;
 
             // JSON 객체를 반복하면서 key-value 쌍을 추출
             Iterator<String> keys = jsonObject.keys();

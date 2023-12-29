@@ -112,8 +112,9 @@
 
     <ImageView
         android:id="@+id/imgCmtWrite"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvCmtWrite"
         app:layout_constraintEnd_toEndOf="@+id/tvCmtWrite"
         app:layout_constraintHorizontal_bias="1.0"

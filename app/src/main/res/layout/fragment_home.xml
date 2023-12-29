@@ -74,13 +74,21 @@
         app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:id="@+id/btnSearch"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/icon_search"
         app:layout_constraintBottom_toBottomOf="@+id/tvSearch"
         app:layout_constraintEnd_toEndOf="@+id/tvSearch"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="@+id/tvSearch"
-        app:layout_constraintTop_toTopOf="@+id/tvSearch" />
+        app:layout_constraintTop_toTopOf="@+id/tvSearch"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

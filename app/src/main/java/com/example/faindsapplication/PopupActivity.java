@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -70,7 +73,8 @@ public class PopupActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String data = ((Intent) intent).getStringExtra("RegisterName");
 
-        
+        getWindow().getAttributes().gravity = Gravity.BOTTOM;
+
 
         // 카메라 버튼
         binding.btnCamera.setOnClickListener(new View.OnClickListener() {

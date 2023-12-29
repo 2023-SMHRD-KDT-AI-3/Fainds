@@ -64,6 +64,7 @@ public class SettingFragment extends Fragment {
                             public void onResponse(String response) {
                                 Log.d("responseEmail",response.toString());
                                 Intent intent = new Intent(getActivity(), EmailActivity.class);
+                                intent.putExtra("LoginEmail",response);
                                 startActivity(intent);
                             }
                         }, new Response.ErrorListener() {
@@ -118,8 +119,8 @@ public class SettingFragment extends Fragment {
         //급여 계산기 클릭시
         binding.settingDeclaration3.setOnClickListener(new View.OnClickListener() {
             @Override
-           public void onClick(View v) {
-               Intent intent=new Intent(getActivity(), CalenderActivity.class);
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), CalenderActivity.class);
                 startActivity(intent);
             }
         });
