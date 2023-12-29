@@ -9,8 +9,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="409dp"
+        android:layout_height="169dp"
+        android:layout_marginBottom="-10dp"
         android:backgroundTint="@color/white"
         android:foregroundGravity="bottom"
         app:cardCornerRadius="10dp"
@@ -22,13 +23,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/blue"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="410dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
@@ -48,7 +49,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:orientation="horizontal"
@@ -62,8 +63,7 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/icon_camera" />
+                    app:srcCompat="@drawable/icon_camera1" />
 
                 <TextView
                     android:id="@+id/btnCamera"
@@ -73,6 +73,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="카메라로 촬영하기"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -92,7 +93,7 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/icon_gallery" />
+                    app:srcCompat="@drawable/icon_gallery1" />
 
                 <TextView
                     android:id="@+id/btnGallery"
