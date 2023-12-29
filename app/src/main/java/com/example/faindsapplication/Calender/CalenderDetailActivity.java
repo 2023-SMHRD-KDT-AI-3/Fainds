@@ -1,5 +1,6 @@
 package com.example.faindsapplication.Calender;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -23,6 +24,8 @@ public class CalenderDetailActivity extends AppCompatActivity {
     private TimePicker startTimePicker, endTimePicker;
 
     private ActivityCalenderDetailBinding binding;
+    private static final int REQUEST_CODE_WORK_POPUP_START = 1;
+    private static final int REQUEST_CODE_WORK_POPUP_END = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CalenderDetailActivity.this, WorkPopupActivity.class);
                 intent.putExtra("ID", "workStartTime");
-                v.getContext().startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_WORK_POPUP_START);
             }
         });
         binding.tvEndTime.setOnClickListener(new View.OnClickListener() {
@@ -42,14 +45,9 @@ public class CalenderDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CalenderDetailActivity.this, WorkPopupActivity.class);
                 intent.putExtra("ID", "workEndTime");
-                v.getContext().startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_WORK_POPUP_END);
             }
         });
-
-        String startTime = getStartTime();
-        String endTime = getEndTime();
-        binding.tvStartTime.setText(startTime);
-        binding.tvEndTime.setText(endTime);
 
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,14 +113,17 @@ public class CalenderDetailActivity extends AppCompatActivity {
         */
 
     }
-    public String getStartTime() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
-        // "UserPW" 키로 저장된 값을 반환. 값이 없다면 null 반환
-        return sharedPreferences.getString("startTime", null);
-    }
-    public String getEndTime() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
-        // "UserPW" 키로 저장된 값을 반환. 값이 없다면 null 반환
-        return sharedPreferences.getString("endTime", null);
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null) {
+            if (requestCode == REQUEST_CODE_WORK_POPUP_START) {
+                String startTime = data.getStringExtra("startTime");
+                binding.tvStartTime.setText(startTime);
+            } else if (requestCode == REQUEST_CODE_WORK_POPUP_END) {
+                String endTime = data.getStringExtra("endTime");
+                binding.tvEndTime.setText(endTime);
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@ import com.example.faindsapplication.EmailActivity;
 import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.PwActivity;
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.TipActivity;
 import com.example.faindsapplication.databinding.ActivityEmailBinding;
 import com.example.faindsapplication.databinding.FragmentSettingBinding;
 
@@ -112,6 +113,14 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("https://labor.moel.go.kr/reportCntr/illegalLaborType2.do"));
+                startActivity(intent);
+            }
+        });
+
+        binding.settingTip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TipActivity.class);
                 startActivity(intent);
             }
         });
