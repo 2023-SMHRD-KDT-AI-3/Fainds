@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -141,7 +142,8 @@ public class BoardDetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                            JSONArray jsonArray = new JSONArray(utf8String);
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -157,6 +159,9 @@ public class BoardDetailActivity extends AppCompatActivity {
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
 
+                        } catch (UnsupportedEncodingException e) {
+                            // 예외 처리
+                            e.printStackTrace();
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }

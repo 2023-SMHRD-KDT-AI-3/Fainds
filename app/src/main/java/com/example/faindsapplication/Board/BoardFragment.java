@@ -35,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,7 +97,8 @@ public class BoardFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                            JSONArray jsonArray = new JSONArray(utf8String);
                             Log.d("qwer", jsonArray.toString());
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -115,7 +117,10 @@ public class BoardFragment extends Fragment {
                             }
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
+                        }catch (UnsupportedEncodingException e) {
+                            // 예외 처리
+                            e.printStackTrace();
+                        }  catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
                     }
@@ -128,6 +133,8 @@ public class BoardFragment extends Fragment {
         );
         queue.add(request);
     }
+
+
     public void getSearchBoardData() {
         StringRequest request = new StringRequest(
                 Request.Method.GET,
@@ -136,7 +143,8 @@ public class BoardFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                              JSONArray jsonArray = new JSONArray(response);
+
                             Log.d("qwer", jsonArray.toString());
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
