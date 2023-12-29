@@ -36,13 +36,13 @@
         android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="@+id/newPW"
         app:layout_constraintStart_toStartOf="@+id/imgLogo"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/newPW"
         app:srcCompat="@drawable/icon_back" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/newPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="계약서 등록"
