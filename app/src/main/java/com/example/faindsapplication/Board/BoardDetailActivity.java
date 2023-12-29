@@ -23,9 +23,11 @@ import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.Cmt.CmtVO;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,11 +55,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         }
 
 
-
         binding.imgCmtWrite.setOnClickListener(new View.OnClickListener() {
-
-
-
             @Override
             public void onClick(View v) {
 
@@ -66,7 +64,7 @@ public class BoardDetailActivity extends AppCompatActivity {
                 try {
                     jsonBody.put("cmtContent", cmtContent);
                     jsonBody.put("boardSeqId", getIntent().getIntExtra("boardSeq", 0));
-                    jsonBody.put("cmtUser", getUserId());
+                    jsonBody.put("cmtWriterUser", getUserId());
                     Log.d("jsonbody", jsonBody.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -112,7 +110,11 @@ public class BoardDetailActivity extends AppCompatActivity {
             }
         });
         dataset = new ArrayList<>();
-        dataset.add(new CmtVO("test","내용",6));
+      //  dataset.add(new CmtVO("test",6));
+
+        getComentData();
+
+
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         binding.cmtRV.setLayoutManager(manager);
@@ -127,6 +129,61 @@ public class BoardDetailActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
+    }
+
+    public void getComentData(){
+        getIntent().getIntExtra("boardSeq",0);
+        String boardSeqId = String.valueOf(getIntent().getIntExtra("boardSeq",0));
+        Log.d("boardSeqId12345",boardSeqId);
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.54:8089/cmtlist",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                            JSONArray jsonArray = new JSONArray(utf8String);
+                            // 파싱한 데이터를 데이터셋에 추가
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                Log.d("댓글Json",jsonObject.toString());
+                                // 각 필요한 데이터를 추출
+                                String cmtWriter = jsonObject.getString("cmtWriterUser");
+                                String cmtContent = jsonObject.getString("cmtContent");
+                                String createdAt = jsonObject.getString("createdAt");
+                                Log.d("cmtContent",cmtContent);
+                                // 데이터셋에 추가
+                                dataset.add(new CmtVO(cmtWriter,cmtContent,createdAt));
+                            }
+                            // 어댑터에 데이터셋 변경을 알림
+                            adapter.notifyDataSetChanged();
+
+                        } catch (UnsupportedEncodingException e) {
+                            // 예외 처리
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+               params.put("boardSeqId",boardSeqId);
+                return params;
+            }
+        };
+        queue.add(request);
     }
 
 }
