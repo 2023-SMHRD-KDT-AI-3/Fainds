@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.54:8089/login",
+                        "http://192.168.219.63:8089/login",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -106,4 +106,5 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("UserPW",userPw);
         editor.apply();
     }
+
 }

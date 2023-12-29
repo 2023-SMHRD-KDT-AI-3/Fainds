@@ -2,6 +2,8 @@ package com.example.faindsapplication.Calender;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.StringBuilderPrinter;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.WorkPopupActivity;
 import com.example.faindsapplication.databinding.ActivityCalenderBinding;
 import com.example.faindsapplication.databinding.ActivityCalenderDetailBinding;
 
@@ -26,6 +29,27 @@ public class CalenderDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCalenderDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.tvStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalenderDetailActivity.this, WorkPopupActivity.class);
+                intent.putExtra("ID", "workStartTime");
+                v.getContext().startActivity(intent);
+            }
+        });
+        binding.tvEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalenderDetailActivity.this, WorkPopupActivity.class);
+                intent.putExtra("ID", "workEndTime");
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        String startTime = getStartTime();
+        String endTime = getEndTime();
+        binding.tvStartTime.setText(startTime);
+        binding.tvEndTime.setText(endTime);
 
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,15 +62,15 @@ public class CalenderDetailActivity extends AppCompatActivity {
         String currentMonth = getIntent().getStringExtra("currentMonth");
         binding.tvMonth.setText(currentMonth);
         binding.tvDay.setText(selectedDate);
-
+/*
         binding.btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calculateWorkDuration();
             }
         });
-    }
 
+    }
     private void calculateWorkDuration() {
         // 현재 시간을 가져와서 시작 시간과 끝 시간을 설정
 //        Calendar calendar = Calendar.getInstance();
@@ -88,5 +112,17 @@ public class CalenderDetailActivity extends AppCompatActivity {
 
         // 결과 텍스트뷰에 표시
         binding.tvStartTime.setText(result);
+        */
+
+    }
+    public String getStartTime() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserPW" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("startTime", null);
+    }
+    public String getEndTime() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserPW" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("endTime", null);
     }
 }

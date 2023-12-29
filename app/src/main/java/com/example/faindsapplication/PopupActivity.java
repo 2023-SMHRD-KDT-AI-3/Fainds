@@ -8,21 +8,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.faindsapplication.Register.RegisterFragment;
 import com.example.faindsapplication.RegisterDetail.RegisterDetailActivity;
 import com.example.faindsapplication.databinding.ActivityPopupBinding;
 
 public class PopupActivity extends AppCompatActivity {
     private TextView txt;
     private ActivityPopupBinding binding;
+
+
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -67,11 +70,11 @@ public class PopupActivity extends AppCompatActivity {
         binding = ActivityPopupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        txt = (TextView) findViewById(R.id.tvResultTest);
-
         Intent intent = getIntent();
         String data = ((Intent) intent).getStringExtra("RegisterName");
-        txt.setText(data);
+
+        getWindow().getAttributes().gravity = Gravity.BOTTOM;
+
 
         // 카메라 버튼
         binding.btnCamera.setOnClickListener(new View.OnClickListener() {
