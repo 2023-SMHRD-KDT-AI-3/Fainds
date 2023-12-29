@@ -4,30 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/transparent"
+    android:background="@drawable/work_round_popup"
+    android:theme="@style/WorkTheme"
     tools:context=".WorkPopupActivity">
 
     <TimePicker
         android:id="@+id/workTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numbersInnerTextColor="@color/black"
-        android:numbersSelectorColor="@color/black"
-        android:numbersTextColor="@color/black"
+        android:theme="@style/workPopup"
         android:timePickerMode="spinner"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/workBtn"
-        android:layout_width="88dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="확인"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/btnBlue1"
+        android:text="등록"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/workTime"
         app:layout_constraintStart_toStartOf="@+id/workTime"
