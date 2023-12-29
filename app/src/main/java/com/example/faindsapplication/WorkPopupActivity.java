@@ -37,7 +37,13 @@ public class WorkPopupActivity extends AppCompatActivity {
                     int endMin = binding.workTime.getMinute();
                     endTime = String.format("%02d:%02d", endHour, endMin);
                 }
-                saveWorkTime(startTime,endTime);
+                Intent resultIntent = new Intent();
+                // startTime과 endTime을 Intent에 담음
+                resultIntent.putExtra("startTime", startTime);
+                resultIntent.putExtra("endTime", endTime);
+                // setResult 메소드를 사용하여 결과를 설정
+                setResult(RESULT_OK, resultIntent);
+
                 finish();
             }
         });
@@ -49,13 +55,5 @@ public class WorkPopupActivity extends AppCompatActivity {
         }
         return true;
     }
-    public void saveWorkTime(String startTime, String endTime) {
-        // SharedPreferences 인스턴스 얻기
-        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
-        // Editor를 사용하여 값을 저장
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("startTime", startTime);
-        editor.putString("endTime",endTime);
-        editor.apply();
-    }
+
 }

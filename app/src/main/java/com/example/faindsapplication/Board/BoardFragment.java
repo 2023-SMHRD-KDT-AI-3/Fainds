@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -25,9 +26,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.BoardWriteActivity;
 import com.example.faindsapplication.Cmt.CmtAdapter;
+import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterAdapter;
+import com.example.faindsapplication.Register.RegisterFragment;
 import com.example.faindsapplication.Register.RegisterVO;
+import com.example.faindsapplication.SearchFragment;
 import com.example.faindsapplication.databinding.FragmentBoardBinding;
 import com.example.faindsapplication.databinding.FragmentRegisterBinding;
 
@@ -72,6 +76,13 @@ public class BoardFragment extends Fragment {
         binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+
+                // Replace the current fragment with HomeFragment
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fl, new SearchFragment())
+                        .addToBackStack(null)  // Optional: Add to back stack if you want to navigate back
+                        .commit();
                 getSearchBoardData();
             }
         });
@@ -136,6 +147,7 @@ public class BoardFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
+
                             JSONArray jsonArray = new JSONArray(response);
                             Log.d("qwer", jsonArray.toString());
                             // 파싱한 데이터를 데이터셋에 추가
@@ -153,6 +165,7 @@ public class BoardFragment extends Fragment {
                                 // 데이터셋에 추가
                                 dataset.add(new BoardVO(boardTitle, boardContent, createdAt, boardWriter, boardCmtNum, boardSeq));
                             }
+
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
