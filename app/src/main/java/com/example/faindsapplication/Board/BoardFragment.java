@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -35,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class BoardFragment extends Fragment {
     private ArrayList<BoardVO> dataset = null;
     private BoardAdapter adapter = null;
     private RequestQueue queue;
-
+    private boolean searcheck = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,7 +61,14 @@ public class BoardFragment extends Fragment {
         if (queue == null) {
             queue = Volley.newRequestQueue(requireContext());
         }
-        getBoardData();
+
+        if (searcheck == false){
+            getBoardData();
+        }else {
+            getSearchBoardData();
+        }
+
+
 
         binding.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +81,9 @@ public class BoardFragment extends Fragment {
         binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSearchBoardData();
+                queue = Volley.newRequestQueue(requireContext());
+                searcheck = true;
+                Log.d("searchclick", "onClick: clicked");
             }
         });
 
@@ -90,18 +101,17 @@ public class BoardFragment extends Fragment {
 
     public void getBoardData() {
         StringRequest request = new StringRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 "http://192.168.219.54:8089/board",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            Log.d("qwer", jsonArray.toString());
-                            // 파싱한 데이터를 데이터셋에 추가
+                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                            JSONArray jsonArray = new JSONArray(utf8String);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("qwer", jsonObject.toString());
+                                Log.d("getboard", jsonObject.toString());
                                 // 각 필요한 데이터를 추출
                                 int boardSeq = jsonObject.getInt("boardSeq");
                                 String boardTitle = jsonObject.getString("boardTitle");
@@ -115,7 +125,10 @@ public class BoardFragment extends Fragment {
                             }
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
+                        }catch (UnsupportedEncodingException e) {
+                            // 예외 처리
+                            e.printStackTrace();
+                        }  catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
                     }
@@ -128,20 +141,21 @@ public class BoardFragment extends Fragment {
         );
         queue.add(request);
     }
+
+
     public void getSearchBoardData() {
         StringRequest request = new StringRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 "http://192.168.219.54:8089/boardSearch",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            Log.d("qwer", jsonArray.toString());
+                              JSONArray jsonArray = new JSONArray(response);
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("qwer", jsonObject.toString());
+                                Log.d("searchboard", jsonObject.toString());
                                 // 각 필요한 데이터를 추출
                                 int boardSeq = jsonObject.getInt("boardSeq");
                                 String boardTitle = jsonObject.getString("boardTitle");
@@ -149,7 +163,7 @@ public class BoardFragment extends Fragment {
                                 String boardWriter = getUserId();
                                 String createdAt = jsonObject.getString("createdAt");
                                 int boardCmtNum = jsonObject.getInt("boardCmtNum");
-
+                                dataset = new ArrayList<>();
                                 // 데이터셋에 추가
                                 dataset.add(new BoardVO(boardTitle, boardContent, createdAt, boardWriter, boardCmtNum, boardSeq));
                             }
@@ -169,9 +183,11 @@ public class BoardFragment extends Fragment {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                String keyword = binding.tvBoardSearch.getText().toString();
+
                 Map<String,String> params = new HashMap<>();
+                String keyword = binding.tvBoardSearch.getText().toString();
                 params.put("keyword",keyword);
+                Log.d("keyword",keyword);
                 return params;
             }
         };
