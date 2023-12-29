@@ -4,22 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/transparent"
+    android:background="@color/white"
     tools:context=".WorkPopupActivity">
 
     <TimePicker
         android:id="@+id/workTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numbersInnerTextColor="@color/black"
-        android:numbersSelectorColor="@color/black"
-        android:numbersTextColor="@color/black"
+        android:background="@color/transparent"
         android:timePickerMode="spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/WorkTheme"
         app:layout_constraintVertical_bias="0.092" />
 
     <Button
@@ -27,7 +26,10 @@
         android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
+        android:background="@color/btnBlue1"
         android:text="확인"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/workTime"
         app:layout_constraintStart_toStartOf="@+id/workTime"

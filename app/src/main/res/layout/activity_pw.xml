@@ -109,11 +109,12 @@
 
     <Button
         android:id="@+id/btnPw"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/btnBlue1"
         android:text="@string/btnPw"
+        android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/confirmPw"
         app:layout_constraintStart_toStartOf="@+id/confirmPw"

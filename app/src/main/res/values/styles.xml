@@ -11,4 +11,8 @@
         <item name="windowActionBar">true</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="timepickerTheme">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
 </resources>
