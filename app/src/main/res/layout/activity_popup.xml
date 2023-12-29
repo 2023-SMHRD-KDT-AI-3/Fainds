@@ -63,7 +63,7 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/icon_camera" />
+                    app:srcCompat="@drawable/icon_camera1" />
 
                 <TextView
                     android:id="@+id/btnCamera"
@@ -93,7 +93,7 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/icon_gallery" />
+                    app:srcCompat="@drawable/icon_gallery1" />
 
                 <TextView
                     android:id="@+id/btnGallery"

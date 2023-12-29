@@ -3,6 +3,7 @@ package com.example.faindsapplication.Calender;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.StringBuilderPrinter;
 import android.view.View;
@@ -22,7 +23,6 @@ public class CalenderDetailActivity extends AppCompatActivity {
     private TimePicker startTimePicker, endTimePicker;
 
     private ActivityCalenderDetailBinding binding;
-    private int workStartTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +33,24 @@ public class CalenderDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CalenderDetailActivity.this, WorkPopupActivity.class);
-                intent.putExtra("workStartTime", workStartTime);
+                intent.putExtra("ID", "workStartTime");
                 v.getContext().startActivity(intent);
             }
         });
         binding.tvEndTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(CalenderDetailActivity.this, WorkPopupActivity.class);
+                intent.putExtra("ID", "workEndTime");
+                v.getContext().startActivity(intent);
             }
         });
 
+        String startTime = getStartTime();
+        String endTime = getEndTime();
+        binding.tvStartTime.setText(startTime);
+        binding.tvEndTime.setText(endTime);
 
-/*
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +62,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
         String currentMonth = getIntent().getStringExtra("currentMonth");
         binding.tvMonth.setText(currentMonth);
         binding.tvDay.setText(selectedDate);
-
+/*
         binding.btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,5 +114,15 @@ public class CalenderDetailActivity extends AppCompatActivity {
         binding.tvStartTime.setText(result);
         */
 
+    }
+    public String getStartTime() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserPW" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("startTime", null);
+    }
+    public String getEndTime() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserPW" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("endTime", null);
     }
 }

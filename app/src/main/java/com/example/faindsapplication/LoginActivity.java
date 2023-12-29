@@ -106,4 +106,5 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("UserPW",userPw);
         editor.apply();
     }
+
 }
