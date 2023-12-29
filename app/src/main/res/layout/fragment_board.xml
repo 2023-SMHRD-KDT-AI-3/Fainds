@@ -72,7 +72,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
+    <EditText
+        android:inputType="text"
         android:id="@+id/tvBoardSearch"
         android:layout_width="0dp"
         android:layout_height="35dp"
