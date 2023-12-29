@@ -62,11 +62,7 @@ public class BoardFragment extends Fragment {
             queue = Volley.newRequestQueue(requireContext());
         }
 
-        if (searcheck == false){
-            getBoardData();
-        }else {
-            getSearchBoardData();
-        }
+      getBoardData();
 
 
 
@@ -81,9 +77,7 @@ public class BoardFragment extends Fragment {
         binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                queue = Volley.newRequestQueue(requireContext());
-                searcheck = true;
-                Log.d("searchclick", "onClick: clicked");
+
             }
         });
 
@@ -163,7 +157,6 @@ public class BoardFragment extends Fragment {
                                 String boardWriter = getUserId();
                                 String createdAt = jsonObject.getString("createdAt");
                                 int boardCmtNum = jsonObject.getInt("boardCmtNum");
-                                dataset = new ArrayList<>();
                                 // 데이터셋에 추가
                                 dataset.add(new BoardVO(boardTitle, boardContent, createdAt, boardWriter, boardCmtNum, boardSeq));
                             }
