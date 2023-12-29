@@ -82,7 +82,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
         //binding.imgTest.setImageResource(imgTest);
 
         //=============================================================================
-        String url ="http://192.168.219.56:8089/getimg";
+        String url ="http://192.168.219.63:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, byteArrayOutputStream); // JPEG 형식, 품질 100으로 설정
@@ -160,7 +160,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         dataset = new ArrayList<>();
         try {
-            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONObject jsonObject = response;
 
             // JSON 객체를 반복하면서 key-value 쌍을 추출
             Iterator<String> keys = jsonObject.keys();
