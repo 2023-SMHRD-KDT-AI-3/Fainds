@@ -9,12 +9,14 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.BoardWriteActivity;
 import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.Home.HomeFragment;
+import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterAdapter;
 import com.example.faindsapplication.Register.RegisterFragment;
@@ -39,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,18 +76,30 @@ public class BoardFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                HomeFragment homeFragment = new HomeFragment();
+                transaction.replace(R.id.fl, homeFragment);
+                transaction.commit();
+            }
+        });
 
         binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-//
-//                // Replace the current fragment with HomeFragment
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.fl, new SearchFragment())
-//                        .addToBackStack(null)  // Optional: Add to back stack if you want to navigate back
-//                        .commit();
-                getSearchBoardData();
+                String keyword = binding.tvBoardSearch.getText().toString();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                // Create a Bundle to pass data to SearchFragment
+                Bundle bundle = new Bundle();
+                bundle.putString("keyword", keyword);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                SearchFragment searchFragment = new SearchFragment();
+                searchFragment.setArguments(bundle);
+
+                transaction.replace(R.id.fl, searchFragment);
+                transaction.commit();
             }
         });
 
@@ -101,13 +117,14 @@ public class BoardFragment extends Fragment {
 
     public void getBoardData() {
         StringRequest request = new StringRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 "http://192.168.219.54:8089/board",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                            JSONArray jsonArray = new JSONArray(utf8String);
                             Log.d("qwer", jsonArray.toString());
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -126,7 +143,10 @@ public class BoardFragment extends Fragment {
                             }
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
+                        } catch (UnsupportedEncodingException e) {
+                            // 예외 처리
+                            e.printStackTrace();
+                        }catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
                     }
@@ -137,58 +157,6 @@ public class BoardFragment extends Fragment {
             }
         }
         );
-        queue.add(request);
-    }
-    public void getSearchBoardData() {
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                "http://192.168.219.54:8089/boardSearch",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-
-                            JSONArray jsonArray = new JSONArray(response);
-                            Log.d("qwer", jsonArray.toString());
-
-                            // 파싱한 데이터를 데이터셋에 추가
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("qwer", jsonObject.toString());
-                                // 각 필요한 데이터를 추출
-                                int boardSeq = jsonObject.getInt("boardSeq");
-                                String boardTitle = jsonObject.getString("boardTitle");
-                                String boardContent = jsonObject.getString("boardContent");
-                                String boardWriter = getUserId();
-                                String createdAt = jsonObject.getString("createdAt");
-                                int boardCmtNum = jsonObject.getInt("boardCmtNum");
-
-                                // 데이터셋에 추가
-                                dataset.add(new BoardVO(boardTitle, boardContent, createdAt, boardWriter, boardCmtNum, boardSeq));
-                            }
-
-                            // 어댑터에 데이터셋 변경을 알림
-                            adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }
-        ){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                String keyword = binding.tvBoardSearch.getText().toString();
-                Map<String,String> params = new HashMap<>();
-                params.put("keyword",keyword);
-                return params;
-            }
-        };
         queue.add(request);
     }
 }

@@ -8,6 +8,7 @@ android {
     viewBinding{
         enable=true
     }
+
     defaultConfig {
         applicationId = "com.example.faindsapplication"
         minSdk = 24

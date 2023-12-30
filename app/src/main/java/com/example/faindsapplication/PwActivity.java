@@ -110,6 +110,14 @@ public class PwActivity extends AppCompatActivity {
                 finish();
             }
         });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PwActivity.this,MainActivity.class);
+                intent.putExtra("moveFl","board");
+                startActivity(intent);
+            }
+        });
 
     }
 
