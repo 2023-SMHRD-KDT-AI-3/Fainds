@@ -84,7 +84,9 @@ public class EmailActivity extends AppCompatActivity {
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(EmailActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
+                startActivity(intent);
             }
         });
     }

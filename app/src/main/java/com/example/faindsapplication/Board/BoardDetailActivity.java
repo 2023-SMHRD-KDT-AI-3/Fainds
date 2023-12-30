@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardFragment;
 import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.Cmt.CmtVO;
+import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
 
 import org.json.JSONArray;
@@ -104,9 +105,9 @@ public class BoardDetailActivity extends AppCompatActivity {
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BoardDetailActivity.this,BoardFragment.class);
+                Intent intent = new Intent(BoardDetailActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
                 startActivity(intent);
-                finish();
             }
         });
         dataset = new ArrayList<>();

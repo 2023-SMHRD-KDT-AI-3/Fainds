@@ -114,7 +114,7 @@ public class PwActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PwActivity.this,MainActivity.class);
-                intent.putExtra("moveFl","board");
+                intent.putExtra("moveFl","home");
                 startActivity(intent);
             }
         });

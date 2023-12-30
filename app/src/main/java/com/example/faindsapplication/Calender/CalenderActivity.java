@@ -1,4 +1,5 @@
 package com.example.faindsapplication.Calender;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,6 +21,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
 
 public class CalenderActivity extends Activity {
@@ -37,6 +39,7 @@ public class CalenderActivity extends Activity {
      * 일 저장 할 리스트
      */
     private ArrayList<String> dayList;
+    private ArrayList<String> salaryList;
 
     /**
      * 그리드뷰
@@ -57,6 +60,7 @@ public class CalenderActivity extends Activity {
         tvDate = (TextView)findViewById(R.id.tv_date);
         gridView = (GridView)findViewById(R.id.gridview);
         ImageView imgBack = findViewById(R.id.imgBack);
+        ImageView imgLogo = findViewById(R.id.imgLogo);
 
         imgBack.setOnClickListener(new OnClickListener() {
             @Override
@@ -64,6 +68,15 @@ public class CalenderActivity extends Activity {
                 finish();
             }
         });
+        imgLogo.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalenderActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
+                startActivity(intent);
+            }
+        });
+
 
         // 오늘에 날짜를 세팅 해준다.
         long now = System.currentTimeMillis();
@@ -74,17 +87,25 @@ public class CalenderActivity extends Activity {
         final SimpleDateFormat curDayFormat = new SimpleDateFormat("dd", Locale.KOREA);
 
         //현재 날짜 텍스트뷰에 뿌려줌
-        tvDate.setText(curYearFormat.format(date) + "/" + curMonthFormat.format(date));
+        tvDate.setText(curYearFormat.format(date) + " / " + curMonthFormat.format(date));
 
         //gridview 요일 표시
         dayList = new ArrayList<String>();
+        salaryList = new ArrayList<String>();
         dayList.add("일");
+        salaryList.add("");
         dayList.add("월");
+        salaryList.add("");
         dayList.add("화");
+        salaryList.add("");
         dayList.add("수");
+        salaryList.add("");
         dayList.add("목");
+        salaryList.add("");
         dayList.add("금");
+        salaryList.add("");
         dayList.add("토");
+        salaryList.add("");
 
         mCal = Calendar.getInstance();
 
@@ -94,11 +115,13 @@ public class CalenderActivity extends Activity {
         //1일 - 요일 매칭 시키기 위해 공백 add
         for (int i = 1; i < dayNum; i++) {
             dayList.add("");
+            salaryList.add("");
         }
         setCalendarDate(mCal.get(Calendar.MONTH) + 1);
 
         gridAdapter = new GridAdapter(getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -127,6 +150,7 @@ public class CalenderActivity extends Activity {
 
         for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
             dayList.add("" + (i + 1));
+            salaryList.add(""+((i+1)*100));
         }
 
     }
@@ -183,15 +207,15 @@ public class CalenderActivity extends Activity {
             } else {
                 holder = (ViewHolder)convertView.getTag();
             }
+
             holder.tvItemGridViewDate.setText("" + getItem(position));
 
             String date = getItem(position);
             holder.tvItemGridViewDate.setText(date);
 
             // 해당 날짜에 대한 내용 설정 (임시로 예시로 "내용" 표시)
-            String content = "내용";
+            String content = salaryList.get(position);
             holder.tvItemGridViewContent.setText(content);
-
 
             //해당 날짜 텍스트 컬러,배경 변경
             mCal = Calendar.getInstance();

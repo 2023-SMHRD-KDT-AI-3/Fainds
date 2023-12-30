@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardAdapter;
 import com.example.faindsapplication.Board.BoardVO;
+import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.databinding.FragmentBoardBinding;
 import com.example.faindsapplication.databinding.FragmentSearchBinding;
 
@@ -63,6 +65,15 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
                 startActivity(intent);
+            }
+        });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                HomeFragment homeFragment = new HomeFragment();
+                transaction.replace(R.id.fl, homeFragment);
+                transaction.commit();
             }
         });
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
