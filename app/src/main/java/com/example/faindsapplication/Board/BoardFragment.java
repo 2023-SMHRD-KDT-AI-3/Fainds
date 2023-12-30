@@ -76,13 +76,13 @@ public class BoardFragment extends Fragment {
         binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-
-                // Replace the current fragment with HomeFragment
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fl, new SearchFragment())
-                        .addToBackStack(null)  // Optional: Add to back stack if you want to navigate back
-                        .commit();
+//                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+//
+//                // Replace the current fragment with HomeFragment
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.fl, new SearchFragment())
+//                        .addToBackStack(null)  // Optional: Add to back stack if you want to navigate back
+//                        .commit();
                 getSearchBoardData();
             }
         });
@@ -150,6 +150,7 @@ public class BoardFragment extends Fragment {
 
                             JSONArray jsonArray = new JSONArray(response);
                             Log.d("qwer", jsonArray.toString());
+
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
