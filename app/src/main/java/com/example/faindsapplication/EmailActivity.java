@@ -81,6 +81,12 @@ public class EmailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void sendChangeEmailRequest(String currentEmail, String newEmail) {

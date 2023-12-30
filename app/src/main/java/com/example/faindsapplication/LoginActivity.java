@@ -55,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
                                     String pw = binding.loginPwHint.getText().toString();
                                     // 로그인 성공
                                     saveUserId(id,pw);
-                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("moveFl","home");
                                     startActivity(intent);
 
                                 } else {

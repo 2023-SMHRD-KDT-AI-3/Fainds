@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btnCalculate"
+    android:id="@+id/btnRegisterSalary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imgLogo"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -65,7 +65,7 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/icon_back"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/guideline15"
         app:layout_constraintVertical_bias="0.0" />
 
