@@ -11,6 +11,13 @@ import android.view.View;
 import android.widget.TimePicker;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.WorkPopupActivity;
 import com.example.faindsapplication.databinding.ActivityCalenderDetailBinding;
@@ -19,7 +26,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class CalenderDetailActivity extends AppCompatActivity {
 
@@ -29,11 +38,19 @@ public class CalenderDetailActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_WORK_POPUP_START = 1;
     private static final int REQUEST_CODE_WORK_POPUP_END = 2;
 
+    private RequestQueue queue;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCalenderDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if(queue==null){
+            queue = Volley.newRequestQueue(this);
+        }
+
         binding.tvStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,12 +108,47 @@ public class CalenderDetailActivity extends AppCompatActivity {
     }
 
     private void RegisterSalary(String formattedDate, String startTime, String endTime, String salary, String userId) {
-        Log.d("test",formattedDate);
-        Log.d("test",startTime);
-        Log.d("test",endTime);
-        Log.d("test",salary);
-        Log.d("test",userId);
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.54:8089/regiSalary",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new HashMap<>();
+                params.put("workDay",formattedDate);
+                params.put("startedAt",startTime);
+                params.put("endedAt",endTime);
+                params.put("workPay",salary);
+                params.put("workUser",userId);
+                //Spring서버에서도 "id","pw"로 받아야 함
+
+                Log.d("sal",formattedDate);
+                Log.d("sal",startTime);
+                Log.d("sal",endTime);
+                Log.d("sal",salary);
+                Log.d("sal",userId);
+
+
+                return params;
+        }
+
+    };
+        queue.add(request);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
