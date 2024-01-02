@@ -27,6 +27,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -46,30 +47,19 @@ import org.json.JSONObject;
 
 public class CalenderActivity extends Activity {
 
-    /**
-     * 연/월 텍스트뷰
-     */
+    // 연월 텍스트뷰
     private TextView tvDate;
-    /**
-     * 그리드뷰 어댑터
-     */
+    // 그리드뷰 어댑터
     private GridAdapter gridAdapter;
 
-    /**
-     * 일 저장 할 리스트
-     */
+    // 리스트
     private ArrayList<CalenderVO> calenderList;
     private ArrayList<CalenderDetailVO> calenderDetailList;
     private Map<String, Double> dailySalaryMap;
-
-    /**
-     * 그리드뷰
-     */
+    // 그리드뷰
     private GridView gridView;
 
-    /**
-     * 캘린더 변수
-     */
+    // 캘린더 변수
     private Calendar mCal;
 
     private RequestQueue queue;
@@ -83,7 +73,7 @@ public class CalenderActivity extends Activity {
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
-
+        // 데이터 통신 메소드
         getSalData();
 
         tvDate = (TextView) findViewById(R.id.tv_date);
@@ -94,8 +84,9 @@ public class CalenderActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CalenderActivity.this, MainActivity.class);
-                intent.putExtra("moveFl","setting");
-                startActivity(intent);            }
+                intent.putExtra("moveFl", "setting");
+                startActivity(intent);
+            }
         });
 
         // 오늘에 날짜를 세팅 해준다.
@@ -113,13 +104,6 @@ public class CalenderActivity extends Activity {
         calenderList = new ArrayList<CalenderVO>();
         calenderDetailList = new ArrayList<CalenderDetailVO>();
         dailySalaryMap = new HashMap<>();
-        calenderList.add(new CalenderVO("일", ""));
-        calenderList.add(new CalenderVO("월", ""));
-        calenderList.add(new CalenderVO("화", ""));
-        calenderList.add(new CalenderVO("수", ""));
-        calenderList.add(new CalenderVO("목", ""));
-        calenderList.add(new CalenderVO("금", ""));
-        calenderList.add(new CalenderVO("토", ""));
 
         mCal = Calendar.getInstance();
 
@@ -140,23 +124,42 @@ public class CalenderActivity extends Activity {
                 CalenderVO selectedCalenderItem = gridAdapter.getItem(position);
                 // CalenderVO 객체에서 날짜를 가져옴
                 String selectedDate = selectedCalenderItem.getDate();
+                int realDate = Integer.parseInt(selectedDate);
+                String startedAt = "";
+                String endedAt = "";
+                String workPay = "";
+                String formattedDate="";
+
+                if(realDate<10) {
+                    formattedDate = curMonthFormat.format(date) + "월 0" + selectedDate + "일";
+                } else {
+                    formattedDate = curMonthFormat.format(date) + "월 " + selectedDate + "일";
+                }
+                // 해당 날짜에 대한 정보가 있는지 확인
+                for (CalenderDetailVO calenderDetail : calenderDetailList) {
+                    Log.d("test",formattedDate);
+                    Log.d("test",calenderDetail.getWorkDay());
+                    if (calenderDetail.getWorkDay().equals(selectedDate)) {
+                        startedAt = calenderDetail.getStartedAt();
+                        endedAt = calenderDetail.getEndedAt();
+                        workPay = calenderDetail.getWorkPay();
+                        break;
+                    }
+                }
 
                 if (!selectedDate.isEmpty()) {
-                    String formattedDate = curMonthFormat.format(date) + "월 " + selectedDate + "일";
-
                     Intent intent = new Intent(CalenderActivity.this, CalenderDetailActivity.class);
                     intent.putExtra("currentDate", formattedDate);
+                    intent.putExtra("startedAt", startedAt);
+                    intent.putExtra("endedAt", endedAt);
+                    intent.putExtra("workPay", workPay);
                     startActivity(intent);
                 }
             }
         });
 
     }
-
-
-    /**
-     * 그리드뷰 어댑터
-     */
+    // 그리드뷰 어댑터
     private class GridAdapter extends BaseAdapter {
 
         private List<CalenderVO> calenderList;
@@ -244,47 +247,78 @@ public class CalenderActivity extends Activity {
                         try {
                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                             JSONArray jsonArray = new JSONArray(utf8String);
-                            String startedAt;
-                            String endedAt;
-                            String workPay;
-                            String boardWriter;
-                            String workDay;
+                            Log.d("시작","시작");
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("qwer", jsonObject.toString());
-                                // 각 필요한 데이터를 추출
-                                startedAt = jsonObject.getString("startedAt");
-                                endedAt = jsonObject.getString("endedAt");
-                                workPay = jsonObject.getString("workPay");
-                                boardWriter = getUserId();
-                                workDay = jsonObject.getString("workDay");
-                                calenderDetailList.add(new CalenderDetailVO(startedAt,endedAt,workPay,workDay));
-
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                                double dailyPay = Double.parseDouble(workPay);
-                                long daysWorked = getDaysDifference(startedAt, endedAt) + 1;
-                                double totalSalaryForDay = dailyPay * daysWorked;
-                                dailySalaryMap.put(workDay, totalSalaryForDay);
-
-
-                                //mCal.set(Calendar.MONTH, mCal.get(Calendar.MONTH) + 1 - 1);
+                            if (jsonArray.length() == 0) {
                                 for (int f = 0; f < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); f++) {
-                                    String matchDay = "12월 " + (f + 1) + "일";
-                                    if (matchDay.equals(workDay)) {
+                                    calenderList.add(new CalenderVO("" + (f + 1), ""));
+                                    gridAdapter.notifyDataSetChanged();
+                                }
+                            }
+                            else {
+                                String startedAt;
+                                String endedAt;
+                                String workPay;
+                                String boardWriter;
+                                String workDay;
+                                int j = 0;
+                                int monthTotalSalary = 0;
+                                int monthTotalTime = 0;
+
+                                for (int f = 0; f < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); f++) {
+
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                        Log.d("qwer", jsonObject.toString());
+                                        // 각 필요한 데이터를 추출
+                                        startedAt = jsonObject.getString("startedAt");
+                                        endedAt = jsonObject.getString("endedAt");
+                                        workPay = jsonObject.getString("workPay");
+                                        boardWriter = getUserId();
+                                        workDay = jsonObject.getString("workDay");
+                                        calenderDetailList.add(new CalenderDetailVO(startedAt, endedAt, workPay, workDay));
+                                    }
+                                    // dailyTotalSalary 계산
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                                    double dailyPay = Double.parseDouble(calenderDetailList.get(j).getWorkPay());
+                                    double daysWorked = getTimeDifference(calenderDetailList.get(j).getStartedAt(), calenderDetailList.get(j).getEndedAt());
+
+                                    double totalSalaryForDay = dailyPay * daysWorked;
+                                    dailySalaryMap.put(calenderDetailList.get(j).getWorkDay(), totalSalaryForDay);
+
+
+                                    // 일자 표시 및 일별 일한 금액 표시
+                                    String matchDay = "";
+                                    if(f<9){
+                                        matchDay = "01월 0" + (f + 1) + "일";
+                                    } else {
+                                        matchDay = "01월 " + (f + 1) + "일";
+                                    }
+
+                                    if (matchDay.equals(calenderDetailList.get(j).getWorkDay())) {
                                         String formattedSalary = NumberFormat.getInstance().format(totalSalaryForDay) + "원";
                                         calenderList.add(new CalenderVO("" + (f + 1), formattedSalary));
+                                        monthTotalSalary += totalSalaryForDay;
+                                        monthTotalTime += daysWorked;
+                                        j++;
                                     } else {
                                         calenderList.add(new CalenderVO("" + (f + 1), ""));
                                     }
                                 }
+                                TextView totalSalaryTextView = findViewById(R.id.totalSalary);
+                                String formattedMonthTotalSalary = NumberFormat.getInstance().format(monthTotalSalary) + "원";
+                                totalSalaryTextView.setText(formattedMonthTotalSalary);
+                                TextView totalTimeTextView = findViewById(R.id.totalTime);
+                                String formattedMonthTotalTime = NumberFormat.getInstance().format(monthTotalTime) + "시간";
+                                totalTimeTextView.setText(formattedMonthTotalTime);
+                                gridAdapter.notifyDataSetChanged();
                             }
 
-                            gridAdapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
+                        } catch (
+                                JSONException e) {
                             throw new RuntimeException(e);
-                        } catch (UnsupportedEncodingException e) {
+                        } catch (
+                                UnsupportedEncodingException e) {
                             throw new RuntimeException(e);
                         }
                     }
@@ -306,17 +340,18 @@ public class CalenderActivity extends Activity {
         };
         queue.add(request);
     }
-    private long getDaysDifference(String startDateString, String endDateString) {
+
+    private double getTimeDifference(String startDateString, String endDateString) {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
             Date startDate = dateFormat.parse(startDateString);
             Date endDate = dateFormat.parse(endDateString);
 
             long differenceInMillis = endDate.getTime() - startDate.getTime();
-            return differenceInMillis / (24 * 60 * 60 * 1000); // 밀리초를 일로 변환
+            return differenceInMillis / (60 * 60 * 1000);
         } catch (ParseException e) {
             e.printStackTrace();
-            return 0; // 예외 발생 시 0을 반환하거나 다른 적절한 값으로 처리
+            return 0;
         }
     }
 

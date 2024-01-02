@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/white"
     tools:context=".Board.BoardFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -73,7 +73,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:inputType="text"
         android:id="@+id/tvBoardSearch"
         android:layout_width="0dp"
         android:layout_height="35dp"
@@ -81,6 +80,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/boardstyle"
         android:gravity="center_vertical"
+        android:inputType="text"
         android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
