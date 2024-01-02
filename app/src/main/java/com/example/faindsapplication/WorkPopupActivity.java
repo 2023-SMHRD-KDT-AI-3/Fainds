@@ -23,6 +23,7 @@ public class WorkPopupActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String data = ((Intent) intent).getStringExtra("ID");
 
+
         binding.workBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

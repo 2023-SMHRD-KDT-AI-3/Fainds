@@ -1,5 +1,8 @@
 package com.example.faindsapplication.Calender;
+
 import java.io.UnsupportedEncodingException;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,6 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
 
 import org.json.JSONArray;
@@ -54,7 +58,9 @@ public class CalenderActivity extends Activity {
     /**
      * 일 저장 할 리스트
      */
-    private ArrayList<String> dayList;
+    private ArrayList<CalenderVO> calenderList;
+    private ArrayList<CalenderDetailVO> calenderDetailList;
+    private Map<String, Double> dailySalaryMap;
 
     /**
      * 그리드뷰
@@ -87,8 +93,9 @@ public class CalenderActivity extends Activity {
         imgBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-            }
+                Intent intent = new Intent(CalenderActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","setting");
+                startActivity(intent);            }
         });
 
         // 오늘에 날짜를 세팅 해준다.
@@ -103,14 +110,16 @@ public class CalenderActivity extends Activity {
         tvDate.setText(curYearFormat.format(date) + "/" + curMonthFormat.format(date));
 
         //gridview 요일 표시
-        dayList = new ArrayList<String>();
-        dayList.add("일");
-        dayList.add("월");
-        dayList.add("화");
-        dayList.add("수");
-        dayList.add("목");
-        dayList.add("금");
-        dayList.add("토");
+        calenderList = new ArrayList<CalenderVO>();
+        calenderDetailList = new ArrayList<CalenderDetailVO>();
+        dailySalaryMap = new HashMap<>();
+        calenderList.add(new CalenderVO("일", ""));
+        calenderList.add(new CalenderVO("월", ""));
+        calenderList.add(new CalenderVO("화", ""));
+        calenderList.add(new CalenderVO("수", ""));
+        calenderList.add(new CalenderVO("목", ""));
+        calenderList.add(new CalenderVO("금", ""));
+        calenderList.add(new CalenderVO("토", ""));
 
         mCal = Calendar.getInstance();
 
@@ -119,23 +128,24 @@ public class CalenderActivity extends Activity {
         int dayNum = mCal.get(Calendar.DAY_OF_WEEK);
         //1일 - 요일 매칭 시키기 위해 공백 add
         for (int i = 1; i < dayNum; i++) {
-            dayList.add("");
+            calenderList.add(new CalenderVO("", ""));
         }
-        setCalendarDate(mCal.get(Calendar.MONTH) + 1);
 
-        gridAdapter = new GridAdapter(getApplicationContext(), dayList);
+        gridAdapter = new GridAdapter(getApplicationContext(), calenderList);
         gridView.setAdapter(gridAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedDate = gridAdapter.getItem(position);
+                // getItem 메소드로 CalenderVO 객체를 가져옴
+                CalenderVO selectedCalenderItem = gridAdapter.getItem(position);
+                // CalenderVO 객체에서 날짜를 가져옴
+                String selectedDate = selectedCalenderItem.getDate();
+
                 if (!selectedDate.isEmpty()) {
-                    // 클릭된 날짜가 비어 있지 않은 경우에만 처리
-                    // 여기서 새로운 페이지로 이동하는 로직을 추가하세요.
-                    // 예를 들어, 다음 활동으로 이동하는 코드를 작성할 수 있습니다.
+                    String formattedDate = curMonthFormat.format(date) + "월 " + selectedDate + "일";
+
                     Intent intent = new Intent(CalenderActivity.this, CalenderDetailActivity.class);
-                    intent.putExtra("selectedDate", selectedDate);
-                    intent.putExtra("currentMonth", curMonthFormat.format(date));
+                    intent.putExtra("currentDate", formattedDate);
                     startActivity(intent);
                 }
             }
@@ -143,26 +153,13 @@ public class CalenderActivity extends Activity {
 
     }
 
-    /**
-     * 해당 월에 표시할 일 수 구함
-     *
-     * @param month
-     */
-    private void setCalendarDate(int month) {
-        mCal.set(Calendar.MONTH, month - 1);
-
-        for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-            dayList.add("" + (i + 1));
-        }
-
-    }
 
     /**
      * 그리드뷰 어댑터
      */
     private class GridAdapter extends BaseAdapter {
 
-        private final List<String> list;
+        private List<CalenderVO> calenderList;
 
         private final LayoutInflater inflater;
 
@@ -172,19 +169,19 @@ public class CalenderActivity extends Activity {
          * @param context
          * @param list
          */
-        public GridAdapter(Context context, List<String> list) {
-            this.list = list;
+        public GridAdapter(Context context, List<CalenderVO> list) {
+            this.calenderList = list;
             this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public int getCount() {
-            return list.size();
+            return calenderList.size();
         }
 
         @Override
-        public String getItem(int position) {
-            return list.get(position);
+        public CalenderVO getItem(int position) {
+            return calenderList.get(position);
         }
 
         @Override
@@ -208,13 +205,15 @@ public class CalenderActivity extends Activity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            holder.tvItemGridViewDate.setText("" + getItem(position));
 
-            String date = getItem(position);
+            // getItem 메소드를 통해 CalenderVO 객체를 가져옴
+            CalenderVO calenderItem = getItem(position);
+            String date = calenderItem.getDate();
+
             holder.tvItemGridViewDate.setText(date);
 
-            // 해당 날짜에 대한 내용 설정 (임시로 예시로 "내용" 표시)
-            String content = "내용";
+            // 해당 날짜에 대한 내용 설정
+            String content = calenderItem.getDailySalary();
             holder.tvItemGridViewContent.setText(content);
 
 
@@ -245,24 +244,43 @@ public class CalenderActivity extends Activity {
                         try {
                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                             JSONArray jsonArray = new JSONArray(utf8String);
+                            String startedAt;
+                            String endedAt;
+                            String workPay;
+                            String boardWriter;
+                            String workDay;
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 Log.d("qwer", jsonObject.toString());
                                 // 각 필요한 데이터를 추출
-                                String startedAt = jsonObject.getString("startedAt");
-                                String endedAt = jsonObject.getString("endedAt");
-                                String workPay = jsonObject.getString("workPay");
-                                String boardWriter = getUserId();
-                                String workDay = jsonObject.getString("workDay");
+                                startedAt = jsonObject.getString("startedAt");
+                                endedAt = jsonObject.getString("endedAt");
+                                workPay = jsonObject.getString("workPay");
+                                boardWriter = getUserId();
+                                workDay = jsonObject.getString("workDay");
+                                calenderDetailList.add(new CalenderDetailVO(startedAt,endedAt,workPay,workDay));
 
-                                Log.d("startedAt", startedAt);
-                                Log.d("endedAt", endedAt);
-                                Log.d("workPay", workPay);
-                                Log.d("boardWriter", boardWriter);
-                                Log.d("workDay", workDay);
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                                double dailyPay = Double.parseDouble(workPay);
+                                long daysWorked = getDaysDifference(startedAt, endedAt) + 1;
+                                double totalSalaryForDay = dailyPay * daysWorked;
+                                dailySalaryMap.put(workDay, totalSalaryForDay);
 
+
+                                //mCal.set(Calendar.MONTH, mCal.get(Calendar.MONTH) + 1 - 1);
+                                for (int f = 0; f < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); f++) {
+                                    String matchDay = "12월 " + (f + 1) + "일";
+                                    if (matchDay.equals(workDay)) {
+                                        String formattedSalary = NumberFormat.getInstance().format(totalSalaryForDay) + "원";
+                                        calenderList.add(new CalenderVO("" + (f + 1), formattedSalary));
+                                    } else {
+                                        calenderList.add(new CalenderVO("" + (f + 1), ""));
+                                    }
+                                }
                             }
+
+                            gridAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
@@ -287,8 +305,19 @@ public class CalenderActivity extends Activity {
             }
         };
         queue.add(request);
+    }
+    private long getDaysDifference(String startDateString, String endDateString) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date startDate = dateFormat.parse(startDateString);
+            Date endDate = dateFormat.parse(endDateString);
 
-
+            long differenceInMillis = endDate.getTime() - startDate.getTime();
+            return differenceInMillis / (24 * 60 * 60 * 1000); // 밀리초를 일로 변환
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0; // 예외 발생 시 0을 반환하거나 다른 적절한 값으로 처리
+        }
     }
 
     public String getUserId() {
@@ -297,4 +326,3 @@ public class CalenderActivity extends Activity {
         return sharedPreferences.getString("UserID", null);
     }
 }
-

@@ -36,6 +36,14 @@ public class JoinActivity extends AppCompatActivity {
                 finish();
             }
         });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
+                startActivity(intent);
+            }
+        });
 
         if(queue==null){
             queue = Volley.newRequestQueue(this);

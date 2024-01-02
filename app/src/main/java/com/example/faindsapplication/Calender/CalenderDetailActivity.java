@@ -75,9 +75,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
             }
         });
 
-        String selectedDate = getIntent().getStringExtra("selectedDate");
-        String currentMonth = getIntent().getStringExtra("currentMonth");
-        String formattedDate = currentMonth +"월"+ selectedDate+"일";
+        String formattedDate = getIntent().getStringExtra("currentDate");
         binding.tvDay.setText(formattedDate);
 
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
@@ -91,23 +89,24 @@ public class CalenderDetailActivity extends AppCompatActivity {
         binding.btnRegisterSalary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selectedDate = getIntent().getStringExtra("selectedDate");
-                String currentMonth = getIntent().getStringExtra("currentMonth");
-                String formattedDate = currentMonth + "월" + selectedDate + "일";
+                String currentDate = binding.tvDay.getText().toString();
                 String startTime = binding.tvStartTime.getText().toString();
                 String endTime = binding.tvEndTime.getText().toString();
                 String salary = binding.tvSalary.getText().toString();
+                String dailySalary = binding.tvDailySalary.getText().toString();
 
 
                 String userId = getUserId();
-                RegisterSalary(formattedDate, startTime, endTime, salary, userId);
+                RegisterSalary(currentDate, startTime, endTime, salary, userId,dailySalary);
+                Intent intent = new Intent(CalenderDetailActivity.this, CalenderActivity.class);
+                startActivity(intent);
             }
         });
 
 
     }
 
-    private void RegisterSalary(String formattedDate, String startTime, String endTime, String salary, String userId) {
+    private void RegisterSalary(String formattedDate, String startTime, String endTime, String salary, String userId, String dailySalary) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 "http://192.168.219.54:8089/regiSalary",
@@ -134,19 +133,11 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 params.put("startedAt",startTime);
                 params.put("endedAt",endTime);
                 params.put("workPay",salary);
+                params.put("dailyWorkPay",dailySalary);
                 params.put("workUser",userId);
                 //Spring서버에서도 "id","pw"로 받아야 함
-
-                Log.d("sal",formattedDate);
-                Log.d("sal",startTime);
-                Log.d("sal",endTime);
-                Log.d("sal",salary);
-                Log.d("sal",userId);
-
-
                 return params;
         }
-
     };
         queue.add(request);
     }
