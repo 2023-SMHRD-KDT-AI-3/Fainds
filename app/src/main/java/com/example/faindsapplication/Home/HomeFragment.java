@@ -8,7 +8,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.faindsapplication.Banner.BannerAdapter;
 import com.example.faindsapplication.Board.BoardAdapter;
 import com.example.faindsapplication.Board.BoardVO;
 import com.example.faindsapplication.EmailActivity;
@@ -31,12 +35,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.relex.circleindicator.CircleIndicator3;
+
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding = null;
     private ArrayList<HomeVO> dataset = null;
     private HomeAdapter adapter = null;
     private RequestQueue queue;
+    // 배너 관련
+    private ViewPager2 vp;
+    private BannerAdapter bannerAdapter;
+    private int num_page = 2;
+
+    private Handler sliderHandler = new Handler();
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,25 +56,91 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater,container,false);
         dataset = new ArrayList<>();
 
-        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String keyword = binding.tvSearch.getText().toString();
-                sendSearchRequest(keyword);
-            }
-        });
+
 
         binding.tvUserName.setText(getUserId());
 
 
         dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
         dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
+
+        Banner();
+
+
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.homeRV.setLayoutManager(manager);
         adapter = new HomeAdapter(dataset);
         binding.homeRV.setAdapter(adapter);
+
         return binding.getRoot();
     }
+
+    private void Banner(){
+        // banner
+        vp = binding.banner;
+        // adaptor
+        bannerAdapter = new BannerAdapter(getActivity(), num_page);
+        vp.setAdapter(bannerAdapter);
+
+        vp.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+
+        vp.setCurrentItem(0); // 시작지점
+        vp.setOffscreenPageLimit(2);// 최대 이미지 수
+
+
+
+        vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                if(positionOffsetPixels == 0){
+                    vp.setCurrentItem(position);
+
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position){
+                super.onPageSelected(position);
+                sliderHandler.removeCallbacks(sliderRun);
+                sliderHandler.postDelayed(sliderRun, 2000);
+
+            }
+
+
+
+
+        });
+
+
+
+    }
+
+    private Runnable sliderRun = new Runnable() {
+        @Override
+        public void run() {
+            binding.banner.setCurrentItem(binding.banner.getCurrentItem() + 1);
+
+        }
+
+
+    };
+
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sliderHandler.removeCallbacks(sliderRun);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        sliderHandler.postDelayed(sliderRun, 10000);
+    }
+
+
 
     private void sendSearchRequest(String keyword) {
         String url = "http://192.168.219.47:8089/search";

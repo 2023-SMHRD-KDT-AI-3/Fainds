@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#0A569D"
+    android:background="@color/blue"
     tools:context=".MainActivity">
 
     <com.github.ybq.android.spinkit.SpinKitView
@@ -26,8 +26,8 @@
         android:layout_marginTop="92dp"
         android:gravity="center"
         android:text="계약서를 읽는중입니다... "
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/spin_kit"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/spin_kit"

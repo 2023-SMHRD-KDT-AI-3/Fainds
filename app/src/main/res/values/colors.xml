@@ -6,6 +6,7 @@
     <color name="navColor">#858888</color>
     <color name="background">#F5F5F5</color>
     <color name="transparent">#00000000</color>
-    <color name="btnBlue">#0926f9</color>
-    <color name="btnBlue1">#094ff9</color>
+    <color name="btnBlue">#2d6afe</color>
+    <color name="banner_yellow">#fefed5</color>
+    <color name="banner_blue">#e8f0fd</color>
 </resources>

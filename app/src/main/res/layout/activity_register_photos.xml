@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".RegisterPhotosActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -46,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="계약서 등록"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline13"
         app:layout_constraintStart_toEndOf="@+id/imgBack"
