@@ -1,10 +1,12 @@
 package com.example.faindsapplication.RegisterDetail;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -15,6 +17,8 @@ import android.widget.ImageView;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.faindsapplication.ContractDetail.ContractDetailAdapter;
 import com.example.faindsapplication.ContractDetail.ContractDetailVO;
 import com.android.volley.NetworkResponse;
@@ -49,7 +53,8 @@ public class RegisterDetailActivity extends AppCompatActivity {
     private ActivityRegisterDetailBinding binding;
     private ArrayList<RegisterDetailVO> dataset;
     private RegisterDetailAdapter adapter;
-
+    private String imgurl;
+    private RequestQueue queue;
     @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,12 +87,11 @@ public class RegisterDetailActivity extends AppCompatActivity {
         //binding.imgTest.setImageResource(imgTest);
 
         //=============================================================================
-        String url ="http://192.168.219.63:8089/getimg";
+        String url ="http://192.168.219.54:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, byteArrayOutputStream); // JPEG 형식, 품질 100으로 설정
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-
 
 
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
@@ -97,6 +101,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
                         // 성공적으로 이미지가 전송되었을 때의 처리
                         String responseData = new String(response.data, StandardCharsets.UTF_8);
                         Log.d("ResponseSuccess", "onResponse: "+responseData);
+                        imgurl = responseData;
                         FlaskConnect flask = new FlaskConnect();
                         flask.flaskconn(responseData, RegisterDetailActivity.this, new FlaskResponseListener() {
                             @Override
@@ -184,5 +189,53 @@ public class RegisterDetailActivity extends AppCompatActivity {
         binding.RegisterDetailRV.setLayoutManager(manager);
         adapter = new RegisterDetailAdapter(dataset);
         binding.RegisterDetailRV.setAdapter(adapter);
+
+        mongoinsert(getUserId(), imgurl, response);
+
+    }
+    public String getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserID", null);
+    }
+
+
+    public void mongoinsert(String userid, String url, JSONObject resdata){
+        if(queue==null){
+            queue = Volley.newRequestQueue(this);
+        }
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.65:8089/mongo/mongoinsert",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("mongochecking", "onResponse: "+response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //전송방식을 POST로 지정했을 때 사용하는 메소드
+                //데이터를 전송할 때 Map형태로 구성하여 리턴해줘야 한다.
+                // Map<String,String> 앞은 Key 뒤는 Value 임
+                // Map은 인터페이스 Map을 상속받은 클래스가 HashMap
+                Map<String,String> params = new HashMap<>();
+                params.put("userid",userid);
+                params.put("url",url);
+                params.put("resdata",resdata.toString());
+//                params.put("title", resdata.optString("사업체명"));
+                return params;
+            }
+        };
+
+        queue.add(request);
     }
 }

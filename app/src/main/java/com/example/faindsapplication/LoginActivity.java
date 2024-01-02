@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Log.d("idcheck", "onCreate: "+getUserId());
 
         if(queue==null){
             queue = Volley.newRequestQueue(this);
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.63:8089/login",
+                        "http://192.168.219.54:8089/login",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -105,6 +106,12 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("UserID", userId);
         editor.putString("UserPW",userPw);
         editor.apply();
+    }
+
+    public String getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserID", null);
     }
 
 }
