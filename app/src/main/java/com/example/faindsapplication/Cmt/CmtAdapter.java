@@ -38,17 +38,17 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
     public void onBindViewHolder(@NonNull CmtViewHolder holder, int position) {
         String cmtWriter = dataset.get(position).getCmtWriter();
         String cmtContent = dataset.get(position).getCmtContent();
-        // createdAt
-//        String createdAt = dataset.get(position).getCmtCreated_at();
-        Date nowDate = new Date();
+        //createdAt
+        //String createdAt = dataset.get(position).getCmtCreated_at();
+        //Date nowDate = new Date();
 
         // 2. 날짜를 특정 형식으로 포맷팅
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formatTime = sdf.format(nowDate);
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //String formatTime = sdf.format(nowDate);
 
         holder.getCmtWriter().setText(cmtWriter);
         holder.getCmtContent().setText(cmtContent);
-        holder.getCmtTime().setText(formatTime);
+        //holder.getCmtTime().setText(formatTime);
 
         holder.listener = new CmtItemClickListener() {
             @Override
