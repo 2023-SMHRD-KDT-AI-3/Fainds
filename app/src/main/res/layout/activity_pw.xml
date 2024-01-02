@@ -109,18 +109,19 @@
 
     <Button
         android:id="@+id/btnPw"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/btnBlue1"
         android:text="@string/btnPw"
+        android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/confirmPw"
         app:layout_constraintStart_toStartOf="@+id/confirmPw"
         app:layout_constraintTop_toBottomOf="@+id/confirmPw" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imgLogo"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -138,7 +139,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_back" />

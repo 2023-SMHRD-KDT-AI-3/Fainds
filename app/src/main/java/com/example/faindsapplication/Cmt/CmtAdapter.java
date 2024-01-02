@@ -15,6 +15,7 @@ import com.example.faindsapplication.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -39,11 +40,15 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
         String cmtContent = dataset.get(position).getCmtContent();
         // createdAt
 //        String createdAt = dataset.get(position).getCmtCreated_at();
-      //  String formatTime = timeDi(createdAt);
+        Date nowDate = new Date();
+
+        // 2. 날짜를 특정 형식으로 포맷팅
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formatTime = sdf.format(nowDate);
 
         holder.getCmtWriter().setText(cmtWriter);
         holder.getCmtContent().setText(cmtContent);
-        //holder.getCmtTime().setText(formatTime);
+        holder.getCmtTime().setText(formatTime);
 
         holder.listener = new CmtItemClickListener() {
             @Override

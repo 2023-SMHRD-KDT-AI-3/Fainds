@@ -30,6 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.FlaskConnect;
 import com.example.faindsapplication.FlaskResponseListener;
+import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.ProgressDialog;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterFragment;
@@ -61,6 +62,15 @@ public class RegisterDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterDetailActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
+                startActivity(intent);
+            }
+        });
 
         Intent intent = getIntent();
         Bitmap bitmap = null;

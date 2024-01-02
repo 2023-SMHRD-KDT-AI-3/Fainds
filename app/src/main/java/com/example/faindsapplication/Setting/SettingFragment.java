@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -25,9 +26,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Calender.CalenderActivity;
 import com.example.faindsapplication.EmailActivity;
+import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.PwActivity;
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.TipActivity;
 import com.example.faindsapplication.databinding.ActivityEmailBinding;
 import com.example.faindsapplication.databinding.FragmentSettingBinding;
 
@@ -89,6 +92,17 @@ public class SettingFragment extends Fragment {
             }
         });
 
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                HomeFragment homeFragment = new HomeFragment();
+                transaction.replace(R.id.fl, homeFragment);
+                transaction.commit();
+
+            }
+        });
+
         // 비밀번호 수정 클릭시
         binding.settingPw.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +126,14 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("https://labor.moel.go.kr/reportCntr/illegalLaborType2.do"));
+                startActivity(intent);
+            }
+        });
+
+        binding.settingTip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TipActivity.class);
                 startActivity(intent);
             }
         });

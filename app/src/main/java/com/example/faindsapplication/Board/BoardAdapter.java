@@ -46,6 +46,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
         holder.getBoardCmtNum().setText(String.valueOf(boardCmtNum));
+
+
+
       //  holder.getBoardTime().setText(createdAt);
 
         String createdAt = dataset.get(position).getCreated_at();
@@ -59,7 +62,11 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 intent.putExtra("boardContent",boardContent);
                 intent.putExtra("createdAt",createdAt);
                 intent.putExtra("boardSeq",boardSeq);
-                Log.d("boardSeq", String.valueOf(boardSeq));
+
+                Log.d("boardSeq1234", String.valueOf(boardSeq));
+                Log.d("boardTitle1234", boardTitle);
+                Log.d("boardContent1234", boardContent);
+
                 v.getContext().startActivity(intent);
             }
 
@@ -117,4 +124,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
             return createdAt; // 파싱 실패 시 원본 날짜 문자열 반환
         }
     }
+
+
 }

@@ -36,7 +36,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
         if(contractType.equals("표준근로계약서(기간의 정함이 있음)")){
             img = R.drawable.icon_contract_regular;
         } else if (contractType.equals("표준근로계약서(기간의 정함이 없음)")) {
-            img = R.drawable.icon_contract_irregular;
+            img = R.drawable.icon_contract_architect;
         } else if (contractType.equals("표준근로계약서(미성년자)")) {
             img = R.drawable.icon_contract_student;
         }

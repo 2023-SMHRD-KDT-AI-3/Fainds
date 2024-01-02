@@ -110,6 +110,14 @@ public class PwActivity extends AppCompatActivity {
                 finish();
             }
         });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PwActivity.this,MainActivity.class);
+                intent.putExtra("moveFl","home");
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -120,7 +128,7 @@ public class PwActivity extends AppCompatActivity {
     }
 
     private void sendChangePasswordRequest(String currentPw, String newPw) {
-        String url = "http://192.168.219.47:8089/chepw";
+        String url = "http://192.168.219.60:8089/chepw";
 
         StringRequest request = new StringRequest(
                 Request.Method.POST,

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.faindsapplication.Home.HomeFragment;
+import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
 
@@ -34,9 +35,9 @@ public class ContractDetailActivity extends AppCompatActivity {
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ContractDetailActivity.this, HomeFragment.class);
+                Intent intent = new Intent(ContractDetailActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
                 startActivity(intent);
-                finish();
             }
         });
 

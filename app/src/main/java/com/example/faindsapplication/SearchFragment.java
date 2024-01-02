@@ -1,4 +1,4 @@
-package com.example.faindsapplication.Board;
+package com.example.faindsapplication;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -6,9 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -23,52 +24,42 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.faindsapplication.BoardWriteActivity;
-import com.example.faindsapplication.Cmt.CmtAdapter;
+import com.example.faindsapplication.Board.BoardAdapter;
+import com.example.faindsapplication.Board.BoardVO;
 import com.example.faindsapplication.Home.HomeFragment;
-import com.example.faindsapplication.MainActivity;
-import com.example.faindsapplication.R;
-import com.example.faindsapplication.Register.RegisterAdapter;
-import com.example.faindsapplication.Register.RegisterFragment;
-import com.example.faindsapplication.Register.RegisterVO;
-import com.example.faindsapplication.SearchFragment;
 import com.example.faindsapplication.databinding.FragmentBoardBinding;
-import com.example.faindsapplication.databinding.FragmentRegisterBinding;
+import com.example.faindsapplication.databinding.FragmentSearchBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+public class SearchFragment extends Fragment {
 
-public class BoardFragment extends Fragment {
-
-    private FragmentBoardBinding binding = null;
+    private FragmentSearchBinding binding = null;
     private ArrayList<BoardVO> dataset = null;
     private BoardAdapter adapter = null;
     private RequestQueue queue;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentBoardBinding.inflate(inflater, container, false);
-
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
         dataset = new ArrayList<>();
         adapter = new BoardAdapter(dataset);
         if (queue == null) {
             queue = Volley.newRequestQueue(requireContext());
         }
-        getBoardData();
 
+        String keyword = getArguments().getString("keyword");
+        binding.tvBoardSearch.setText(keyword);
+        getSearchBoardData(keyword);
         binding.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,40 +76,15 @@ public class BoardFragment extends Fragment {
                 transaction.commit();
             }
         });
-
-        binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String keyword = binding.tvBoardSearch.getText().toString();
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                // Create a Bundle to pass data to SearchFragment
-                Bundle bundle = new Bundle();
-                bundle.putString("keyword", keyword);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                SearchFragment searchFragment = new SearchFragment();
-                searchFragment.setArguments(bundle);
-
-                transaction.replace(R.id.fl, searchFragment);
-                transaction.commit();
-            }
-        });
-
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        binding.boardRV.setLayoutManager(manager);
-        binding.boardRV.setAdapter(adapter);
+        binding.SearchRV.setLayoutManager(manager);
+        binding.SearchRV.setAdapter(adapter);
         return binding.getRoot();
     }
-
-    public String getUserId() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
-        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
-        return sharedPreferences.getString("UserID", null);
-    }
-
-    public void getBoardData() {
+    public void getSearchBoardData(String keyword) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/board",
+                "http://192.168.219.47:8089/boardSearch",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -141,8 +107,10 @@ public class BoardFragment extends Fragment {
                                 // 데이터셋에 추가
                                 dataset.add(new BoardVO(boardTitle, boardContent, createdAt, boardWriter, boardCmtNum, boardSeq));
                             }
+
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
+
                         } catch (UnsupportedEncodingException e) {
                             // 예외 처리
                             e.printStackTrace();
@@ -156,7 +124,22 @@ public class BoardFragment extends Fragment {
 
             }
         }
-        );
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new HashMap<>();
+                Log.d("keyword","실행");
+                params.put("keyword",keyword);
+                return params;
+            }
+        };
         queue.add(request);
+    }
+    public String getUserId() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserID", null);
     }
 }
