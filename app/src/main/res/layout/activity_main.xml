@@ -25,16 +25,20 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#FFFFFF"
+
         app:itemIconSize="35dp"
         app:itemIconTint="@drawable/nav_color"
         app:itemPaddingBottom="8dp"
-        app:itemTextColor="@drawable/nav_color"
+        app:itemTextColor="@color/navColor"
         app:labelVisibilityMode="labeled"
+        app:itemPaddingTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:menu="@menu/item_list" />
+        app:menu="@menu/item_list"
+
+        />
 
     <FrameLayout
         android:id="@+id/fl"
