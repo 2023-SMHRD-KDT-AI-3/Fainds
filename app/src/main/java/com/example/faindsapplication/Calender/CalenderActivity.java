@@ -128,7 +128,11 @@ public class CalenderActivity extends Activity {
                 String startedAt = "";
                 String endedAt = "";
                 String workPay = "";
-                String formattedDate="";
+                String formattedDate = "";
+                String workTimeString = "";
+                String totalSalaryString = "";
+                long intWorkTime, intTotalSalary;
+                double workTime, totalSalary;
 
                 if(realDate<10) {
                     formattedDate = curMonthFormat.format(date) + "월 0" + selectedDate + "일";
@@ -137,22 +141,28 @@ public class CalenderActivity extends Activity {
                 }
                 // 해당 날짜에 대한 정보가 있는지 확인
                 for (CalenderDetailVO calenderDetail : calenderDetailList) {
-                    Log.d("test",formattedDate);
-                    Log.d("test",calenderDetail.getWorkDay());
-                    if (calenderDetail.getWorkDay().equals(selectedDate)) {
+
+                    if (calenderDetail.getWorkDay().equals(formattedDate)) {
                         startedAt = calenderDetail.getStartedAt();
                         endedAt = calenderDetail.getEndedAt();
                         workPay = calenderDetail.getWorkPay();
+                        workTime = getTimeDifference(startedAt,endedAt);
+                        totalSalary = workTime*(Double.parseDouble(workPay));
+                        intWorkTime = Math.round(workTime);
+                        intTotalSalary = Math.round(totalSalary);
+                        workTimeString = String.valueOf(intWorkTime)+"시간";
+                        totalSalaryString = String.valueOf(intTotalSalary);
                         break;
                     }
                 }
-
                 if (!selectedDate.isEmpty()) {
                     Intent intent = new Intent(CalenderActivity.this, CalenderDetailActivity.class);
                     intent.putExtra("currentDate", formattedDate);
                     intent.putExtra("startedAt", startedAt);
                     intent.putExtra("endedAt", endedAt);
                     intent.putExtra("workPay", workPay);
+                    intent.putExtra("workTimeString",workTimeString);
+                    intent.putExtra("totalSalaryString",totalSalaryString);
                     startActivity(intent);
                 }
             }
