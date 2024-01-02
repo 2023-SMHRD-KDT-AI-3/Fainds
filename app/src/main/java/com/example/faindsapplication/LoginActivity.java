@@ -55,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
                                     String pw = binding.loginPwHint.getText().toString();
                                     // 로그인 성공
                                     saveUserId(id,pw);
-                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("moveFl","home");
                                     startActivity(intent);
 
                                 } else {
@@ -80,12 +81,9 @@ public class LoginActivity extends AppCompatActivity {
                         params.put("userPw",pw);
                         //Spring서버에서도 "id","pw"로 받아야 함
                         return params;
-
                     }
                 };
-
                 queue.add(request);
-
             }
         });
         // 회원가입 기능

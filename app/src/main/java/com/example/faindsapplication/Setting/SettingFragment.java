@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Calender.CalenderActivity;
 import com.example.faindsapplication.EmailActivity;
+import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.PwActivity;
 import com.example.faindsapplication.R;
@@ -86,6 +88,17 @@ public class SettingFragment extends Fragment {
                     }
                 };
                 queue.add(request);
+
+            }
+        });
+
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                HomeFragment homeFragment = new HomeFragment();
+                transaction.replace(R.id.fl, homeFragment);
+                transaction.commit();
 
             }
         });

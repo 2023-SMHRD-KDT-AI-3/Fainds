@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         android:textSize="14dp"
         android:textStyle="bold"
@@ -23,28 +23,25 @@
         android:id="@+id/tvCmtContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCmtWriter"
-        app:layout_constraintStart_toEndOf="@+id/tvCmtWriter"
-        app:layout_constraintTop_toTopOf="@+id/tvCmtWriter"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/tvCmtTime"
+        app:layout_constraintEnd_toEndOf="@+id/tvCmtWriter"
+        app:layout_constraintStart_toStartOf="@+id/tvCmtWriter"
+        app:layout_constraintTop_toBottomOf="@+id/tvCmtWriter" />
 
     <TextView
         android:id="@+id/tvCmtTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvCmtWriter"
-        app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintStart_toStartOf="@+id/tvCmtContent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCmtContent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -56,9 +53,8 @@
     <View
         android:id="@+id/line"
         android:layout_width="375dp"
-        android:layout_height="2px"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
         android:background="@color/navColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

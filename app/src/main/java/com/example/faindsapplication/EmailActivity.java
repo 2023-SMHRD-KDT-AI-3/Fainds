@@ -81,10 +81,18 @@ public class EmailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EmailActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
+                startActivity(intent);
+            }
+        });
     }
 
     private void sendChangeEmailRequest(String currentEmail, String newEmail) {
-        String url = "http://192.168.219.47:8089/chemail";
+        String url = "http://192.168.219.60:8089/chemail";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

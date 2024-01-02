@@ -48,6 +48,14 @@ public class BoardWriteActivity extends AppCompatActivity {
                 finish();
             }
         });
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoardWriteActivity.this,MainActivity.class);
+                intent.putExtra("moveFl","board");
+                startActivity(intent);
+            }
+        });
 
         binding.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +84,9 @@ public class BoardWriteActivity extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    finish();
+                                    Intent intent = new Intent(BoardWriteActivity.this,MainActivity.class);
+                                    intent.putExtra("moveFl","board");
+                                    startActivity(intent);
                                 }
                             }, new Response.ErrorListener() {
                         @Override

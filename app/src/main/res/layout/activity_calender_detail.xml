@@ -4,21 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Calender.CalenderDetailActivity">
 
-    <TextView
-        android:id="@+id/tvMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline27" />
-
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imgLogo"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -40,7 +30,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline27"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/guideline22"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_back" />
@@ -63,64 +53,50 @@
         app:layout_constraintStart_toEndOf="@+id/imgBack"
         app:layout_constraintTop_toTopOf="@+id/imgBack" />
 
+
     <TextView
         android:id="@+id/tvDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView27"
-        app:layout_constraintStart_toEndOf="@+id/textView27"
-        app:layout_constraintTop_toTopOf="@+id/textView27" />
-
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="월"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMonth"
-        app:layout_constraintStart_toEndOf="@+id/tvMonth"
-        app:layout_constraintTop_toTopOf="@+id/tvMonth" />
-
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="일"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDay"
-        app:layout_constraintStart_toEndOf="@+id/tvDay"
-        app:layout_constraintTop_toTopOf="@+id/tvDay" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline27" />
 
     <Button
-        android:id="@+id/btnCalculate"
+        android:id="@+id/btnRegisterSalary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/btnBlue"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/btnBlue1"
         android:text="등록"
         app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvEndTime"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvStartTime"
-        app:layout_constraintTop_toTopOf="@+id/guideline11" />
+        app:layout_constraintTop_toBottomOf="@+id/tvResult"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="근무시간"
-        app:layout_constraintStart_toStartOf="@+id/tvMonth"
-        app:layout_constraintTop_toBottomOf="@+id/tvMonth" />
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/tvSalary" />
 
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvStartTime"
         app:layout_constraintEnd_toStartOf="@+id/tvEndTime"
         app:layout_constraintStart_toEndOf="@+id/tvStartTime"
@@ -131,7 +107,8 @@
         android:layout_width="160dp"
         android:layout_height="35dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/underlinestyle"
         android:gravity="center"
         android:text="근무 시작시간"
         android:textSize="16dp"
@@ -144,28 +121,96 @@
         android:layout_width="160dp"
         android:layout_height="35dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/underlinestyle"
         android:gravity="center"
         android:text="근무 종료시간"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView29"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView29" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline11"
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="47dp"
+        android:background="@drawable/underlinestyle"
+        android:gravity="center"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@+id/tvStartTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvStartTime" />
+
+    <TextView
+        android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="359dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="시급"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvDay"
+        app:layout_constraintTop_toBottomOf="@+id/tvDay" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="334dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/tvEndTime"
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="동안"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvResult"
+        app:layout_constraintStart_toEndOf="@+id/tvResult"
+        app:layout_constraintTop_toTopOf="@+id/tvResult" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="원"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSalary"
+        app:layout_constraintStart_toEndOf="@+id/tvSalary"
+        app:layout_constraintTop_toTopOf="@+id/tvSalary" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="원 벌었어요!"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDailySalary"
+        app:layout_constraintStart_toEndOf="@+id/tvDailySalary"
+        app:layout_constraintTop_toTopOf="@+id/tvDailySalary" />
+
+    <EditText
+        android:id="@+id/tvSalary"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/underlinestyle"
+        android:gravity="center"
+        android:hint="시급을 입력하세요"
+        android:inputType="text"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/tvStartTime"
-        app:layout_constraintTop_toBottomOf="@+id/textView29"
-        app:srcCompat="@drawable/line" />
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <TextView
+        android:id="@+id/tvDailySalary"
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:background="@drawable/underlinestyle"
+        android:gravity="center"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvResult"
+        app:layout_constraintStart_toEndOf="@+id/textView33"
+        app:layout_constraintTop_toTopOf="@+id/tvResult" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

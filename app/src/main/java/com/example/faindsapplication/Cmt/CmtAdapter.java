@@ -15,6 +15,7 @@ import com.example.faindsapplication.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -37,24 +38,29 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
     public void onBindViewHolder(@NonNull CmtViewHolder holder, int position) {
         String cmtWriter = dataset.get(position).getCmtWriter();
         String cmtContent = dataset.get(position).getCmtContent();
-       // int boardSeqId = dataset.get(position).getBoardSeqId();
-        String createdAt = dataset.get(position).getCreatedAt();
-        String formatTime = timeDi(createdAt);
-         holder.getCmtWriter().setText(cmtWriter);
+        // createdAt
+//        String createdAt = dataset.get(position).getCmtCreated_at();
+        Date nowDate = new Date();
+
+        // 2. 날짜를 특정 형식으로 포맷팅
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formatTime = sdf.format(nowDate);
+
+        holder.getCmtWriter().setText(cmtWriter);
         holder.getCmtContent().setText(cmtContent);
         holder.getCmtTime().setText(formatTime);
 
-//        holder.listener = new CmtItemClickListener() {
-//            @Override
-//            public void onItemClickListener(View v, int position) {
-//                Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
-//                intent.putExtra("cmtWriter",cmtWriter);
-//                intent.putExtra("cmtContent",cmtContent);
-//
-//
-//                v.getContext().startActivity(intent);
-//            }
-//        };
+        holder.listener = new CmtItemClickListener() {
+            @Override
+            public void onItemClickListener(View v, int position) {
+                Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
+                intent.putExtra("cmtWriter",cmtWriter);
+                intent.putExtra("cmtContent",cmtContent);
+                //intent.putExtra("createdAt",formatTime);
+
+                v.getContext().startActivity(intent);
+            }
+        };
 
 
     }
@@ -87,17 +93,23 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
                 // 하루 미만이면 "몇 시간 전"
                 return hours + "시간 전";
             } else if(hours<48){
-                return "1일전";
+                long hours1 = hours-24;
+                return "1일"+hours1+"시간 전";
             } else if(hours<72){
-                return "2일전";
+                long hours1 = hours-48;
+                return "2일"+hours1+"시간 전";
             } else if(hours<96){
-                return "3일전";
+                long hours1 = hours-72;
+                return "3일"+hours1+"시간 전";
             } else if(hours<120){
-                return "4일전";
+                long hours1 = hours-96;
+                return "4일"+hours1+"시간 전";
             } else if(hours<144){
-                return "5일전";
+                long hours1 = hours-120;
+                return "5일"+hours1+"시간 전";
             } else if(hours<168){
-                return "6일전";
+                long hours1 = hours-144;
+                return "6일"+hours1+"시간 전";
             } else {
                 // 그 이상이면 "yyyy-MM-dd HH:mm" 형식으로 표시
                 SimpleDateFormat displayFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
@@ -110,7 +122,4 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
     }
 
 
-    }
-
-
-
+}

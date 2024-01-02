@@ -3,6 +3,7 @@ package com.example.faindsapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -24,12 +25,37 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getSupportFragmentManager().beginTransaction().replace(
-                // 1) 어디에
-                R.id.fl,
-                // 2)어떤 프래그먼트
-                new HomeFragment()
-        ).commit();
+        Intent intent = getIntent();
+        String moveFl = getIntent().getStringExtra("moveFl");
+        if(moveFl.equals("home")){
+            getSupportFragmentManager().beginTransaction().replace(
+                    // 1) 어디에
+                    R.id.fl,
+                    // 2)어떤 프래그먼트
+                    new HomeFragment()
+            ).commit();
+        } else if (moveFl.equals("register")) {
+            getSupportFragmentManager().beginTransaction().replace(
+                    // 1) 어디에
+                    R.id.fl,
+                    // 2)어떤 프래그먼트
+                    new RegisterFragment()
+            ).commit();
+        } else if (moveFl.equals("board")) {
+            getSupportFragmentManager().beginTransaction().replace(
+                    // 1) 어디에
+                    R.id.fl,
+                    // 2)어떤 프래그먼트
+                    new BoardFragment()
+            ).commit();
+        } else if (moveFl.equals("setting")) {
+            getSupportFragmentManager().beginTransaction().replace(
+                    // 1) 어디에
+                    R.id.fl,
+                    // 2)어떤 프래그먼트
+                    new SettingFragment()
+            ).commit();
+        }
 
         binding.bnv.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
