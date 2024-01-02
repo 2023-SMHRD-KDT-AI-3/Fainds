@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TimePicker;
@@ -31,13 +32,10 @@ import java.util.Locale;
 import java.util.Map;
 
 public class CalenderDetailActivity extends AppCompatActivity {
-
     private TimePicker startTimePicker, endTimePicker;
-
     private ActivityCalenderDetailBinding binding;
     private static final int REQUEST_CODE_WORK_POPUP_START = 1;
     private static final int REQUEST_CODE_WORK_POPUP_END = 2;
-
     private RequestQueue queue;
 
 
@@ -76,7 +74,13 @@ public class CalenderDetailActivity extends AppCompatActivity {
         });
 
         String formattedDate = getIntent().getStringExtra("currentDate");
+        String tvSalary = getIntent().getStringExtra("workPay");
+        String startedAt = getIntent().getStringExtra("endedAt");
+        String endedAt = getIntent().getStringExtra("startedAt");
         binding.tvDay.setText(formattedDate);
+        binding.tvSalary.setText(tvSalary);
+        binding.tvStartTime.setText(startedAt);
+        binding.tvEndTime.setText(endedAt);
 
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,15 +99,19 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 String salary = binding.tvSalary.getText().toString();
                 String dailySalary = binding.tvDailySalary.getText().toString();
 
-
                 String userId = getUserId();
                 RegisterSalary(currentDate, startTime, endTime, salary, userId,dailySalary);
-                Intent intent = new Intent(CalenderDetailActivity.this, CalenderActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(CalenderDetailActivity.this, CalenderActivity.class);
+//                startActivity(intent);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(CalenderDetailActivity.this, CalenderActivity.class);
+                        startActivity(intent);
+                    }
+                }, 500); // 1000 밀리초 (1초) 딜레이
             }
         });
-
-
     }
 
     private void RegisterSalary(String formattedDate, String startTime, String endTime, String salary, String userId, String dailySalary) {
