@@ -10,9 +10,14 @@ import android.view.View;
 import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.RegisterDetail.RegisterDetailVO;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ContractDetailActivity extends AppCompatActivity {
 
@@ -40,13 +45,23 @@ public class ContractDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        String jsonData = "{\"근로개시일\":\"2020-03-05\",\"근무장소\":\"본사 영업팀\",\"업무내용\":\"영업 및 마케팅 관리\",\"근로시간\":\"9:00 - 18:00 (휴게시간: 12:00 - 13:00)\",\"임금\":{\"월급\":\"2,000,000원\",\"상여금\":\"매 분기마다 500,000원\",\"기타급여\":{\"식대\":\"200,000원\",\"가족수당\":\"100,000원\"}},\"사업체명\":\"oo물산\",\"사업체주소\":\"서울시 중구 00대로 000\",\"사업체대표자\":\"남경읍\",\"근로자주소\":\"서울시 은평구 00로 000\",\"근로자연락처\":\"010-9876-5432\",\"근로자명\":\"장그래\"}";
 
         dataset = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(jsonData);
 
-        dataset.add(new ContractDetailVO(1,"계약서 종류","표준근로계약서(미성년자)"));
-        dataset.add(new ContractDetailVO(1,"시급","10500원"));
-        dataset.add(new ContractDetailVO(1,"근무시간","18시 00분 부터 21시 00분 까지(휴게시간 : 없음"));
+            Iterator<String> keys = jsonObject.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                String value = jsonObject.getString(key);
 
+                // 각 key-value 쌍을 dataset에 추가
+                dataset.add(new ContractDetailVO(1, key, value));
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
         LinearLayoutManager manager = new LinearLayoutManager(this);
         binding.contractDetailRV.setLayoutManager(manager);
         adapter = new ContractDetailAdapter(dataset);

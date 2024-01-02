@@ -98,7 +98,7 @@ public class CalenderActivity extends Activity {
         final SimpleDateFormat curDayFormat = new SimpleDateFormat("dd", Locale.KOREA);
 
         //현재 날짜 텍스트뷰에 뿌려줌
-        tvDate.setText(curYearFormat.format(date) + "/" + curMonthFormat.format(date));
+        tvDate.setText(curYearFormat.format(date) + " / " + curMonthFormat.format(date));
 
         //gridview 요일 표시
         calenderList = new ArrayList<CalenderVO>();
@@ -246,7 +246,7 @@ public class CalenderActivity extends Activity {
         TextView tvItemGridViewDate;
         TextView tvItemGridViewContent;
     }
-
+    // 근무정보 불러오기 및 입력
     protected void getSalData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -293,7 +293,7 @@ public class CalenderActivity extends Activity {
                                     double dailyPay = Double.parseDouble(calenderDetailList.get(j).getWorkPay());
                                     double daysWorked = getTimeDifference(calenderDetailList.get(j).getStartedAt(), calenderDetailList.get(j).getEndedAt());
 
-                                    double totalSalaryForDay = dailyPay * daysWorked;
+                                    double totalSalaryForDay = (dailyPay * daysWorked)/10000;
                                     dailySalaryMap.put(calenderDetailList.get(j).getWorkDay(), totalSalaryForDay);
 
 
@@ -306,7 +306,7 @@ public class CalenderActivity extends Activity {
                                     }
 
                                     if (matchDay.equals(calenderDetailList.get(j).getWorkDay())) {
-                                        String formattedSalary = NumberFormat.getInstance().format(totalSalaryForDay) + "원";
+                                        String formattedSalary = NumberFormat.getInstance().format(totalSalaryForDay) + "만원";
                                         calenderList.add(new CalenderVO("" + (f + 1), formattedSalary));
                                         monthTotalSalary += totalSalaryForDay;
                                         monthTotalTime += daysWorked;
@@ -316,7 +316,7 @@ public class CalenderActivity extends Activity {
                                     }
                                 }
                                 TextView totalSalaryTextView = findViewById(R.id.totalSalary);
-                                String formattedMonthTotalSalary = NumberFormat.getInstance().format(monthTotalSalary) + "원";
+                                String formattedMonthTotalSalary = NumberFormat.getInstance().format(monthTotalSalary) + "만원";
                                 totalSalaryTextView.setText(formattedMonthTotalSalary);
                                 TextView totalTimeTextView = findViewById(R.id.totalTime);
                                 String formattedMonthTotalTime = NumberFormat.getInstance().format(monthTotalTime) + "시간";

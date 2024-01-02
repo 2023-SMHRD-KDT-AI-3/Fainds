@@ -24,18 +24,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.faindsapplication.Banner.BannerAdapter;
-import com.example.faindsapplication.Board.BoardAdapter;
-import com.example.faindsapplication.Board.BoardVO;
-import com.example.faindsapplication.EmailActivity;
 import com.example.faindsapplication.R;
-import com.example.faindsapplication.databinding.FragmentBoardBinding;
 import com.example.faindsapplication.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.relex.circleindicator.CircleIndicator3;
+//import me.relex.circleindicator.CircleIndicator3;
 
 
 public class HomeFragment extends Fragment {
@@ -55,17 +51,11 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater,container,false);
         dataset = new ArrayList<>();
-
-
-
         binding.tvUserName.setText(getUserId());
-
-
         dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
         dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
 
         Banner();
-
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.homeRV.setLayoutManager(manager);
@@ -87,15 +77,12 @@ public class HomeFragment extends Fragment {
         vp.setCurrentItem(0); // 시작지점
         vp.setOffscreenPageLimit(2);// 최대 이미지 수
 
-
-
         vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
                 if(positionOffsetPixels == 0){
                     vp.setCurrentItem(position);
-
                 }
             }
 
@@ -104,29 +91,16 @@ public class HomeFragment extends Fragment {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(sliderRun);
                 sliderHandler.postDelayed(sliderRun, 2000);
-
             }
-
-
-
-
         });
-
-
-
     }
 
     private Runnable sliderRun = new Runnable() {
         @Override
         public void run() {
             binding.banner.setCurrentItem(binding.banner.getCurrentItem() + 1);
-
         }
-
-
     };
-
-
 
     @Override
     public void onPause() {
@@ -139,8 +113,6 @@ public class HomeFragment extends Fragment {
         super.onResume();
         sliderHandler.postDelayed(sliderRun, 10000);
     }
-
-
 
     private void sendSearchRequest(String keyword) {
         String url = "http://192.168.219.47:8089/search";

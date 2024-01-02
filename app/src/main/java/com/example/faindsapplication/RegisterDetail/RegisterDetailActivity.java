@@ -62,17 +62,24 @@ public class RegisterDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterDetailActivity.this, MainActivity.class);
-                intent.putExtra("moveFl","home");
+                intent.putExtra("moveFl", "home");
                 startActivity(intent);
             }
         });
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         Intent intent = getIntent();
         Bitmap bitmap = null;
-        if (intent.getParcelableExtra("TestImg") != null){
+        if (intent.getParcelableExtra("TestImg") != null) {
             bitmap = (Bitmap) intent.getParcelableExtra("TestImg");
             binding.imgTest.setImageBitmap(bitmap);
-        }else {
+        } else {
             Uri uri = intent.getParcelableExtra("TestImgUri");
             binding.imgTest.setImageURI(uri);
             try {
@@ -92,12 +99,11 @@ public class RegisterDetailActivity extends AppCompatActivity {
         //binding.imgTest.setImageResource(imgTest);
 
         //=============================================================================
-        String url ="http://192.168.219.63:8089/getimg";
+        String url = "http://192.168.219.63:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, byteArrayOutputStream); // JPEG 형식, 품질 100으로 설정
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream); // JPEG 형식, 품질 100으로 설정
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-
 
 
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
@@ -106,7 +112,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
                     public void onResponse(NetworkResponse response) {
                         // 성공적으로 이미지가 전송되었을 때의 처리
                         String responseData = new String(response.data, StandardCharsets.UTF_8);
-                        Log.d("ResponseSuccess", "onResponse: "+responseData);
+                        Log.d("ResponseSuccess", "onResponse: " + responseData);
                         FlaskConnect flask = new FlaskConnect();
                         flask.flaskconn(responseData, RegisterDetailActivity.this, new FlaskResponseListener() {
                             @Override
@@ -114,6 +120,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 updateUI(response);
                             }
+
                             @Override
                             public void onError(String error) {
                                 Log.d("flaskerror", "onError: flask error");
@@ -140,33 +147,9 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(multipartRequest);
-
-
-
-
     }
-    public void updateUI(JSONObject response){
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
-        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterDetailActivity.this, RegisterFragment.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        String jsonData = "{\"근로개시일\":\"2020-03-05\",\"근무장소\":\"본사 영업팀\",\"업무내용\":\"영업 및 마케팅 관리\",\"근로시간\":\"9:00 - 18:00 (휴게시간: 12:00 - 13:00)\",\"임금\":{\"월급\":\"2,000,000원\",\"상여금\":\"매 분기마다 500,000원\",\"기타급여\":{\"식대\":\"200,000원\",\"가족수당\":\"100,000원\"}},\"사업체명\":\"oo물산\",\"사업체주소\":\"서울시 중구 00대로 000\",\"사업체대표자\":\"남경읍\",\"근로자주소\":\"서울시 은평구 00로 000\",\"근로자연락처\":\"010-9876-5432\",\"근로자명\":\"장그래\"}";
-
-//        String workplace = jsonObject.getString("근무장소");
-
-
+    public void updateUI(JSONObject response) {
 
         dataset = new ArrayList<>();
         try {
@@ -185,10 +168,6 @@ public class RegisterDetailActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-//        dataset.add(new RegisterDetailVO(1, "계약서 종류", "표준근로계약서(미성년자)"));
-//        dataset.add(new RegisterDetailVO(1, "시급", "10500원"));
-//        dataset.add(new RegisterDetailVO(1, "근무시간", "18시 00분 부터 21시 00분 까지(휴게시간 : 없음"));
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         binding.RegisterDetailRV.setLayoutManager(manager);
