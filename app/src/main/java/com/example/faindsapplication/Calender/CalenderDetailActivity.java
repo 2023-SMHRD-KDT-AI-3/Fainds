@@ -110,14 +110,24 @@ public class CalenderDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                int workSeq = getIntent().getIntExtra("workSeq",0);
+                    deletesal(workSeq);
             }
         });
 
         // 근무기록 수정
         binding.btnCalenderFix.setOnClickListener(new View.OnClickListener() {
+            String currentDate = binding.tvDay.getText().toString();
+            String startTime = binding.tvStartTime.getText().toString();
+            String endTime = binding.tvEndTime.getText().toString();
+            String salary = binding.tvSalary.getText().toString();
+            String dailySalary = binding.tvDailySalary.getText().toString();
+
+            String userId = getUserId();
             @Override
             public void onClick(View v) {
 
+                    updatesal(formattedDate,startTime,endTime,salary,userId,dailySalary);
             }
         });
 
