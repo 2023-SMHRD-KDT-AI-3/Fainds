@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@+id/settingDeclaration" />
 
         <TextView
-            android:id="@+id/settingDeclaration3"
+            android:id="@+id/settingCalculator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -143,7 +143,7 @@
             app:layout_constraintTop_toBottomOf="@+id/settingTip" />
 
         <TextView
-            android:id="@+id/settingCalculator"
+            android:id="@+id/settingLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -160,7 +160,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settingDeclaration3" />
+            app:layout_constraintTop_toBottomOf="@+id/settingCalculator" />
 
         <TextView
             android:id="@+id/textView24"
@@ -203,7 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_line"
-            app:layout_constraintBottom_toBottomOf="@+id/settingDeclaration3"
+            app:layout_constraintBottom_toBottomOf="@+id/settingCalculator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.774"
             app:layout_constraintStart_toStartOf="parent"
@@ -290,7 +290,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/icon_tip"
-            app:layout_constraintBottom_toTopOf="@+id/settingDeclaration3"
+            app:layout_constraintBottom_toTopOf="@+id/settingCalculator"
             app:layout_constraintEnd_toEndOf="@+id/settingTip"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/settingTip"
@@ -332,11 +332,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/icon_money"
-            app:layout_constraintBottom_toBottomOf="@+id/settingDeclaration3"
-            app:layout_constraintEnd_toEndOf="@+id/settingDeclaration3"
+            app:layout_constraintBottom_toBottomOf="@+id/settingCalculator"
+            app:layout_constraintEnd_toEndOf="@+id/settingCalculator"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/settingDeclaration3"
-            app:layout_constraintTop_toTopOf="@+id/settingDeclaration3"
+            app:layout_constraintStart_toStartOf="@+id/settingCalculator"
+            app:layout_constraintTop_toTopOf="@+id/settingCalculator"
             app:layout_constraintVertical_bias="0.4" />
 
         <ImageView
@@ -347,11 +347,11 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/icon_logout"
-            app:layout_constraintBottom_toBottomOf="@+id/settingCalculator"
-            app:layout_constraintEnd_toEndOf="@+id/settingCalculator"
+            app:layout_constraintBottom_toBottomOf="@+id/settingLogout"
+            app:layout_constraintEnd_toEndOf="@+id/settingLogout"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/settingCalculator"
-            app:layout_constraintTop_toTopOf="@+id/settingCalculator"
+            app:layout_constraintStart_toStartOf="@+id/settingLogout"
+            app:layout_constraintTop_toTopOf="@+id/settingLogout"
             app:layout_constraintVertical_bias="0.25" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

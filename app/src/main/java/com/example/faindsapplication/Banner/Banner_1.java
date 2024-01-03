@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.faindsapplication.R;
 
+// ViewPager에 첫번째 배너를 표시하기 위한 Fragment
 public class Banner_1 extends Fragment {
 
     @Override

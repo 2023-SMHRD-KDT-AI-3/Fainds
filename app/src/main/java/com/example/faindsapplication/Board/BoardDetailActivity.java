@@ -19,9 +19,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.faindsapplication.Board.BoardFragment;
-import com.example.faindsapplication.Calender.CalenderActivity;
-import com.example.faindsapplication.Calender.CalenderDetailActivity;
 import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.Cmt.CmtVO;
 import com.example.faindsapplication.MainActivity;
@@ -42,22 +39,30 @@ public class BoardDetailActivity extends AppCompatActivity {
     private ArrayList<CmtVO> dataset;
     private CmtAdapter adapter;
     private RequestQueue queue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityBoardDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityBoardDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // 게시글 제목과 내용을 인텐트에서 가져와 설정
         Intent intent = getIntent();
         String boardtitle = getIntent().getStringExtra("boardTitle");
         String boardcontent = getIntent().getStringExtra("boardContent");
-
         binding.boardDetailTitle.setText(boardtitle);
         binding.boardDetailContent.setText(boardcontent);
 
-        setContentView(binding.getRoot());
-        if(queue==null){
+        // Volley 요청을 위한 큐 초기화
+        if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
 
+        // 댓글 데이터를 저장할 ArrayList 및 어댑터 초기화
+        dataset = new ArrayList<>();
+        adapter = new CmtAdapter(dataset);
+
+        // 뒤로가기 버튼 클릭 시 BoardFragment로 이동
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,42 +72,43 @@ public class BoardDetailActivity extends AppCompatActivity {
             }
         });
 
+        // 로고 클릭 시 HomeFragment로 이동
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BoardDetailActivity.this, MainActivity.class);
-                intent.putExtra("moveFl","home");
+                intent.putExtra("moveFl", "home");
                 startActivity(intent);
             }
         });
-        dataset = new ArrayList<>();
+
 
         // 댓글데이터 가져오는 메소드
         getComentData();
 
+        // 댓글 리스트 리사이클러뷰 초기화
         LinearLayoutManager manager = new LinearLayoutManager(this);
         binding.cmtRV.setLayoutManager(manager);
-        adapter = new CmtAdapter(dataset);
         binding.cmtRV.setAdapter(adapter);
 
-        // 댓글작성 메소드
+        // 댓글 작성 버튼 클릭 이벤트 처리
         binding.imgCmtWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // 입력한 댓글 내용 가져오기
                 String cmtContent = binding.tvCmtWrite.getText().toString();
-                binding.tvCmtWrite.setText("");
+                binding.tvCmtWrite.setText(""); // 댓글 입력 창 비우기
+
+                // 댓글 작성 요청을 위한 JSON 객체 생성
                 JSONObject jsonBody = new JSONObject();
                 try {
                     jsonBody.put("cmtContent", cmtContent);
                     jsonBody.put("boardSeqId", getIntent().getIntExtra("boardSeq", 0));
                     jsonBody.put("cmtWriterUser", getUserId());
-                    Log.d("jsonbody", jsonBody.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.d("jsonbody", jsonBody.toString());
                 }
-
+                // 댓글 작성 요청
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                         Request.Method.POST,
                         "http://192.168.219.54:8089/cmtwrite",
@@ -110,36 +116,41 @@ public class BoardDetailActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.d("response",response.toString());
+                                Log.d("response", response.toString());
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        // 에러 처리
                     }
                 });
                 queue.add(jsonObjectRequest);
+                // 댓글 작성 후 딜레이
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         dataset.clear();
                         getComentData();
                     }
-                }, 500); // 1000 밀리초 (1초) 딜레이
+                }, 500); // 500 밀리초 (0.5초) 딜레이
             }
         });
     }
-    // 로그인한 ID가져오는 메소드
+
+    // 사용자 ID를 가져오는 메서드
     public String getUserId() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
-    // 댓글리스트 불러오는 메소드
-    public void getComentData(){
-        getIntent().getIntExtra("boardSeq",0);
-        String boardSeqId = String.valueOf(getIntent().getIntExtra("boardSeq",0));
-        Log.d("boardSeqId12345",boardSeqId);
+
+    // 댓글 리스트를 서버에서 가져오는 메소드
+    public void getComentData() {
+        // 게시글 번호 가져오기
+        getIntent().getIntExtra("boardSeq", 0);
+        String boardSeqId = String.valueOf(getIntent().getIntExtra("boardSeq", 0));
+
+        // 댓글 리스트 요청
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 "http://192.168.219.54:8089/cmtlist",
@@ -147,23 +158,24 @@ public class BoardDetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            // 문자열을 UTF-8로 변환하고 JSONArray로 파싱
                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                             JSONArray jsonArray = new JSONArray(utf8String);
+
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("댓글Json",jsonObject.toString());
+
                                 // 각 필요한 데이터를 추출
                                 String cmtWriter = jsonObject.getString("cmtWriterUser");
                                 String cmtContent = jsonObject.getString("cmtContent");
                                 String createdAt = jsonObject.getString("createdAt");
-                                Log.d("cmtContent",cmtContent);
+
                                 // 데이터셋에 추가
-                                dataset.add(new CmtVO(cmtWriter,cmtContent,createdAt));
+                                dataset.add(new CmtVO(cmtWriter, cmtContent, createdAt));
                             }
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
-
                         } catch (UnsupportedEncodingException e) {
                             // 예외 처리
                             e.printStackTrace();
@@ -174,21 +186,19 @@ public class BoardDetailActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                // 에러 처리
             }
         }
-
-
-        ){
+        ) {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                // 게시글 번호를 파라미터로 전달
                 Map<String, String> params = new HashMap<>();
-               params.put("boardSeqId",boardSeqId);
+                params.put("boardSeqId", boardSeqId);
                 return params;
             }
         };
         queue.add(request);
     }
-
 }

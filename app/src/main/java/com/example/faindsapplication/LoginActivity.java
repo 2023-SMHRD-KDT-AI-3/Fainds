@@ -17,7 +17,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.databinding.ActivityLoginBinding;
 
 import java.util.HashMap;
@@ -33,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Volley RequestQueue 초기화
         if(queue==null){
             queue = Volley.newRequestQueue(this);
         }

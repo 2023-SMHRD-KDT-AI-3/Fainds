@@ -6,50 +6,35 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.example.faindsapplication.BoardWriteActivity;
-import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.Home.HomeFragment;
-import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
-import com.example.faindsapplication.Register.RegisterAdapter;
-import com.example.faindsapplication.Register.RegisterFragment;
-import com.example.faindsapplication.Register.RegisterVO;
 import com.example.faindsapplication.SearchFragment;
 import com.example.faindsapplication.databinding.FragmentBoardBinding;
-import com.example.faindsapplication.databinding.FragmentRegisterBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class BoardFragment extends Fragment {
 
@@ -63,20 +48,28 @@ public class BoardFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentBoardBinding.inflate(inflater, container, false);
 
+        // 데이터셋과 어댑터 초기화
         dataset = new ArrayList<>();
         adapter = new BoardAdapter(dataset);
+
+        // Volley 요청을 위한 큐 초기화
         if (queue == null) {
             queue = Volley.newRequestQueue(requireContext());
         }
+        // 게시글 데이터를 서버에서 가져오는 메소드
         getBoardData();
 
+        // 게시글 추가 버튼 이벤트
         binding.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // BoardWriteActivity로 이동
                 Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
                 startActivity(intent);
             }
         });
+
+        // 홈 Fragment로 이동하는 이벤트 처리
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,9 +80,11 @@ public class BoardFragment extends Fragment {
             }
         });
 
+        // 검색 버튼 클릭 이벤트 처리
         binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 검색어를 가져와서 SearchFragment로 이동
                 String keyword = binding.tvBoardSearch.getText().toString();
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 Bundle bundle = new Bundle();
@@ -103,18 +98,21 @@ public class BoardFragment extends Fragment {
             }
         });
 
+        // 리사이클러뷰 초기화
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.boardRV.setLayoutManager(manager);
         binding.boardRV.setAdapter(adapter);
         return binding.getRoot();
     }
 
+    // 사용자 ID를 가져오는 메서드
     public String getUserId() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
 
+    // 서버에서 게시글 데이터를 가져오는 메서드
     public void getBoardData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -123,6 +121,7 @@ public class BoardFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            // 문자열을 UTF-8로 변환하고 JSONArray로 파싱
                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                             JSONArray jsonArray = new JSONArray(utf8String);
                             // 파싱한 데이터를 데이터셋에 추가
@@ -152,7 +151,7 @@ public class BoardFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                // 에러처리
             }
         }
         );
