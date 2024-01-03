@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -19,6 +20,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardFragment;
+import com.example.faindsapplication.Calender.CalenderActivity;
+import com.example.faindsapplication.Calender.CalenderDetailActivity;
 import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.Cmt.CmtVO;
 import com.example.faindsapplication.MainActivity;
@@ -55,12 +58,40 @@ public class BoardDetailActivity extends AppCompatActivity {
             queue = Volley.newRequestQueue(this);
         }
 
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoardDetailActivity.this, MainActivity.class);
+                intent.putExtra("moveFl", "board");
+                startActivity(intent);
+            }
+        });
 
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoardDetailActivity.this, MainActivity.class);
+                intent.putExtra("moveFl","home");
+                startActivity(intent);
+            }
+        });
+        dataset = new ArrayList<>();
+
+        // 댓글데이터 가져오는 메소드
+        getComentData();
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        binding.cmtRV.setLayoutManager(manager);
+        adapter = new CmtAdapter(dataset);
+        binding.cmtRV.setAdapter(adapter);
+
+        // 댓글작성 메소드
         binding.imgCmtWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String cmtContent = binding.tvCmtWrite.getText().toString();
+                binding.tvCmtWrite.setText("");
                 JSONObject jsonBody = new JSONObject();
                 try {
                     jsonBody.put("cmtContent", cmtContent);
@@ -88,50 +119,23 @@ public class BoardDetailActivity extends AppCompatActivity {
                     }
                 });
                 queue.add(jsonObjectRequest);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dataset.clear();
+                        getComentData();
+                    }
+                }, 500); // 1000 밀리초 (1초) 딜레이
             }
         });
-        
-
-
-        binding.imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-
-
-        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BoardDetailActivity.this, MainActivity.class);
-                intent.putExtra("moveFl","home");
-                startActivity(intent);
-            }
-        });
-        dataset = new ArrayList<>();
-      //  dataset.add(new CmtVO("test",6));
-
-        getComentData();
-
-
-
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        binding.cmtRV.setLayoutManager(manager);
-        adapter = new CmtAdapter(dataset);
-        binding.cmtRV.setAdapter(adapter);
-
-
     }
-
-
+    // 로그인한 ID가져오는 메소드
     public String getUserId() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
-
+    // 댓글리스트 불러오는 메소드
     public void getComentData(){
         getIntent().getIntExtra("boardSeq",0);
         String boardSeqId = String.valueOf(getIntent().getIntExtra("boardSeq",0));

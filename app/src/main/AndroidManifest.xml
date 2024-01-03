@@ -37,16 +37,10 @@
             android:name=".ContractDetail.ContractDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterPhotosActivity"
-            android:exported="false" />
-        <activity
             android:name=".PwActivity"
             android:exported="false" />
         <activity
             android:name=".Calender.CalenderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ModifActivity"
             android:exported="false" />
         <activity
             android:name=".BoardWriteActivity"
