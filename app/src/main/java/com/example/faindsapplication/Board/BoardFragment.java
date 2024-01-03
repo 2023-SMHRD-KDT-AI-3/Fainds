@@ -92,7 +92,6 @@ public class BoardFragment extends Fragment {
             public void onClick(View v) {
                 String keyword = binding.tvBoardSearch.getText().toString();
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                // Create a Bundle to pass data to SearchFragment
                 Bundle bundle = new Bundle();
                 bundle.putString("keyword", keyword);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -126,7 +125,6 @@ public class BoardFragment extends Fragment {
                         try {
                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                             JSONArray jsonArray = new JSONArray(utf8String);
-                            Log.d("qwer", jsonArray.toString());
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);

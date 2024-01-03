@@ -122,7 +122,6 @@ public class HomeFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -135,7 +134,6 @@ public class HomeFragment extends Fragment {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-
                 //전송방식을 POST로 지정했을 때 사용하는 메소드
                 //데이터를 전송할 때 Map형태로 구성하여 리턴해줘야 한다.
                 // Map<String,String> 앞은 Key 뒤는 Value 임
@@ -143,7 +141,6 @@ public class HomeFragment extends Fragment {
                 Map<String,String> params = new HashMap<>();
                 params.put("key",keyword);
                 //Spring서버에서도 "keyword"로 받아야 함
-
                 return params;
             }
         };
