@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -18,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,7 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardAdapter;
 import com.example.faindsapplication.Board.BoardVO;
 import com.example.faindsapplication.Home.HomeFragment;
-import com.example.faindsapplication.databinding.FragmentBoardBinding;
+import com.example.faindsapplication.databinding.FragmentSearch2Binding;
 import com.example.faindsapplication.databinding.FragmentSearchBinding;
 
 import org.json.JSONArray;
@@ -42,25 +39,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SearchFragment extends Fragment {
 
-    private FragmentSearchBinding binding = null;
+public class SearchFragment2 extends Fragment {
+
+    private FragmentSearch2Binding binding = null;
     private ArrayList<BoardVO> dataset = null;
     private BoardAdapter adapter = null;
     private RequestQueue queue;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        binding = FragmentSearch2Binding.inflate(inflater, container, false);
         dataset = new ArrayList<>();
         adapter = new BoardAdapter(dataset);
         if (queue == null) {
             queue = Volley.newRequestQueue(requireContext());
         }
-
         String keyword = getArguments().getString("keyword");
         binding.tvBoardSearch.setText(keyword);
         getSearchBoardData(keyword);
+
         binding.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,20 +85,17 @@ public class SearchFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("keyword", keyword);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                SearchFragment2 searchFragment2 = new SearchFragment2();
-                searchFragment2.setArguments(bundle);
+                SearchFragment searchFragment = new SearchFragment();
+                searchFragment.setArguments(bundle);
 
-                transaction.replace(R.id.fl, searchFragment2);
+                transaction.replace(R.id.fl, searchFragment);
                 transaction.commit();
             }
         });
-
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.SearchRV.setLayoutManager(manager);
         binding.SearchRV.setAdapter(adapter);
         return binding.getRoot();
-
-
     }
     public void getSearchBoardData(String keyword) {
         StringRequest request = new StringRequest(
@@ -162,5 +158,4 @@ public class SearchFragment extends Fragment {
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
-
 }
