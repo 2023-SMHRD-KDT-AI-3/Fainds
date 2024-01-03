@@ -23,8 +23,7 @@ public class BannerAdapter extends FragmentStateAdapter {
             return new Banner_1();
         }else if(index==1){
             return new Banner_2();
-        }
-        else return new Banner_3();
+        } else return new Banner_3();
     }
 
     @Override
@@ -35,4 +34,7 @@ public class BannerAdapter extends FragmentStateAdapter {
     public int getRealPosition(int position){
         return position % mCount;
     }
+
+
+
 }
