@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
         vp.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
         vp.setCurrentItem(0); // 시작지점
-        vp.setOffscreenPageLimit(2);// 최대 이미지 수
+        vp.setOffscreenPageLimit(3);// 최대 이미지 수
 
         vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

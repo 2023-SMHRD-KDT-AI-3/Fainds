@@ -17,18 +17,23 @@ public class BannerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        // banner 넘겨주기
         int index = getRealPosition(position);
-
         if(index==0){
             return new Banner_1();
         }else if(index==1){
             return new Banner_2();
         } else return new Banner_3();
+
+
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        return 2000;
+        return 100;
     }
 
     public int getRealPosition(int position){
