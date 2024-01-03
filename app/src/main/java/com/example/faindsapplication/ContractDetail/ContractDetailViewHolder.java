@@ -14,10 +14,12 @@ public class ContractDetailViewHolder extends RecyclerView.ViewHolder implements
 
     private TextView contractDetailKey;
     private TextView contractDetailValue;
+    private TextView tvWarning;
     public ContractDetailViewHolder(@NonNull View itemView) {
         super(itemView);
         this.contractDetailKey = itemView.findViewById(R.id.contractDetailKey);
         this.contractDetailValue = itemView.findViewById(R.id.contractDetailValue);
+        this.tvWarning = itemView.findViewById(R.id.tvWarning);
 
         itemView.setOnClickListener(this);
     }
@@ -33,6 +35,7 @@ public class ContractDetailViewHolder extends RecyclerView.ViewHolder implements
     public TextView getContractDetailValue() {
         return contractDetailValue;
     }
+    public  TextView getTvWarning(){ return tvWarning;}
 
     @Override
     public void onClick(View v) {

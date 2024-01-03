@@ -33,6 +33,12 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
         int ContractId = dataset.get(position).getContractId();
         holder.getContractDetailKey().setText(ContractKey);
         holder.getContractDetailValue().setText(ContractValue);
+        if ("근무장소".equals(ContractKey) && !"본사 영업팀".equals(ContractValue)) {
+            holder.getTvWarning().setText("경고: 본사 영업팀이 아닙니다.");
+        } else {
+            // 조건이 충족되지 않으면 경고 텍스트를 초기화
+            holder.getTvWarning().setText("");
+        }
     }
 
     @Override
