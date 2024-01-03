@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TimePicker;
 
 
@@ -20,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.MainActivity;
+import com.example.faindsapplication.R;
 import com.example.faindsapplication.WorkPopupActivity;
 import com.example.faindsapplication.databinding.ActivityCalenderDetailBinding;
 
@@ -70,6 +73,26 @@ public class CalenderDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        // 근무기록 수정 삭제를 위한 팝업
+        binding.btnCalPopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final PopupMenu popupMenu = new PopupMenu(getApplicationContext(),v);
+                getMenuInflater().inflate(R.menu.popupboard,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.boardFix){
+
+                        } else if (item.getItemId() == R.id.boardDelete){
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
 
