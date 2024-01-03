@@ -81,7 +81,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/btnBlue1"
+        android:backgroundTint="@color/btnBlue"
         android:text="계약서 등록"
         android:textSize="16sp"
         android:textStyle="bold"

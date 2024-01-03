@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
     // 배너 관련
     private ViewPager2 vp;
     private BannerAdapter bannerAdapter;
-    private int num_page = 2;
+    private int num_page = 3;
 
     private Handler sliderHandler = new Handler();
     

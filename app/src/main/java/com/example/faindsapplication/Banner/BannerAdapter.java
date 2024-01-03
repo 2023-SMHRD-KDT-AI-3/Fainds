@@ -24,7 +24,7 @@ public class BannerAdapter extends FragmentStateAdapter {
         }else if(index==1){
             return new Banner_2();
         }
-        else return new Banner_2();
+        else return new Banner_3();
     }
 
     @Override

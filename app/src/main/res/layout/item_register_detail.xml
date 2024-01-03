@@ -10,7 +10,6 @@
         android:id="@+id/cardView"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,4 +45,5 @@
                 android:textSize="15dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
