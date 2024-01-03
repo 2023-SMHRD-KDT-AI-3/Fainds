@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,6 +56,26 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         String createdAt = dataset.get(position).getCreated_at();
         String formatTime = timeDi(createdAt);
         holder.getBoardTime().setText(formatTime);
+        // 게시글 수정 삭제 버튼을 위한 팝업
+        holder.getBtnAddPopup().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                popupMenu.inflate(R.menu.popupboard);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.boardFix){
+
+                        } else if (item.getItemId() == R.id.boardDelete){
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
         holder.listener = new BoardItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
@@ -62,6 +84,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 intent.putExtra("boardContent",boardContent);
                 intent.putExtra("createdAt",createdAt);
                 intent.putExtra("boardSeq",boardSeq);
+
 
                 Log.d("boardSeq1234", String.valueOf(boardSeq));
                 Log.d("boardTitle1234", boardTitle);
