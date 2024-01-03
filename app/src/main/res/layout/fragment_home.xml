@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Home.HomeFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -30,19 +31,19 @@
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:text="홍길동"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/tvSearch"
-        app:layout_constraintTop_toBottomOf="@+id/tvSearch" />
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="님의 보관함"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tvUserName"
         app:layout_constraintStart_toEndOf="@+id/tvUserName"
@@ -59,36 +60,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
 
-    <EditText
-        android:id="@+id/tvSearch"
-        android:layout_width="365dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/cmtstyle"
-        android:ems="10"
-        android:inputType="text"
-        android:paddingLeft="10dp"
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
-
-    <ImageView
-        android:id="@+id/btnSearch"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/icon_search"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSearch"
-        app:layout_constraintEnd_toEndOf="@+id/tvSearch"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="@+id/tvSearch"
-        app:layout_constraintTop_toTopOf="@+id/tvSearch"
-        app:layout_constraintVertical_bias="0.466" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/banner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline28">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

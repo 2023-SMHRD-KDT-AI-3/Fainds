@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     app:layout_constraintCircleRadius="20sp"
     tools:context=".BoardWriteActivity">
 
@@ -15,34 +16,22 @@
         app:layout_constraintGuide_percent="0.08071136" />
 
     <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:backgroundTint="@color/btnBlue1"
-        android:text="취소"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnSave"
-        app:layout_constraintTop_toTopOf="@+id/btnSave"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/btnSave"
-        android:layout_width="105dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/btnBlue1"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/btnBlue"
         android:text="@string/btnSave"
         app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/edtContent"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtContent" />
+        app:layout_constraintTop_toBottomOf="@+id/edtContent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView3"
@@ -50,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="질문 게시판"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
         app:layout_constraintEnd_toEndOf="@+id/imgLogo"
@@ -65,6 +54,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/boardstyle"
+        android:elevation="10dp"
         android:ems="10"
         android:hint="@string/edtTv"
         android:inputType="text"

@@ -75,12 +75,16 @@ public class CalenderDetailActivity extends AppCompatActivity {
 
         String formattedDate = getIntent().getStringExtra("currentDate");
         String tvSalary = getIntent().getStringExtra("workPay");
-        String startedAt = getIntent().getStringExtra("endedAt");
-        String endedAt = getIntent().getStringExtra("startedAt");
+        String startedAt = getIntent().getStringExtra("startedAt");
+        String endedAt = getIntent().getStringExtra("endedAt");
+        String workTime = getIntent().getStringExtra("workTimeString");
+        String totalSalary = getIntent().getStringExtra("totalSalaryString");
         binding.tvDay.setText(formattedDate);
         binding.tvSalary.setText(tvSalary);
         binding.tvStartTime.setText(startedAt);
         binding.tvEndTime.setText(endedAt);
+        binding.tvResult.setText(workTime);
+        binding.tvDailySalary.setText(totalSalary);
 
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,10 +185,8 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 binding.tvDailySalary.setText(formattedDailySalary);
             } catch (NumberFormatException e) {
                 // 급여값이 숫자로 변환되지 않으면 예외 처리
-                binding.tvDailySalary.setText("Invalid Salary");
             }
         } else {
-            binding.tvDailySalary.setText("Invalid Time");
         }
     }
     private Calendar parseTimeString(String timeString) {

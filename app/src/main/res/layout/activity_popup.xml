@@ -25,7 +25,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/btnBlue1"
+            android:background="@color/btnBlue"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,7 +45,7 @@
                     android:text="닫기"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,7 +75,7 @@
                     android:text="카메라로 촬영하기"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,7 +105,7 @@
                     android:layout_weight="1"
                     android:text="앨범에서 가져오기"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

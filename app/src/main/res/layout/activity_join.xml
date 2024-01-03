@@ -15,38 +15,43 @@
 
     <EditText
         android:id="@+id/inputJoinID"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/boardstyle"
         android:ems="10"
         android:hint="@string/joinIdHint"
         android:inputType="text"
         android:paddingStart="10dp"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/joinTvId"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/joinTvId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/joinTvId" />
 
     <TextView
         android:id="@+id/joinTvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="@string/joinTvId"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="@+id/imgBack"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBack" />
 
     <TextView
         android:id="@+id/joinTvPw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/joinTvPw"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinID"
         app:layout_constraintHorizontal_bias="0.0"
@@ -55,7 +60,7 @@
 
     <EditText
         android:id="@+id/inputJoinPw"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/boardstyle"
@@ -64,26 +69,26 @@
         android:inputType="textPassword"
         android:paddingStart="10dp"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/joinTvPw"
+        app:layout_constraintEnd_toEndOf="@+id/inputJoinID"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/joinTvPw"
+        app:layout_constraintStart_toStartOf="@+id/inputJoinID"
         app:layout_constraintTop_toBottomOf="@+id/joinTvPw" />
 
     <TextView
         android:id="@+id/joinTvNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/joinTvName"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/inputJoinPw"
+        app:layout_constraintEnd_toEndOf="@+id/textView23"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/inputJoinPw"
-        app:layout_constraintTop_toBottomOf="@+id/inputJoinPw" />
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/tvPwCheck" />
 
     <EditText
         android:id="@+id/inputJoinName"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/boardstyle"
@@ -92,16 +97,16 @@
         android:inputType="text"
         android:paddingStart="10dp"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/joinTvNick"
+        app:layout_constraintEnd_toEndOf="@+id/tvPwCheck"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/joinTvNick"
+        app:layout_constraintStart_toStartOf="@+id/tvPwCheck"
         app:layout_constraintTop_toBottomOf="@+id/joinTvNick" />
 
     <TextView
         android:id="@+id/joinTvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/joinTvEmail"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinName"
@@ -111,7 +116,7 @@
 
     <EditText
         android:id="@+id/inputJoinEmail"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/boardstyle"
@@ -120,21 +125,26 @@
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/joinTvEmail"
+        app:layout_constraintEnd_toEndOf="@+id/inputJoinName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/joinTvEmail"
+        app:layout_constraintStart_toStartOf="@+id/inputJoinName"
         app:layout_constraintTop_toBottomOf="@+id/joinTvEmail" />
 
     <Button
         android:id="@+id/joinBtnJoin"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/btnBlue"
         android:text="@string/joinBtnJoin"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputJoinEmail"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -164,7 +174,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="회원가입"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
         app:layout_constraintStart_toEndOf="@+id/imgBack"
@@ -172,17 +182,51 @@
         app:layout_constraintVertical_bias="0.263" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9015048" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.17" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="비밀번호 확인"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/inputJoinPw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inputJoinPw"
+        app:layout_constraintTop_toBottomOf="@+id/inputJoinPw" />
+
+    <EditText
+        android:id="@+id/tvPwCheck"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/boardstyle"
+        android:ems="10"
+        android:hint="비밀번호를 한번 더 입력하세요"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/inputJoinPw"
+        app:layout_constraintStart_toStartOf="@+id/inputJoinPw"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/msgPwCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="비밀번호가 일치합니다!"
+        android:textColor="@color/blue"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/tvPwCheck"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvPwCheck"
+        app:layout_constraintTop_toBottomOf="@+id/tvPwCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

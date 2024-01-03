@@ -1,12 +1,10 @@
 package com.example.faindsapplication.RegisterDetail;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -17,8 +15,6 @@ import android.widget.ImageView;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.faindsapplication.ContractDetail.ContractDetailAdapter;
 import com.example.faindsapplication.ContractDetail.ContractDetailVO;
 import com.android.volley.NetworkResponse;
@@ -71,6 +67,13 @@ public class RegisterDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         Intent intent = getIntent();
         Bitmap bitmap = null;
@@ -97,11 +100,12 @@ public class RegisterDetailActivity extends AppCompatActivity {
         //binding.imgTest.setImageResource(imgTest);
 
         //=============================================================================
-        String url ="http://192.168.219.54:8089/getimg";
+        String url ="http://192.168.219.63:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, byteArrayOutputStream); // JPEG 형식, 품질 100으로 설정
         byte[] byteArray = byteArrayOutputStream.toByteArray();
+
 
 
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
@@ -119,6 +123,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 updateUI(response);
                             }
+
                             @Override
                             public void onError(String error) {
                                 Log.d("flaskerror", "onError: flask error");
@@ -145,11 +150,8 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(multipartRequest);
-
-
-
-
     }
+
     public void updateUI(JSONObject response){
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,10 +192,6 @@ public class RegisterDetailActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-//        dataset.add(new RegisterDetailVO(1, "계약서 종류", "표준근로계약서(미성년자)"));
-//        dataset.add(new RegisterDetailVO(1, "시급", "10500원"));
-//        dataset.add(new RegisterDetailVO(1, "근무시간", "18시 00분 부터 21시 00분 까지(휴게시간 : 없음"));
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         binding.RegisterDetailRV.setLayoutManager(manager);

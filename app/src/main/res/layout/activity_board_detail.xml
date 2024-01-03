@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline19"
@@ -44,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="질문 게시판"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
         app:layout_constraintStart_toEndOf="@+id/imgBack"
@@ -54,6 +55,7 @@
         android:id="@+id/cmtRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -68,7 +70,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="제목"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline20" />
@@ -85,9 +87,11 @@
 
     <TextView
         android:id="@+id/boardDetailContent"
-        android:layout_width="365dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
@@ -97,13 +101,15 @@
     <EditText
         android:id="@+id/tvCmtWrite"
         android:layout_width="0dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/cmtstyle"
         android:ems="10"
         android:hint="댓글을 입력하세요"
         android:inputType="text"
         android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/boardDetailContent"
         app:layout_constraintHorizontal_bias="0.0"

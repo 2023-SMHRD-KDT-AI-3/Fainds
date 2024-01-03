@@ -42,6 +42,7 @@ public class PwActivity extends AppCompatActivity {
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
+        // 현재 비밀번호 일치 호가인 메시지 띄우기
         binding.currentPw.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -59,7 +60,7 @@ public class PwActivity extends AppCompatActivity {
                 }
             }
         });
-
+        //새 비밀번호 일치 확인 메시지 띄우기
         binding.confirmPw.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
