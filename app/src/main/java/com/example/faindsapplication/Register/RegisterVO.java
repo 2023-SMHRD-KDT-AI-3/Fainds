@@ -1,9 +1,9 @@
 package com.example.faindsapplication.Register;
 
 public class RegisterVO {
-    private String contractName;
-    private String contractExample;
-    private int contractImg;
+    private String contractName; // 계약서 이름
+    private String contractExample; // 계약서 사용자 예시
+    private int contractImg; // 계약서 이미지
 
     public RegisterVO(String contractName, String contractExample, int contractImg) {
         this.contractName = contractName;
@@ -14,11 +14,9 @@ public class RegisterVO {
     public String getContractName() {
         return contractName;
     }
-
     public String getContractExample() {
         return contractExample;
     }
-
     public int getContractImg() {
         return contractImg;
     }

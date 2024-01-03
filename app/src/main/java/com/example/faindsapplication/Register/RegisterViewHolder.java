@@ -13,17 +13,17 @@ import org.w3c.dom.Text;
 
 public class RegisterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     RegisterItemClickListener listener;
-
     private TextView tvRegisterName;
     private TextView tvRegisterExample;
     private ImageView imgRegisterType;
 
     public RegisterViewHolder(@NonNull View itemView) {
         super(itemView);
+        // 레이아웃에서 각 View 요소를 찾아 초기화
         this.tvRegisterName = itemView.findViewById(R.id.tvRegisterName);
         this.tvRegisterExample = itemView.findViewById(R.id.tvRegisterExample);
         this.imgRegisterType = itemView.findViewById(R.id.imgRegisterType);
-
+        // 아이템 클릭 시 이벤트 처리를 위해 OnClickListener 설정
         itemView.setOnClickListener(this);
     }
 

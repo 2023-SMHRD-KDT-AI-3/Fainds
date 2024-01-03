@@ -3,20 +3,18 @@ package com.example.faindsapplication.Board;
 import java.util.Date;
 
 public class BoardVO {
-    private String boardTitle;
-    private String boardContent;
-    private String created_at;
-    private String boardWriter;
+    private String boardTitle; // 게시글 제목
+    private String boardContent; // 게시글 내용
+    private String created_at; // 게시글 작성일자
+    private String boardWriter; // 게시글 작성자
     private int boardCmtNum; // 댓글 수
-     private int boardSeq;
+    private int boardSeq; // 게시글 번호
 
-
-
-
+    // 기본 생성자
     public BoardVO() {
-
     }
 
+    // 매개변수를 받는 생성자
     public BoardVO(String boardTitle, String boardContent, String created_at, String boardWriter, int boardCmtNum, int boardSeq) {
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -26,6 +24,7 @@ public class BoardVO {
         this.boardSeq = boardSeq;
     }
 
+    // getter 메서드
     public String getBoardTitle() {
         return boardTitle;
     }

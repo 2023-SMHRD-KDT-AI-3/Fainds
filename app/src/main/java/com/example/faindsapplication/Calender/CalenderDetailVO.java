@@ -1,10 +1,10 @@
 package com.example.faindsapplication.Calender;
 
 public class CalenderDetailVO {
-    private String startedAt;
-    private String endedAt;
-    private String workPay;
-    private String workDay;
+    private String startedAt; // 시작 시간
+    private String endedAt; // 종료 시간
+    private String workPay; // 시급
+    private String workDay; // 근무 날짜
 
     private int workSeq;
 
@@ -15,7 +15,7 @@ public class CalenderDetailVO {
         this.workDay = workDay;
         this.workSeq = workSeq;
     }
-
+    // getter 메서드
     public String getStartedAt() {
         return startedAt;
     }

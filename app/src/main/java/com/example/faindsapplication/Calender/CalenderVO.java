@@ -1,8 +1,8 @@
 package com.example.faindsapplication.Calender;
 
 public class CalenderVO {
-    private String date;
-    private String dailySalary;
+    private String date; // 날짜
+    private String dailySalary; // 해당 날짜의 총 급여
 
     public CalenderVO(String date, String dailySalary) {
         this.date = date;

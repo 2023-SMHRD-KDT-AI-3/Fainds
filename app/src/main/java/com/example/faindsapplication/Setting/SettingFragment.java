@@ -10,7 +10,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +30,6 @@ import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.PwActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.TipActivity;
-import com.example.faindsapplication.databinding.ActivityEmailBinding;
 import com.example.faindsapplication.databinding.FragmentSettingBinding;
 
 import java.util.HashMap;
@@ -43,47 +41,44 @@ public class SettingFragment extends Fragment {
     private FragmentSettingBinding binding;
 
     private RequestQueue queue;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSettingBinding.inflate(getLayoutInflater());
 
-
-
-        if(queue==null){
+        // Volley RequestQueue 초기화
+        if (queue == null) {
             queue = Volley.newRequestQueue(requireContext());
         }
-
 
         // 이메일 수정 클릭 시
         binding.settingEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 서버에 사용자 이메일을 가져오기 위한 요청 보내기
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
                         "http://192.168.219.54:8089/settingemail",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Log.d("responseEmail",response.toString());
                                 Intent intent = new Intent(getActivity(), EmailActivity.class);
-                                intent.putExtra("LoginEmail",response);
+                                intent.putExtra("LoginEmail", response);
                                 startActivity(intent);
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
                     }
                 }
-                ){
+                ) {
                     @Nullable
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         String id = getUserId();
-                        Map<String,String> params = new HashMap<>();
-                        params.put("userId",id);
-
+                        Map<String, String> params = new HashMap<>();
+                        params.put("userId", id);
                         return params;
                     }
                 };
@@ -91,7 +86,7 @@ public class SettingFragment extends Fragment {
 
             }
         });
-
+        // 로고 이미지 클릭 시 홈으로 이동
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +102,7 @@ public class SettingFragment extends Fragment {
         binding.settingPw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), PwActivity.class);
+                Intent intent = new Intent(getActivity(), PwActivity.class);
                 startActivity(intent);
             }
         });
@@ -116,7 +111,7 @@ public class SettingFragment extends Fragment {
         binding.settingDeclaration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://labor.moel.go.kr/minwonApply/minwonFormat.do?searchVal=SN001"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://labor.moel.go.kr/minwonApply/minwonFormat.do?searchVal=SN001"));
                 startActivity(intent);
             }
         });
@@ -125,11 +120,12 @@ public class SettingFragment extends Fragment {
         binding.settingDeclaration2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse("https://labor.moel.go.kr/reportCntr/illegalLaborType2.do"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://labor.moel.go.kr/reportCntr/illegalLaborType2.do"));
                 startActivity(intent);
             }
         });
 
+        // tip게시판 클릭 시
         binding.settingTip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,25 +135,27 @@ public class SettingFragment extends Fragment {
         });
 
         //급여 계산기 클릭시
-        binding.settingDeclaration3.setOnClickListener(new View.OnClickListener() {
+        binding.settingCalculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), CalenderActivity.class);
+                Intent intent = new Intent(getActivity(), CalenderActivity.class);
                 startActivity(intent);
             }
         });
 
-        //로그아웃 클릭시
-        binding.settingCalculator.setOnClickListener(new View.OnClickListener() {
+        // 로그아웃 클릭 시
+        binding.settingLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 removeUserId();
-                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
             }
         });
         return binding.getRoot();
     }
+
+    // 로그아웃 메소드
     public void removeUserId() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

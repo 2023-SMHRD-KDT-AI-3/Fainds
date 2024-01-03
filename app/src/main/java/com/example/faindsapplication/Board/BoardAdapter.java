@@ -32,6 +32,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
     @NonNull
     @Override
     public BoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // 레이아웃 파일을 inflate하여 ViewHolder를 생성
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_board, parent, false);
         BoardViewHolder holder = new BoardViewHolder(view);
         return holder;
@@ -39,22 +40,24 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
+        // 데이터셋에서 현재 위치에 해당하는 데이터 가져오기
         String boardTitle = dataset.get(position).getBoardTitle();
         String boardContent = dataset.get(position).getBoardContent();
         int boardCmtNum = dataset.get(position).getBoardCmtNum();
        // String createdAt = dataset.get(position).getCreated_at().substring(0,10) +" " +dataset.get(position).getCreated_at().substring(11,16);
         int boardSeq=dataset.get(position).getBoardSeq();
 
+        // 뷰홀더에 데이터 설정
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
         holder.getBoardCmtNum().setText(String.valueOf(boardCmtNum));
 
       //  holder.getBoardTime().setText(createdAt);
-
+        // 작성 시간을 변환하여 표시
         String createdAt = dataset.get(position).getCreated_at();
         String formatTime = timeDi(createdAt);
         holder.getBoardTime().setText(formatTime);
-        // 게시글 수정 삭제 버튼을 위한 팝업
+        // 게시글 수정 삭제 버튼을 위한 팝업 메뉴 설정
         holder.getBtnAddPopup().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,8 +67,10 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.boardFix){
+                            // 수정 기능 구현
 
                         } else if (item.getItemId() == R.id.boardDelete){
+                            // 삭제 기능 구현
 
                         }
                         return false;
@@ -74,6 +79,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 popupMenu.show();
             }
         });
+        // 게시글 클릭 시 상세 화면으로 이동
         holder.listener = new BoardItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
@@ -97,6 +103,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         return dataset.size();
     }
 
+    // 작성 시간을 "방금 전", "몇 분 전" 등으로 변환하는 메서드
     public static String timeDi(String createdAt) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault());
         try {

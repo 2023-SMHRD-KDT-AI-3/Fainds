@@ -42,12 +42,15 @@ public class BoardWriteActivity extends AppCompatActivity {
         binding = ActivityBoardWriteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 뒤로가기 버튼 클릭 이벤트
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        // 로고 이미지 클릭 시 홈으로 이동
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +60,12 @@ public class BoardWriteActivity extends AppCompatActivity {
             }
         });
 
+        // Volley RequestQueue 초기화
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
+
+        // 저장 버튼 클릭 시 이벤트
 
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,13 +102,14 @@ public class BoardWriteActivity extends AppCompatActivity {
                             String id = getUserId();
                             Map<String, String> params = new HashMap<>();
                             Log.d("qwer", id);
-                            params.put("boardWriter", id);
+                            params.put("BoardUser", id);
                             params.put("boardTitle", title);
                             params.put("boardContent", content);
 
                             return params;
                         }
                     };
+                    // 요청을 큐에 추가
                     queue.add(request);
                 }
             }

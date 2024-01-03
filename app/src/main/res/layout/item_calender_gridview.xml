@@ -20,6 +20,7 @@
         android:layout_below="@+id/tv_item_gridview_date"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
+        android:textColor="@color/navColor"
         android:textSize="11dp"
         android:textStyle="bold" />
 
