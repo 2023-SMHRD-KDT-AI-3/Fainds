@@ -88,6 +88,11 @@ public class CalenderDetailActivity extends AppCompatActivity {
         String endedAt = getIntent().getStringExtra("endedAt");
         String workTime = getIntent().getStringExtra("workTimeString");
         String totalSalary = getIntent().getStringExtra("totalSalaryString");
+        if (workTime != null && !workTime.isEmpty()) {
+            binding.btnRegisterSalary.setVisibility(View.INVISIBLE);
+            binding.btnCalenderFix.setVisibility(View.VISIBLE);
+            binding.btnCalenderDelete.setVisibility(View.VISIBLE);
+        }
         binding.tvDay.setText(formattedDate);
         binding.tvSalary.setText(tvSalary);
         binding.tvStartTime.setText(startedAt);
@@ -117,16 +122,15 @@ public class CalenderDetailActivity extends AppCompatActivity {
 
         // 근무기록 수정
         binding.btnCalenderFix.setOnClickListener(new View.OnClickListener() {
-            String currentDate = binding.tvDay.getText().toString();
-            String startTime = binding.tvStartTime.getText().toString();
-            String endTime = binding.tvEndTime.getText().toString();
-            String salary = binding.tvSalary.getText().toString();
-            String dailySalary = binding.tvDailySalary.getText().toString();
 
-            String userId = getUserId();
             @Override
             public void onClick(View v) {
+                String startTime = binding.tvStartTime.getText().toString();
+                String endTime = binding.tvEndTime.getText().toString();
+                String salary = binding.tvSalary.getText().toString();
+                String dailySalary = binding.tvDailySalary.getText().toString();
 
+                String userId = getUserId();
                     updatesal(formattedDate,startTime,endTime,salary,userId,dailySalary);
             }
         });
@@ -273,7 +277,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
-    public  void updatesal(String formattedDate, String startTime, String endTime, String salary, String userId, String dailySalary){
+    public  void updatesal(String formattedDate, String startTime, String endTime, String salary, String userId,String dailySalary){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 "http://192.168.219.54:8089/updatesal",
@@ -300,6 +304,11 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 params.put("endedAt",endTime);
                 params.put("workPay",salary);
                 params.put("workUser",userId);
+                Log.d("workDay",formattedDate);
+                Log.d("startedAt",startTime);
+                Log.d("endedAt",endTime);
+                Log.d("workPay",salary);
+                Log.d("workUser",userId);
                 //Spring서버에서도 "id","pw"로 받아야 함
                 return params;
             }
