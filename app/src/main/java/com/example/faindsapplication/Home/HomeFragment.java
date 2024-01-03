@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardAdapter;
 import com.example.faindsapplication.Board.BoardVO;
 import com.example.faindsapplication.EmailActivity;
@@ -27,6 +29,12 @@ import com.example.faindsapplication.R;
 import com.example.faindsapplication.databinding.FragmentBoardBinding;
 import com.example.faindsapplication.databinding.FragmentHomeBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +52,11 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater,container,false);
         dataset = new ArrayList<>();
 
+        if (queue == null) {
+            queue = Volley.newRequestQueue(requireContext());
+        }
+        mongofindall(getUserId());
+
         binding.btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +64,7 @@ public class HomeFragment extends Fragment {
                 sendSearchRequest(keyword);
             }
         });
+
 
         binding.tvUserName.setText(getUserId());
 
@@ -106,4 +120,39 @@ public class HomeFragment extends Fragment {
         return sharedPreferences.getString("UserID", null);
     }
 
+    public void mongofindall(String userid){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.65:8089/mongo/findall",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                            JSONArray jsonArray = new JSONArray(utf8String);
+                            Log.d("qwer", jsonArray.toString());
+                            Log.d("qwer", "onResponse: "+response);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("userid", userid);
+                return params;
+            }
+        };
+
+        queue.add(request);
+    }
 }
