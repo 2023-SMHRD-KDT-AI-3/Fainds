@@ -116,7 +116,7 @@ public class BoardFragment extends Fragment {
     public void getBoardData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/board",
+                "http://192.168.219.47:8089/board",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -144,7 +144,7 @@ public class BoardFragment extends Fragment {
                         } catch (UnsupportedEncodingException e) {
                             // 예외 처리
                             e.printStackTrace();
-                        }catch (JSONException e) {
+                        } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
                     }

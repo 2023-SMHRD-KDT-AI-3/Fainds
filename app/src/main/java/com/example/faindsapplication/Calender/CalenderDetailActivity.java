@@ -78,26 +78,6 @@ public class CalenderDetailActivity extends AppCompatActivity {
             }
         });
 
-        // 근무기록 수정 삭제를 위한 팝업
-        binding.btnCalPopup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
-                getMenuInflater().inflate(R.menu.popupboard, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (item.getItemId() == R.id.boardFix) {
-                            // 수정 기능
-                        } else if (item.getItemId() == R.id.boardDelete) {
-                            // 삭제 기능
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
-            }
-        });
 
         // db에 저장된 해당 날짜의 근무기록 보여주기
         String formattedDate = getIntent().getStringExtra("currentDate");
@@ -106,6 +86,11 @@ public class CalenderDetailActivity extends AppCompatActivity {
         String endedAt = getIntent().getStringExtra("endedAt");
         String workTime = getIntent().getStringExtra("workTimeString");
         String totalSalary = getIntent().getStringExtra("totalSalaryString");
+        if (workTime != null && !workTime.isEmpty()) {
+            binding.btnRegisterSalary.setVisibility(View.INVISIBLE);
+            binding.btnCalenderFix.setVisibility(View.VISIBLE);
+            binding.btnCalenderDelete.setVisibility(View.VISIBLE);
+        }
         binding.tvDay.setText(formattedDate);
         binding.tvSalary.setText(tvSalary);
         binding.tvStartTime.setText(startedAt);
@@ -120,6 +105,22 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(CalenderDetailActivity.this, MainActivity.class);
                 intent.putExtra("moveFl", "home");
                 startActivity(intent);
+            }
+        });
+
+        // 근무기록 삭제
+        binding.btnCalenderDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        // 근무기록 수정
+        binding.btnCalenderFix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
