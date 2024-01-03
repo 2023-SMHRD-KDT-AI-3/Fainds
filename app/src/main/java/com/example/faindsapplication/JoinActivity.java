@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.databinding.ActivityJoinBinding;
+import com.example.faindsapplication.databinding.ActivityLoginBinding;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -90,10 +91,14 @@ public class JoinActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(String response) {
                                         Toast.makeText(JoinActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(JoinActivity.this, ActivityLoginBinding.class);
+                                        startActivity(intent);
+
                                     }
                                 }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(JoinActivity.this, "중복된 아이디 입니다.", Toast.LENGTH_SHORT).show();
 
                             }
                         }
@@ -120,12 +125,11 @@ public class JoinActivity extends AppCompatActivity {
                                 return params;
                             }
                         };
-
                         queue.add(request);
                     } else {
                         Toast.makeText(JoinActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                   }
+             }
             }
         });
     }

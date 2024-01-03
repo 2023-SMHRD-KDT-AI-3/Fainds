@@ -133,7 +133,7 @@ public class BoardFragment extends Fragment {
                                 int boardSeq = jsonObject.getInt("boardSeq");
                                 String boardTitle = jsonObject.getString("boardTitle");
                                 String boardContent = jsonObject.getString("boardContent");
-                                String boardWriter = getUserId();
+                                String boardWriter = jsonObject.getString("boardWriter");
                                 String createdAt = jsonObject.getString("createdAt");
                                 int boardCmtNum = jsonObject.getInt("boardCmtNum");
 

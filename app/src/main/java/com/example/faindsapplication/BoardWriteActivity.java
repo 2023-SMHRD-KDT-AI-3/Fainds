@@ -60,6 +60,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
+
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +96,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                             String id = getUserId();
                             Map<String, String> params = new HashMap<>();
                             Log.d("qwer", id);
-                            params.put("BoardUser", id);
+                            params.put("boardWriter", id);
                             params.put("boardTitle", title);
                             params.put("boardContent", content);
 

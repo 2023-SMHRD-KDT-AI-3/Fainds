@@ -42,6 +42,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
     private RequestQueue queue;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,10 +85,17 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        String currentDate = binding.tvDay.getText().toString();
+                        String startTime = binding.tvStartTime.getText().toString();
+                        String endTime = binding.tvEndTime.getText().toString();
+                        String salary = binding.tvSalary.getText().toString();
+                        String dailySalary = binding.tvDailySalary.getText().toString();
+                        int workSeq = getIntent().getIntExtra("workSeq",0);
+                        String userId = getUserId();
                         if (item.getItemId() == R.id.boardFix){
-
+                            updatesal(currentDate, startTime, endTime, salary, userId,dailySalary);
                         } else if (item.getItemId() == R.id.boardDelete){
-
+                            deletesal(workSeq);
                         }
                         return false;
                     }
@@ -102,6 +110,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
         String endedAt = getIntent().getStringExtra("endedAt");
         String workTime = getIntent().getStringExtra("workTimeString");
         String totalSalary = getIntent().getStringExtra("totalSalaryString");
+        int workSeq = getIntent().getIntExtra("workSeq",0);
         binding.tvDay.setText(formattedDate);
         binding.tvSalary.setText(tvSalary);
         binding.tvStartTime.setText(startedAt);
@@ -238,4 +247,67 @@ public class CalenderDetailActivity extends AppCompatActivity {
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
+    public  void updatesal(String formattedDate, String startTime, String endTime, String salary, String userId, String dailySalary){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.54:8089/updatesal",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new HashMap<>();
+                params.put("workDay",formattedDate);
+                params.put("startedAt",startTime);
+                params.put("endedAt",endTime);
+                params.put("workPay",salary);
+                params.put("workUser",userId);
+                //Spring서버에서도 "id","pw"로 받아야 함
+                return params;
+            }
+        };
+        queue.add(request);
+    }
+    public  void deletesal(int workSeq){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.54:8089/deletesal",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new HashMap<>();
+                params.put("workSeq", String.valueOf(workSeq));
+                //Spring서버에서도 "id","pw"로 받아야 함
+                return params;
+            }
+        };
+        queue.add(request);
+    }
+
 }
