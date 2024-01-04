@@ -13,6 +13,7 @@ import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,10 +35,13 @@ public class PopupActivity extends AppCompatActivity {
                     if (result.getResultCode() == RESULT_OK) {
                         // 기본 갤러리에서 선택한 이미지를 Uri값으로 가져온 후 ImageView에 초기화
                         Intent data = result.getData();
+                        String registerdata = getIntent().getStringExtra("RegisterName");
+                        Log.d("계약서내용", "onActivityResult: "+registerdata);
                         Bundle bundle = data.getExtras(); // 캡처한 이미지 저장 공간을 접근
                         Bitmap bitmap = (Bitmap) bundle.get("data");
                         Intent intent = new Intent(PopupActivity.this, RegisterDetailActivity.class);
                         intent.putExtra("TestImg",bitmap);
+                        intent.putExtra("RegisterName",registerdata);
                         startActivity(intent);
                     }
                 }
@@ -52,11 +56,13 @@ public class PopupActivity extends AppCompatActivity {
                     if(result.getResultCode() == RESULT_OK){
                         // 기본 갤러리에서 선택한 이미지를 Uri값으로 가져온 후 ImageView에 초기화
                         Intent data = result.getData();
+                        String registerdata = getIntent().getStringExtra("RegisterName");
+                        Log.d("계약서내용", "onActivityResult: "+registerdata);
                         Uri imgUri = data.getData();
                         // RegisterDetailActivity로 이미지 URI를 전달
-
                         Intent intent = new Intent(PopupActivity.this, RegisterDetailActivity.class);
                         intent.putExtra("TestImgUri", imgUri);
+                        intent.putExtra("RegisterName",registerdata);
                         startActivity(intent);
 
                     }
@@ -72,7 +78,7 @@ public class PopupActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String data = ((Intent) intent).getStringExtra("RegisterName");
-
+        Log.d("계약서내용", "onCreate: "+data);
         getWindow().getAttributes().gravity = Gravity.BOTTOM;
 
 
@@ -81,6 +87,7 @@ public class PopupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra("RegisterName", data);
                 cameraLauncher.launch(intent);
 
             }
@@ -91,6 +98,7 @@ public class PopupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI,"image/*");
+                intent.putExtra("RegisterName", data);
                 // 선택한 이미지를 다시 받아올 수 있도록
                 albumLauncher.launch(intent);
             }

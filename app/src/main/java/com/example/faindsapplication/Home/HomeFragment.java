@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.util.Log;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +21,22 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.Board.BoardAdapter;
+import com.example.faindsapplication.Board.BoardVO;
+import com.example.faindsapplication.Cmt.CmtVO;
+import com.example.faindsapplication.EmailActivity;
 import com.example.faindsapplication.Banner.BannerAdapter;
 import com.example.faindsapplication.R;
+import com.example.faindsapplication.databinding.FragmentBoardBinding;
 import com.example.faindsapplication.databinding.FragmentHomeBinding;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +49,7 @@ public class HomeFragment extends Fragment {
     // 배너 관련
     private ViewPager2 vp;
     private BannerAdapter bannerAdapter;
-    private int num_page = 2;
+    private int num_page = 3;
 
     private Handler sliderHandler = new Handler();
     
@@ -47,11 +62,13 @@ public class HomeFragment extends Fragment {
         dataset = new ArrayList<>();
 
         // 현재 로그인한 아이디 가져오기
-        binding.tvUserName.setText(getUserId());
 
-        // 메인페이지에서 보여줄 게시판 목록 리스트 추가
-        dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
-        dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
+        if (queue == null) {
+            queue = Volley.newRequestQueue(requireContext());
+        }
+        mongofindall(getUserId());
+
+        binding.tvUserName.setText(getUserId());
 
         // 배너 초기화 메소드 호출
         Banner();
@@ -61,7 +78,6 @@ public class HomeFragment extends Fragment {
         binding.homeRV.setLayoutManager(manager);
         adapter = new HomeAdapter(dataset);
         binding.homeRV.setAdapter(adapter);
-
         return binding.getRoot();
     }
 
@@ -74,7 +90,7 @@ public class HomeFragment extends Fragment {
         vp.setAdapter(bannerAdapter);
         vp.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         vp.setCurrentItem(0); // 시작지점
-        vp.setOffscreenPageLimit(2);// 최대 이미지 수
+        vp.setOffscreenPageLimit(3);// 최대 이미지 수
 
         vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -120,4 +136,60 @@ public class HomeFragment extends Fragment {
         return sharedPreferences.getString("UserID", null);
     }
 
+    public void mongofindall(String userid){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.65:8089/mongo/findall",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8"); //인코딩 해주는것
+                            JSONArray jsonArray = new JSONArray(utf8String);
+                            Log.d("qwer", jsonArray.toString());
+                            Log.d("qwer", "onResponse: "+response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                Log.d("계약서",jsonObject.toString());
+                                // 각 필요한 데이터를 추출
+                                String id = jsonObject.getString("id");
+                                String resdata = jsonObject.getString("resdata");
+                                JSONObject resdatajson = new JSONObject(resdata);
+                                String title = resdatajson.getString("사업체명");
+                                String registertype = jsonObject.getString("registername");
+                                int draw = R.drawable.icon_irregular1;
+                                if(registertype.equals("표준근로계약서(기간의 정함이 없음)")){
+                                    draw = R.drawable.icon_contract_regular;
+                                } else if (registertype.equals("표준근로계약서(기간의 정함이 있음)")) {
+                                    draw = R.drawable.icon_contract_architect;
+                                } else if (registertype.equals("표준근로계약서(18세 미만인 자)")) {
+                                    draw = R.drawable.icon_contract_student;
+                                }
+                                // 데이터셋에 추가
+                                dataset.add(new HomeVO(id,title+" 계약서",registertype, R.drawable.icon_contract_architect));
+                            }
+                            adapter.notifyDataSetChanged();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("userid", userid);
+                return params;
+            }
+        };
+
+        queue.add(request);
+    }
 }
