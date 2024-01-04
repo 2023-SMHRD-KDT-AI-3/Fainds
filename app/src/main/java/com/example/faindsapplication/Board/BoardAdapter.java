@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.faindsapplication.BoardEditActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterViewHolder;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
@@ -68,6 +69,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.boardFix){
                             // 수정 기능 구현
+                                Intent intent = new Intent(v.getContext(), BoardEditActivity.class);
+                                intent.putExtra("boardTitle", boardTitle);
+                                intent.putExtra("boardContent",boardContent);
+                                intent.putExtra("createdAt",createdAt);
+                                intent.putExtra("boardSeq",boardSeq);
+                                v.getContext().startActivity(intent);
 
                         } else if (item.getItemId() == R.id.boardDelete){
                             // 삭제 기능 구현

@@ -34,8 +34,7 @@ public class BannerAdapter extends FragmentStateAdapter {
         }else if(index==1){
             return new Banner_2();
         }else {
-            // 기본적으로 두 번째 배너를 반환
-            return new Banner_2();
+            return new Banner_3();
         }
     }
 

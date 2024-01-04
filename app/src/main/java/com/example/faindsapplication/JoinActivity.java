@@ -95,7 +95,7 @@ public class JoinActivity extends AppCompatActivity {
                         // Volley를 사용하여 서버에 회원가입 요청
                         StringRequest request = new StringRequest(
                                 Request.Method.POST,
-                                "http://192.168.219.54:8089/join",
+                                "http://192.168.219.65:8089/join",
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
