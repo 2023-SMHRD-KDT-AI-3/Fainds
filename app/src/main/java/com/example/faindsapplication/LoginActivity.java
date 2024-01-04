@@ -37,13 +37,22 @@ public class LoginActivity extends AppCompatActivity {
             queue = Volley.newRequestQueue(this);
         }
 
+        //비밀번호찾기
+        binding.loginTvFindPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SearchPwActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //로그인 기능
         binding.loginBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.65:8089/login",
+                        "http://192.168.219.54:8089/login",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
