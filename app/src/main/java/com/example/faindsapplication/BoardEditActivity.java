@@ -100,7 +100,7 @@ public class BoardEditActivity extends AppCompatActivity {
                             int boardSeq = getIntent().getIntExtra("boardSeq",0);
                             Map<String, String> params = new HashMap<>();
 
-                            params.put("BoardTitle", title);
+                            params.put("boardTitle", title);
                             params.put("boardContent", content);
                             params.put("boardSeq", String.valueOf(boardSeq));
 
