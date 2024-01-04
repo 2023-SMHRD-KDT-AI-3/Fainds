@@ -116,7 +116,15 @@ public class CalenderDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 int workSeq = getIntent().getIntExtra("workSeq",0);
-                    deletesal(workSeq);
+                deletesal(workSeq);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 등록 후 CalenderActivity로 이동
+                        Intent intent = new Intent(CalenderDetailActivity.this, CalenderActivity.class);
+                        startActivity(intent);
+                    }
+                }, 500); // 1000 밀리초 (1초) 딜레이
             }
         });
 
@@ -131,7 +139,15 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 String dailySalary = binding.tvDailySalary.getText().toString();
 
                 String userId = getUserId();
-                    updatesal(formattedDate,startTime,endTime,salary,userId,dailySalary);
+                updatesal(formattedDate,startTime,endTime,salary,userId,dailySalary);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // 등록 후 CalenderActivity로 이동
+                        Intent intent = new Intent(CalenderDetailActivity.this, CalenderActivity.class);
+                        startActivity(intent);
+                    }
+                }, 500); // 1000 밀리초 (1초) 딜레이
             }
         });
 

@@ -157,6 +157,8 @@ public class HomeFragment extends Fragment {
                                 JSONObject resdatajson = new JSONObject(resdata);
                                 String title = resdatajson.getString("사업체명");
                                 String registertype = jsonObject.getString("registername");
+                                String url = jsonObject.getString("url");
+                                String res = jsonObject.getString("resdata");
                                 int draw = R.drawable.icon_irregular1;
                                 if(registertype.equals("표준근로계약서(기간의 정함이 없음)")){
                                     draw = R.drawable.icon_contract_regular;
@@ -166,7 +168,7 @@ public class HomeFragment extends Fragment {
                                     draw = R.drawable.icon_contract_student;
                                 }
                                 // 데이터셋에 추가
-                                dataset.add(new HomeVO(id,title+" 계약서",registertype, R.drawable.icon_contract_architect));
+                                dataset.add(new HomeVO(id,title+" 계약서",registertype, R.drawable.icon_contract_architect,url,res));
                             }
                             adapter.notifyDataSetChanged();
                         }catch (Exception e){
