@@ -17,6 +17,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView tvRegisterName;
     private TextView tvRegisterExample;
     private ImageView imgRegisterType;
+    private ImageView deleteContract;
 
     public HomeViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -24,6 +25,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.tvRegisterName = itemView.findViewById(R.id.tvRegisterName);
         this.tvRegisterExample = itemView.findViewById(R.id.tvRegisterExample);
         this.imgRegisterType = itemView.findViewById(R.id.imgRegisterType);
+        this.deleteContract = itemView.findViewById(R.id.deleteContract);
         // 클릭 이벤트를 처리하기 위해 OnClickListener 등록
         itemView.setOnClickListener(this);
     }
@@ -43,6 +45,8 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public ImageView getImgRegisterType() {
         return imgRegisterType;
     }
+
+    public ImageView getDeleteContract(){ return deleteContract; }
 
     @Override
     public void onClick(View v) {
