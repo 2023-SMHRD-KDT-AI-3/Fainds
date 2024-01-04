@@ -56,6 +56,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String boardtitle = getIntent().getStringExtra("boardTitle");
         String boardcontent = getIntent().getStringExtra("boardContent");
+
         binding.boardDetailTitle.setText(boardtitle);
         binding.boardDetailContent.setText(boardcontent);
 
@@ -158,7 +159,8 @@ public class BoardDetailActivity extends AppCompatActivity {
                             intent.putExtra("boardTitle", getIntent().getStringExtra("boardTitle"));
                             intent.putExtra("boardContent",getIntent().getStringExtra("boardContent"));
                             intent.putExtra("createdAt",getIntent().getStringExtra("createdAt"));
-                            intent.putExtra("boardSeq",getIntent().getStringExtra("boardSeq"));
+                            intent.putExtra("boardSeq",getIntent().getIntExtra("boardSeq",0));
+
                             startActivity(intent);
 
                         } else if (item.getItemId() == R.id.boardDelete){

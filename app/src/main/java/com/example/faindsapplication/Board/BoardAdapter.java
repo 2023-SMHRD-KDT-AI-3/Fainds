@@ -95,10 +95,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 intent.putExtra("createdAt",createdAt);
                 intent.putExtra("boardSeq",boardSeq);
 
-                Log.d("boardSeq1234", String.valueOf(boardSeq));
-                Log.d("boardTitle1234", boardTitle);
-                Log.d("boardContent1234", boardContent);
-
                 v.getContext().startActivity(intent);
             }
         };
