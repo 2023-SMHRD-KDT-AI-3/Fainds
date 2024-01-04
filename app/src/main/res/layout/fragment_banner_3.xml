@@ -3,20 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/transparent"
-    android:outlineAmbientShadowColor="@color/banner_2"
-    tools:context=".Banner.Banner_2">
-
+    android:layout_height="match_parent"
+    tools:context=".Banner.Banner_3"
+    android:id="@+id/frameLayout4" >
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/banner_2"
+        android:id="@+id/banner_3"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:animateLayoutChanges="true"
-        app:cardBackgroundColor="@color/banner_2"
+        app:cardBackgroundColor="@color/banner_3"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,10 +22,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imageView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/banner_img2" />
+            android:src="@drawable/banner_img3" />
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

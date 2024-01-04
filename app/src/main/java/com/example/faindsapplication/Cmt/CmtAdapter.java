@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.faindsapplication.Board.BoardDetailActivity;
@@ -15,40 +14,46 @@ import com.example.faindsapplication.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+// 댓글 목록을 표시하는 RecyclerView에 사용되는 Adapter
 public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
 
+    // 댓글 목록 저장할 리스트
     private ArrayList<CmtVO> dataset;
+
+    // CmtAdapter의 생성자
     public CmtAdapter(ArrayList<CmtVO> dataset){
         this.dataset = dataset;
     }
+
     @NonNull
     @Override
     public CmtViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // 뷰 홀더를 생성하고 반환
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cmt, parent, false);
         CmtViewHolder holder = new CmtViewHolder(view);
-
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull CmtViewHolder holder, int position) {
+        // 뷰 홀더에 데이터를 바인딩
         String cmtWriter = dataset.get(position).getCmtWriter();
         String cmtContent = dataset.get(position).getCmtContent();
-        //createdAt
-        //String createdAt = dataset.get(position).getCmtCreated_at();
-//        Date nowDate = new Date();
+
+        String createdAt = dataset.get(position).getCreatedAt();
+        String formatTime = timeDi(createdAt);
 
         // 2. 날짜를 특정 형식으로 포맷팅
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
-//        String formatTime = sdf.format(nowDate);
+        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
+
 
         holder.getCmtWriter().setText(cmtWriter);
         holder.getCmtContent().setText(cmtContent);
-//        holder.getCmtTime().setText(formatTime);
+        holder.getCmtTime().setText(formatTime);
+        holder.getCmtTime().setText(formatTime);
 
         holder.listener = new CmtItemClickListener() {
             @Override
@@ -56,7 +61,7 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
                 Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
                 intent.putExtra("cmtWriter",cmtWriter);
                 intent.putExtra("cmtContent",cmtContent);
-                //intent.putExtra("createdAt",formatTime);
+                intent.putExtra("createdAt",formatTime);
 
                 v.getContext().startActivity(intent);
             }
@@ -70,6 +75,7 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
         return dataset.size();
     }
 
+    // 댓글 작성 시간을 현재 시간과 비교하여 "몇 분 전", "몇 시간 전", "몇 일 전" 등으로 변환하는 메소드
     public static String timeDi(String createdAt) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault());
         try {

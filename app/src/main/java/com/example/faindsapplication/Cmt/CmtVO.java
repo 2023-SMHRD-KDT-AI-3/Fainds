@@ -1,10 +1,9 @@
 package com.example.faindsapplication.Cmt;
 
 public class CmtVO {
-    private String cmtWriter;
-    private String cmtContent;
-
-    private String createdAt;
+    private String cmtWriter; // 댓글 작성자
+    private String cmtContent; // 댓글 내용
+    private String createdAt; // 댓글 작성 시간
 
     public CmtVO(String cmtWriter, String cmtContent, String createdAt) {
         this.cmtWriter = cmtWriter;

@@ -1,21 +1,21 @@
 package com.example.faindsapplication.Calender;
 
 public class CalenderDetailVO {
-    private String startedAt;
-    private String endedAt;
-    private String workPay;
-    private String workDay;
+    private String startedAt; // 시작 시간
+    private String endedAt; // 종료 시간
+    private String workPay; // 시급
+    private String workDay; // 근무 날짜
 
-    public CalenderDetailVO(String startedAt, String endedAt, String workPay, String workDay) {
+    private int workSeq;
+
+    public CalenderDetailVO(String startedAt, String endedAt, String workPay, String workDay, int workSeq) {
         this.startedAt = startedAt;
         this.endedAt = endedAt;
         this.workPay = workPay;
         this.workDay = workDay;
+        this.workSeq = workSeq;
     }
-
-    public CalenderDetailVO() {
-    }
-
+    // getter 메서드
     public String getStartedAt() {
         return startedAt;
     }
@@ -30,5 +30,9 @@ public class CalenderDetailVO {
 
     public String getWorkDay() {
         return workDay;
+    }
+
+    public int getWorkSeq() {
+        return workSeq;
     }
 }

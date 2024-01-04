@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,13 +54,18 @@ public class SearchFragment extends Fragment {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         dataset = new ArrayList<>();
         adapter = new BoardAdapter(dataset);
+
+        // Volley RequestQueue 초기화
         if (queue == null) {
             queue = Volley.newRequestQueue(requireContext());
         }
 
+        // 전달된 키워드 받기
         String keyword = getArguments().getString("keyword");
         binding.tvBoardSearch.setText(keyword);
         getSearchBoardData(keyword);
+
+        // 게시글 추가 버튼 클릭 시
         binding.imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +73,8 @@ public class SearchFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        // 로고 클릭 시 홈 화면으로 이동
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +84,32 @@ public class SearchFragment extends Fragment {
                 transaction.commit();
             }
         });
+        binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String keyword = binding.tvBoardSearch.getText().toString();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                // Create a Bundle to pass data to SearchFragment
+                Bundle bundle = new Bundle();
+                bundle.putString("keyword", keyword);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                SearchFragment2 searchFragment2 = new SearchFragment2();
+                searchFragment2.setArguments(bundle);
+
+                transaction.replace(R.id.fl, searchFragment2);
+                transaction.commit();
+            }
+        });
+
+
+        // 리사이클러뷰 설정
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.SearchRV.setLayoutManager(manager);
         binding.SearchRV.setAdapter(adapter);
         return binding.getRoot();
     }
+
+    // 키워드를 이용해 게시물 검색하는 메서드
     public void getSearchBoardData(String keyword) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -89,13 +118,16 @@ public class SearchFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            // 인코딩 문제 해결
                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
                             JSONArray jsonArray = new JSONArray(utf8String);
                             Log.d("qwer", jsonArray.toString());
+
                             // 파싱한 데이터를 데이터셋에 추가
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 Log.d("qwer", jsonObject.toString());
+
                                 // 각 필요한 데이터를 추출
                                 int boardSeq = jsonObject.getInt("boardSeq");
                                 String boardTitle = jsonObject.getString("boardTitle");
@@ -128,7 +160,7 @@ public class SearchFragment extends Fragment {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-
+                // 서버로 전송할 파라미터 설정
                 Map<String,String> params = new HashMap<>();
                 Log.d("keyword","실행");
                 params.put("keyword",keyword);

@@ -3,12 +3,10 @@ package com.example.faindsapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.faindsapplication.Calender.CalenderDetailActivity;
 import com.example.faindsapplication.databinding.ActivityWorkPopupBinding;
 
 public class WorkPopupActivity extends AppCompatActivity {

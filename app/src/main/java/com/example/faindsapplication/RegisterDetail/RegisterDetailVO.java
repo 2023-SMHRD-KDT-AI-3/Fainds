@@ -1,9 +1,9 @@
 package com.example.faindsapplication.RegisterDetail;
 
 public class RegisterDetailVO {
-    private int RegisterDetailId;
-    private String RegisterDetailKey;
-    private String RegisterDetailValue;
+    private int RegisterDetailId; // 계약서 상세 id
+    private String RegisterDetailKey; // parsing한 계약서 상세 key값
+    private String RegisterDetailValue; // parsing한 계약서 상세 value값
 
     public RegisterDetailVO(int registerDetailId, String registerDetailKey, String registerDetailValue) {
         RegisterDetailId = registerDetailId;

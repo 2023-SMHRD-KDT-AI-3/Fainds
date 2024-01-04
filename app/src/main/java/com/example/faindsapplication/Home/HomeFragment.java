@@ -4,11 +4,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,9 +41,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-//import me.relex.circleindicator.CircleIndicator3;
-
-
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding = null;
     private ArrayList<HomeVO> dataset = null;
@@ -55,15 +49,19 @@ public class HomeFragment extends Fragment {
     // 배너 관련
     private ViewPager2 vp;
     private BannerAdapter bannerAdapter;
-    private int num_page = 2;
+    private int num_page = 3;
 
     private Handler sliderHandler = new Handler();
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater,container,false);
+
+        // 메인페이지에서 보여줄 게시판 목록 리스트
         dataset = new ArrayList<>();
+
+        // 현재 로그인한 아이디 가져오기
 
         if (queue == null) {
             queue = Volley.newRequestQueue(requireContext());
@@ -72,8 +70,10 @@ public class HomeFragment extends Fragment {
 
         binding.tvUserName.setText(getUserId());
 
+        // 배너 초기화 메소드 호출
         Banner();
 
+        // RecyclerView 설정
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.homeRV.setLayoutManager(manager);
         adapter = new HomeAdapter(dataset);
@@ -81,17 +81,16 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    // 배너 초기화 메소드
     private void Banner(){
         // banner
         vp = binding.banner;
         // adaptor
         bannerAdapter = new BannerAdapter(getActivity(), num_page);
         vp.setAdapter(bannerAdapter);
-
         vp.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-
         vp.setCurrentItem(0); // 시작지점
-        vp.setOffscreenPageLimit(2);// 최대 이미지 수
+        vp.setOffscreenPageLimit(3);// 최대 이미지 수
 
         vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -101,7 +100,6 @@ public class HomeFragment extends Fragment {
                     vp.setCurrentItem(position);
                 }
             }
-
             @Override
             public void onPageSelected(int position){
                 super.onPageSelected(position);
@@ -111,6 +109,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    // 자동 슬라이드 실행 메소드
     private Runnable sliderRun = new Runnable() {
         @Override
         public void run() {
@@ -130,42 +129,7 @@ public class HomeFragment extends Fragment {
         sliderHandler.postDelayed(sliderRun, 10000);
     }
 
-    private void sendSearchRequest(String keyword) {
-        String url = "http://192.168.219.65:8089/search";
-        StringRequest request = new StringRequest(
-                Request.Method.POST,
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // 에러 응답을 처리하는 코드
-                Toast.makeText(getView().getContext(), "서버응답 실패", Toast.LENGTH_SHORT).show();
-            }
-        }
-        ){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                //전송방식을 POST로 지정했을 때 사용하는 메소드
-                //데이터를 전송할 때 Map형태로 구성하여 리턴해줘야 한다.
-                // Map<String,String> 앞은 Key 뒤는 Value 임
-                // Map은 인터페이스 Map을 상속받은 클래스가 HashMap
-                Map<String,String> params = new HashMap<>();
-                params.put("key",keyword);
-                //Spring서버에서도 "keyword"로 받아야 함
-
-                return params;
-            }
-        };
-        queue.add(request);
-    }
-
+    // 현재 로그인한 아이디 가져오는 메소드
     public String getUserId() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환

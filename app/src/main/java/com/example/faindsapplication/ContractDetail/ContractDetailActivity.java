@@ -7,10 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.MainActivity;
-import com.example.faindsapplication.R;
-import com.example.faindsapplication.RegisterDetail.RegisterDetailVO;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
 
 import org.json.JSONException;
@@ -30,6 +27,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         binding = ActivityContractDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 뒤로가기 버튼
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +35,7 @@ public class ContractDetailActivity extends AppCompatActivity {
             }
         });
 
+        // 홈버튼 클릭
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,12 +44,17 @@ public class ContractDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // JSON 데이터 생성(가데이터)
         String jsonData = "{\"근로개시일\":\"2020-03-05\",\"근무장소\":\"본사 영업팀\",\"업무내용\":\"영업 및 마케팅 관리\",\"근로시간\":\"9:00 - 18:00 (휴게시간: 12:00 - 13:00)\",\"임금\":{\"월급\":\"2,000,000원\",\"상여금\":\"매 분기마다 500,000원\",\"기타급여\":{\"식대\":\"200,000원\",\"가족수당\":\"100,000원\"}},\"사업체명\":\"oo물산\",\"사업체주소\":\"서울시 중구 00대로 000\",\"사업체대표자\":\"남경읍\",\"근로자주소\":\"서울시 은평구 00로 000\",\"근로자연락처\":\"010-9876-5432\",\"근로자명\":\"장그래\"}";
 
+        // 데이터셋 초기화
         dataset = new ArrayList<>();
         try {
+            // JSON 객체 생성
             JSONObject jsonObject = new JSONObject(jsonData);
 
+            // JSON 객체의 키를 반복하면서 데이터셋에 추가
             Iterator<String> keys = jsonObject.keys();
             while (keys.hasNext()) {
                 String key = keys.next();
@@ -62,6 +66,8 @@ public class ContractDetailActivity extends AppCompatActivity {
         }catch (JSONException e) {
             e.printStackTrace();
         }
+
+        // 리사이클러뷰 설정
         LinearLayoutManager manager = new LinearLayoutManager(this);
         binding.contractDetailRV.setLayoutManager(manager);
         adapter = new ContractDetailAdapter(dataset);
