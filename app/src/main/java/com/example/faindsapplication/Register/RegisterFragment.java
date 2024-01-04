@@ -38,13 +38,14 @@ public class RegisterFragment extends Fragment {
                 transaction.commit();
             }
         });
+        // 데이터셋 초기화 및 데이터 추가
         dataset = new ArrayList<>();
         dataset.add(new RegisterVO("표준근로계약서(기간의 정함이 없음)","정규직 근로자, 장기적인 근로자 등",R.drawable.icon_contract_regular));
         dataset.add(new RegisterVO("표준근로계약서(기간의 정함이 있음)","아르바이트생, 계약직 근로자, 대체 근로자 등",R.drawable.icon_irregular1));
         dataset.add(new RegisterVO("표준근로계약서(18세 미만인 자)","학생, 미성년자 아르바이트생 등",R.drawable.icon_contract_student));
         dataset.add(new RegisterVO("건설일용근로자 표준근로계약서","건설현장 관리자, 건축기사, 건설일용근로자 등", R.drawable.icon_contract_architect));
 
-
+        // 리사이클러뷰 설정
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         binding.registerRV.setLayoutManager(manager);
         adapter = new RegisterAdapter(dataset);

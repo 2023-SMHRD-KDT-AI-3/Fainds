@@ -20,10 +20,11 @@ public class HomeViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     public HomeViewHolder(@NonNull View itemView) {
         super(itemView);
+        // ViewHolder의 각 위젯들을 레이아웃에서 식별하여 참조
         this.tvRegisterName = itemView.findViewById(R.id.tvRegisterName);
         this.tvRegisterExample = itemView.findViewById(R.id.tvRegisterExample);
         this.imgRegisterType = itemView.findViewById(R.id.imgRegisterType);
-
+        // 클릭 이벤트를 처리하기 위해 OnClickListener 등록
         itemView.setOnClickListener(this);
     }
 

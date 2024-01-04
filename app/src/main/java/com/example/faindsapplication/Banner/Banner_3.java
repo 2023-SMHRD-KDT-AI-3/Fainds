@@ -22,7 +22,7 @@ public class Banner_3 extends Fragment {
             // 클릭이벤트
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("1350"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:1350"));
                 startActivity(intent);
             }
         });

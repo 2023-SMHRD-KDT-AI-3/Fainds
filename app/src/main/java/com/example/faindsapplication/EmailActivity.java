@@ -36,6 +36,7 @@ public class EmailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String LoginEmail = intent.getStringExtra("LoginEmail");
 
+        // 현재 이메일과 로그인 이메일이 일치하는지 확인하는 TextWatcher 설정
         binding.currentEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -54,17 +55,19 @@ public class EmailActivity extends AppCompatActivity {
             }
         });
 
+        // Volley RequestQueue 초기화
         if(queue==null){
             queue = Volley.newRequestQueue(this);
         }
 
+        // 이메일 변경 버튼 클릭 시 동작
         binding.btnEmail.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 String currentEmail = binding.currentEmail.getText().toString();
                 String newEmail = binding.newEmail.getText().toString();
 
+                // 현재 이메일이 로그인 이메일과 일치하면 서버에 변경 요청
                 if(currentEmail.equals(LoginEmail)){
                     sendChangeEmailRequest(currentEmail,newEmail);
                     Toast.makeText(EmailActivity.this, "이메일 변경 성공", Toast.LENGTH_SHORT).show();
@@ -75,12 +78,15 @@ public class EmailActivity extends AppCompatActivity {
             }
         });
 
+        // 뒤로 가기 버튼 설정
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        // 로고 클릭 시 MainActivity로 이동
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +97,7 @@ public class EmailActivity extends AppCompatActivity {
         });
     }
 
+    // 이메일 변경 요청을 서버에 전송하는 메서드
     private void sendChangeEmailRequest(String currentEmail, String newEmail) {
         String url = "http://192.168.219.60:8089/chemail";
         StringRequest request = new StringRequest(

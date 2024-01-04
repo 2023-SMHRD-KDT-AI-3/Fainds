@@ -34,12 +34,15 @@ public class JoinActivity extends AppCompatActivity {
         binding = ActivityJoinBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 이전 화면으로 돌아가기
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        // 홈 화면으로 이동
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,18 +51,15 @@ public class JoinActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         // 비밀번호 확인 메시지 띄우기
         binding.tvPwCheck.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 String joinPw = binding.inputJoinPw.getText().toString();
@@ -72,17 +72,22 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        // Volley 요청 큐 초기화
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
+
         // 회원가입 스프링 통신
         binding.joinBtnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 입력값이 비어있는지 확인
                 if(binding.inputJoinID.getText().toString().isEmpty()||binding.inputJoinPw.getText().toString().isEmpty()||binding.inputJoinName.getText().toString().isEmpty()||binding.inputJoinEmail.getText().toString().isEmpty()) {
                     Toast.makeText(JoinActivity.this, "입력하지 않은 값이 있습니다", Toast.LENGTH_SHORT).show();
                 } else {
+                    // 비밀번호 일치 여부 확인
                     if (binding.inputJoinPw.getText().toString().equals(binding.tvPwCheck.getText().toString())) {
+                        // Volley를 사용하여 서버에 회원가입 요청
                         StringRequest request = new StringRequest(
                                 Request.Method.POST,
                                 "http://192.168.219.63:8089/join",
@@ -93,14 +98,13 @@ public class JoinActivity extends AppCompatActivity {
                                 }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
                             }
                         }
-
                         ) {
                             @Nullable
                             @Override
                             protected Map<String, String> getParams() throws AuthFailureError {
+                                // 전송할 데이터를 Map 형태로 구성
                                 String id = binding.inputJoinID.getText().toString();
                                 String pw = binding.inputJoinPw.getText().toString();
                                 String email = binding.inputJoinEmail.getText().toString();
