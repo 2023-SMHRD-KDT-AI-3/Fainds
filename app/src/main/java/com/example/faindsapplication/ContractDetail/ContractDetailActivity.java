@@ -93,7 +93,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         dataset = new ArrayList<>();
         try {
             // JSON 객체 생성
-            JSONObject jsonObject = new JSONObject(res);
+            JSONObject jsonObject = new JSONObject(jsonData);
 
             // JSON 객체의 키를 반복하면서 데이터셋에 추가
             Iterator<String> keys = jsonObject.keys();
