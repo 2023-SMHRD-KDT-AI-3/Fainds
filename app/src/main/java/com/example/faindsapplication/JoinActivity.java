@@ -100,7 +100,7 @@ public class JoinActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(String response) {
                                         Toast.makeText(JoinActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(JoinActivity.this, ActivityLoginBinding.class);
+                                        Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
                                         startActivity(intent);
 
                                     }
