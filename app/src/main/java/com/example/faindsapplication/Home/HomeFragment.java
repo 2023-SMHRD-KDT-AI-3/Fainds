@@ -162,7 +162,7 @@ public class HomeFragment extends Fragment {
                                     draw = R.drawable.icon_contract_regular;
                                 } else if (registertype.equals("표준근로계약서(기간의 정함이 있음)")) {
                                     draw = R.drawable.icon_contract_architect;
-                                } else if (registertype.equals("표준근로계약서(미성년자)")) {
+                                } else if (registertype.equals("표준근로계약서(18세 미만인 자)")) {
                                     draw = R.drawable.icon_contract_student;
                                 }
                                 // 데이터셋에 추가

@@ -37,11 +37,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
         String contractId = dataset.get(position).getContractId();
 
         // 계약 유형에 따라 이미지 설정
-        if(contractType.equals("표준근로계약서(기간의 정함이 있음)")){
+        if(contractType.equals("표준근로계약서(기간의 정함이 없음)")){
             img = R.drawable.icon_contract_regular;
-        } else if (contractType.equals("표준근로계약서(기간의 정함이 없음)")) {
-            img = R.drawable.icon_contract_architect;
-        } else if (contractType.equals("표준근로계약서(미성년자)")) {
+        } else if (contractType.equals("표준근로계약서(기간의 정함이 있음)")) {
+            img = R.drawable.icon_irregular1;
+        } else if (contractType.equals("표준근로계약서(18세 미만인 자)")) {
             img = R.drawable.icon_contract_student;
         }
 
