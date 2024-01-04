@@ -130,6 +130,7 @@ public class CalenderActivity extends Activity {
                 String formattedDate = "";
                 String workTimeString = "";
                 String totalSalaryString = "";
+                int workSeq = 0;
                 long intWorkTime, intTotalSalary;
                 double workTime, totalSalary;
 
@@ -151,6 +152,7 @@ public class CalenderActivity extends Activity {
                         intTotalSalary = Math.round(totalSalary);
                         workTimeString = String.valueOf(intWorkTime)+"시간";
                         totalSalaryString = String.valueOf(intTotalSalary);
+                        workSeq = calenderDetail.getWorkSeq();
                         break;
                     }
                 }
@@ -162,6 +164,7 @@ public class CalenderActivity extends Activity {
                     intent.putExtra("workPay", workPay);
                     intent.putExtra("workTimeString",workTimeString);
                     intent.putExtra("totalSalaryString",totalSalaryString);
+                    intent.putExtra("workSeq",workSeq);
                     startActivity(intent);
                 }
             }
@@ -281,7 +284,7 @@ public class CalenderActivity extends Activity {
                                 String startedAt;
                                 String endedAt;
                                 String workPay;
-                                String boardWriter;
+                                int workSeq;
                                 String workDay;
                                 int j = 0;
                                 int monthTotalSalary = 0;
@@ -296,9 +299,10 @@ public class CalenderActivity extends Activity {
                                         startedAt = jsonObject.getString("startedAt");
                                         endedAt = jsonObject.getString("endedAt");
                                         workPay = jsonObject.getString("workPay");
-                                        boardWriter = getUserId();
+
                                         workDay = jsonObject.getString("workDay");
-                                        calenderDetailList.add(new CalenderDetailVO(startedAt, endedAt, workPay, workDay));
+                                        workSeq = jsonObject.getInt("workSeq");
+                                        calenderDetailList.add(new CalenderDetailVO(startedAt, endedAt, workPay, workDay,workSeq));
                                     }
                                     // dailyTotalSalary 계산
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());

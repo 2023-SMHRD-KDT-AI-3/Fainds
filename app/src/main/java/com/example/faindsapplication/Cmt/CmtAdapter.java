@@ -42,17 +42,18 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
         // 뷰 홀더에 데이터를 바인딩
         String cmtWriter = dataset.get(position).getCmtWriter();
         String cmtContent = dataset.get(position).getCmtContent();
-        //createdAt
-        //String createdAt = dataset.get(position).getCmtCreated_at();
-//        Date nowDate = new Date();
+
+        String createdAt = dataset.get(position).getCreatedAt();
+        String formatTime = timeDi(createdAt);
 
         // 2. 날짜를 특정 형식으로 포맷팅
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
-//        String formatTime = sdf.format(nowDate);
+        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
+
 
         holder.getCmtWriter().setText(cmtWriter);
         holder.getCmtContent().setText(cmtContent);
-//        holder.getCmtTime().setText(formatTime);
+        holder.getCmtTime().setText(formatTime);
+        holder.getCmtTime().setText(formatTime);
 
         holder.listener = new CmtItemClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
                 Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
                 intent.putExtra("cmtWriter",cmtWriter);
                 intent.putExtra("cmtContent",cmtContent);
-                //intent.putExtra("createdAt",formatTime);
+                intent.putExtra("createdAt",formatTime);
 
                 v.getContext().startActivity(intent);
             }

@@ -6,14 +6,14 @@ public class CalenderDetailVO {
     private String workPay; // 시급
     private String workDay; // 근무 날짜
 
-    public CalenderDetailVO(String startedAt, String endedAt, String workPay, String workDay) {
+    private int workSeq;
+
+    public CalenderDetailVO(String startedAt, String endedAt, String workPay, String workDay, int workSeq) {
         this.startedAt = startedAt;
         this.endedAt = endedAt;
         this.workPay = workPay;
         this.workDay = workDay;
-    }
-
-    public CalenderDetailVO() {
+        this.workSeq = workSeq;
     }
     // getter 메서드
     public String getStartedAt() {
@@ -30,5 +30,9 @@ public class CalenderDetailVO {
 
     public String getWorkDay() {
         return workDay;
+    }
+
+    public int getWorkSeq() {
+        return workSeq;
     }
 }

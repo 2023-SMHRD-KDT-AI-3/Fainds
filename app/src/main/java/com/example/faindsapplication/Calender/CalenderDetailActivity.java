@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -34,6 +35,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class CalenderDetailActivity extends AppCompatActivity {
+    private TimePicker startTimePicker, endTimePicker;
     private ActivityCalenderDetailBinding binding;
     private static final int REQUEST_CODE_WORK_POPUP_START = 1;
     private static final int REQUEST_CODE_WORK_POPUP_END = 2;
@@ -78,26 +80,6 @@ public class CalenderDetailActivity extends AppCompatActivity {
             }
         });
 
-        // 근무기록 수정 삭제를 위한 팝업
-        binding.btnCalPopup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
-                getMenuInflater().inflate(R.menu.popupboard, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (item.getItemId() == R.id.boardFix) {
-                            // 수정 기능
-                        } else if (item.getItemId() == R.id.boardDelete) {
-                            // 삭제 기능
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
-            }
-        });
 
         // db에 저장된 해당 날짜의 근무기록 보여주기
         String formattedDate = getIntent().getStringExtra("currentDate");
@@ -106,6 +88,11 @@ public class CalenderDetailActivity extends AppCompatActivity {
         String endedAt = getIntent().getStringExtra("endedAt");
         String workTime = getIntent().getStringExtra("workTimeString");
         String totalSalary = getIntent().getStringExtra("totalSalaryString");
+        if (workTime != null && !workTime.isEmpty()) {
+            binding.btnRegisterSalary.setVisibility(View.INVISIBLE);
+            binding.btnCalenderFix.setVisibility(View.VISIBLE);
+            binding.btnCalenderDelete.setVisibility(View.VISIBLE);
+        }
         binding.tvDay.setText(formattedDate);
         binding.tvSalary.setText(tvSalary);
         binding.tvStartTime.setText(startedAt);
@@ -118,8 +105,33 @@ public class CalenderDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CalenderDetailActivity.this, MainActivity.class);
-                intent.putExtra("moveFl", "home");
+                intent.putExtra("moveFl","home");
                 startActivity(intent);
+            }
+        });
+
+        // 근무기록 삭제
+        binding.btnCalenderDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int workSeq = getIntent().getIntExtra("workSeq",0);
+                    deletesal(workSeq);
+            }
+        });
+
+        // 근무기록 수정
+        binding.btnCalenderFix.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String startTime = binding.tvStartTime.getText().toString();
+                String endTime = binding.tvEndTime.getText().toString();
+                String salary = binding.tvSalary.getText().toString();
+                String dailySalary = binding.tvDailySalary.getText().toString();
+
+                String userId = getUserId();
+                    updatesal(formattedDate,startTime,endTime,salary,userId,dailySalary);
             }
         });
 
@@ -160,6 +172,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -167,7 +180,9 @@ public class CalenderDetailActivity extends AppCompatActivity {
 
             }
         }
-        ) {
+
+
+        ){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -262,4 +277,72 @@ public class CalenderDetailActivity extends AppCompatActivity {
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
+    public  void updatesal(String formattedDate, String startTime, String endTime, String salary, String userId,String dailySalary){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.54:8089/updatesal",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new HashMap<>();
+                params.put("workDay",formattedDate);
+                params.put("startedAt",startTime);
+                params.put("endedAt",endTime);
+                params.put("workPay",salary);
+                params.put("workUser",userId);
+                Log.d("workDay",formattedDate);
+                Log.d("startedAt",startTime);
+                Log.d("endedAt",endTime);
+                Log.d("workPay",salary);
+                Log.d("workUser",userId);
+                //Spring서버에서도 "id","pw"로 받아야 함
+                return params;
+            }
+        };
+        queue.add(request);
+    }
+    public  void deletesal(int workSeq){
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.54:8089/deletesal",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new HashMap<>();
+                params.put("workSeq", String.valueOf(workSeq));
+                //Spring서버에서도 "id","pw"로 받아야 함
+                return params;
+            }
+        };
+        queue.add(request);
+    }
+
 }

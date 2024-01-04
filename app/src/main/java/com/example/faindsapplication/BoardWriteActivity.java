@@ -1,7 +1,11 @@
 package com.example.faindsapplication;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import android.window.BackEvent;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,6 +22,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.Board.BoardFragment;
+import com.example.faindsapplication.Home.HomeFragment;
+import com.example.faindsapplication.Setting.SettingFragment;
 import com.example.faindsapplication.databinding.ActivityBoardWriteBinding;
 
 import java.util.HashMap;
@@ -25,6 +33,7 @@ import java.util.Map;
 public class BoardWriteActivity extends AppCompatActivity {
 
     private ActivityBoardWriteBinding binding;
+
     private RequestQueue queue;
 
     @Override
@@ -57,6 +66,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         }
 
         // 저장 버튼 클릭 시 이벤트
+
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

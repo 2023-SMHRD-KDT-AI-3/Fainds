@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -15,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardAdapter;
 import com.example.faindsapplication.Board.BoardVO;
 import com.example.faindsapplication.Home.HomeFragment;
+import com.example.faindsapplication.databinding.FragmentBoardBinding;
 import com.example.faindsapplication.databinding.FragmentSearchBinding;
 
 import org.json.JSONArray;
@@ -79,6 +84,23 @@ public class SearchFragment extends Fragment {
                 transaction.commit();
             }
         });
+        binding.btnBoardSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String keyword = binding.tvBoardSearch.getText().toString();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                // Create a Bundle to pass data to SearchFragment
+                Bundle bundle = new Bundle();
+                bundle.putString("keyword", keyword);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                SearchFragment2 searchFragment2 = new SearchFragment2();
+                searchFragment2.setArguments(bundle);
+
+                transaction.replace(R.id.fl, searchFragment2);
+                transaction.commit();
+            }
+        });
+
 
         // 리사이클러뷰 설정
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -117,6 +139,7 @@ public class SearchFragment extends Fragment {
                                 // 데이터셋에 추가
                                 dataset.add(new BoardVO(boardTitle, boardContent, createdAt, boardWriter, boardCmtNum, boardSeq));
                             }
+
                             // 어댑터에 데이터셋 변경을 알림
                             adapter.notifyDataSetChanged();
 

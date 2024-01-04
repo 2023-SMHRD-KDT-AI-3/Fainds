@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.databinding.ActivityJoinBinding;
+import com.example.faindsapplication.databinding.ActivityLoginBinding;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,10 +57,14 @@ public class JoinActivity extends AppCompatActivity {
         binding.tvPwCheck.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
             }
+
             @Override
             public void afterTextChanged(Editable s) {
                 String joinPw = binding.inputJoinPw.getText().toString();
@@ -90,16 +95,23 @@ public class JoinActivity extends AppCompatActivity {
                         // Volley를 사용하여 서버에 회원가입 요청
                         StringRequest request = new StringRequest(
                                 Request.Method.POST,
-                                "http://192.168.219.63:8089/join",
+                                "http://192.168.219.54:8089/join",
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
+                                        Toast.makeText(JoinActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(JoinActivity.this, ActivityLoginBinding.class);
+                                        startActivity(intent);
+
                                     }
                                 }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(JoinActivity.this, "중복된 아이디 입니다.", Toast.LENGTH_SHORT).show();
+
                             }
                         }
+
                         ) {
                             @Nullable
                             @Override
