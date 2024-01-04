@@ -83,7 +83,7 @@ public class BoardEditActivity extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
-                                    Intent intent = new Intent(BoardEditActivity.this,MainActivity.class);
+                                    Intent intent = new Intent(BoardEditActivity.this, MainActivity.class);
                                     intent.putExtra("moveFl","board");
                                     startActivity(intent);
                                 }
