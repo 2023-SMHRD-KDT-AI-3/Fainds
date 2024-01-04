@@ -1,7 +1,6 @@
 package com.example.faindsapplication.Board;
 
 import android.content.Intent;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -155,6 +154,5 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
             return createdAt; // 파싱 실패 시 원본 날짜 문자열 반환
         }
     }
-
 
 }
