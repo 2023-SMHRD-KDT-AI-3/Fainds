@@ -1,5 +1,7 @@
 package com.example.faindsapplication.Home;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -22,14 +25,12 @@ import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
 
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
-    private RequestQueue queue;
     private ArrayList<HomeVO> dataset;
     public HomeAdapter(ArrayList<HomeVO> dataset) {
         this.dataset = dataset;
@@ -65,12 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
         holder.getTvRegisterName().setText(contractName);
         holder.getTvRegisterExample().setText(contractType);
         holder.getImgRegisterType().setImageResource(img);
-        holder.getDeleteContract().setOnClickListener(v -> {
-            deleteData(v,contractId);
-            Intent intent =  new Intent(v.getContext(), MainActivity.class);
-            intent.putExtra("moveFl","home");
-            v.getContext().startActivity(intent);
-        });
+
 
         // 아이템 클릭 시의 이벤트 처리
         holder.listener = new BoardItemClickListener() {
@@ -90,35 +86,5 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
         return dataset.size();
     }
 
-    public void deleteData(View v, String userid){
-        if(queue==null){
-            queue = Volley.newRequestQueue(v.getContext());
-        }
-        StringRequest request = new StringRequest(
-                Request.Method.POST,
-                "http://192.168.219.65:8089/mongo/deleteid",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("mongodelete", "onResponse: "+response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-            }
-        }
-        ){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                //전송방식을 POST로 지정했을 때 사용하는 메소드
-                Map<String,String> params = new HashMap<>();
-                params.put("userid",userid);
-                return params;
-            }
-        };
-
-        queue.add(request);
-    }
 }

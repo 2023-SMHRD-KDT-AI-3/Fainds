@@ -1,15 +1,19 @@
 package com.example.faindsapplication.Board;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -19,9 +23,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.BoardEditActivity;
 import com.example.faindsapplication.Cmt.CmtAdapter;
 import com.example.faindsapplication.Cmt.CmtVO;
 import com.example.faindsapplication.MainActivity;
+import com.example.faindsapplication.R;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
 
 import org.json.JSONArray;
@@ -133,6 +139,53 @@ public class BoardDetailActivity extends AppCompatActivity {
                         getComentData();
                     }
                 }, 500); // 500 밀리초 (0.5초) 딜레이
+            }
+        });
+
+        // 수정삭제 팝업버튼
+        binding.btnBoardPopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final PopupMenu popupMenu = new PopupMenu(BoardDetailActivity.this, v);
+                popupMenu.inflate(R.menu.popupboard);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.boardFix){
+
+                            // 수정 기능 구현
+                            Intent intent = new Intent(BoardDetailActivity.this, BoardEditActivity.class);
+                            intent.putExtra("boardTitle", getIntent().getStringExtra("boardTitle"));
+                            intent.putExtra("boardContent",getIntent().getStringExtra("boardContent"));
+                            intent.putExtra("createdAt",getIntent().getStringExtra("createdAt"));
+                            intent.putExtra("boardSeq",getIntent().getStringExtra("boardSeq"));
+                            startActivity(intent);
+
+                        } else if (item.getItemId() == R.id.boardDelete){
+                            // 삭제 기능 구현
+                            DialogInterface.OnClickListener deleteListener =new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            };
+                            DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            };
+                            // 다이얼로그 구현
+                            AlertDialog.Builder builder = new AlertDialog.Builder(BoardDetailActivity.this);
+                            builder.setTitle("정말 삭제하시겠습니까?");
+                            builder.setPositiveButton("삭제",deleteListener);
+                            builder.setNegativeButton("취소",cancelListener);
+                            builder.show();
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
     }
