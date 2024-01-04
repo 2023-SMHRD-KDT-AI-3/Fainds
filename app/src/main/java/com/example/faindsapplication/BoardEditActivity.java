@@ -76,10 +76,10 @@ public class BoardEditActivity extends AppCompatActivity {
                     // 제목이나 내용이 비어 있을 경우 Toast 메시지 표시
                     Toast.makeText(BoardEditActivity.this, "제목이나 내용을 입력해 주세요", Toast.LENGTH_SHORT).show();
                 }else{
-// 제목과 내용이 비어 있지 않은 경우 서버에 저장 요청
+                    // 제목과 내용이 비어 있지 않은 경우 서버에 저장 요청
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
-                            "http://192.168.219.65:8089/boardedit",
+                            "http://192.168.219.54:8089/boardedit",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -103,7 +103,7 @@ public class BoardEditActivity extends AppCompatActivity {
                             params.put("boardTitle", title);
                             params.put("boardContent", content);
                             params.put("boardSeq", String.valueOf(boardSeq));
-
+                            Log.d("boardSeq222",String.valueOf(boardSeq));
                             return params;
                         }
                     };

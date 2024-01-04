@@ -128,4 +128,14 @@
         app:layout_constraintTop_toTopOf="@+id/tvCmtWrite"
         app:srcCompat="@drawable/icon_cmt1" />
 
+    <ImageView
+        android:id="@+id/btnBoardPopup"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline20"
+        app:srcCompat="@drawable/icon_addpopup" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

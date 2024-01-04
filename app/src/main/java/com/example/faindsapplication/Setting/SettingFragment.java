@@ -153,44 +153,9 @@ public class SettingFragment extends Fragment {
             }
         });
 
-        // 회원탈퇴 클릭 시
-        binding.settingQuit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userId = getUserId();
-                QuitUserId(userId);
-            }
-        });
         return binding.getRoot();
     }
 
-    // 회원탈퇴 메소드
-    private void QuitUserId(String userId) {
-        StringRequest request = new StringRequest(
-                Request.Method.POST,
-                "http://192.168.219.54:8089/userQuit",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Intent intent = new Intent(getActivity(), LoginActivity.class);
-                        startActivity(intent);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }
-        ) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("userId", userId);
-                return params;
-            }
-        };
-        queue.add(request);
-    }
 
     // 로그아웃 메소드
     public void removeUserId() {

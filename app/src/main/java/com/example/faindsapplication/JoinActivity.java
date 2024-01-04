@@ -47,8 +47,7 @@ public class JoinActivity extends AppCompatActivity {
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(JoinActivity.this, MainActivity.class);
-                intent.putExtra("moveFl", "home");
+                Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +94,7 @@ public class JoinActivity extends AppCompatActivity {
                         // Volley를 사용하여 서버에 회원가입 요청
                         StringRequest request = new StringRequest(
                                 Request.Method.POST,
-                                "http://192.168.219.65:8089/join",
+                                "http://192.168.219.54:8089/join",
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {

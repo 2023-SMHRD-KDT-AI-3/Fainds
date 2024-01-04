@@ -74,7 +74,7 @@
         android:ems="10"
         android:gravity="top"
         android:hint="@string/edtContent"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:paddingLeft="16dp"
         android:paddingTop="10dp"
         android:textSize="14dp"
