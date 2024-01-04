@@ -27,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardAdapter;
 import com.example.faindsapplication.Board.BoardVO;
+import com.example.faindsapplication.Cmt.CmtVO;
 import com.example.faindsapplication.EmailActivity;
 import com.example.faindsapplication.Banner.BannerAdapter;
 import com.example.faindsapplication.R;
@@ -69,18 +70,7 @@ public class HomeFragment extends Fragment {
         }
         mongofindall(getUserId());
 
-        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String keyword = binding.tvSearch.getText().toString();
-                sendSearchRequest(keyword);
-            }
-        });
-
-
         binding.tvUserName.setText(getUserId());
-        dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
-        dataset.add(new HomeVO(1,"스타벅스 계약서1","표준근로계약서(미성년자)",R.drawable.icon_contract_student));
 
         Banner();
 
@@ -141,7 +131,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void sendSearchRequest(String keyword) {
-        String url = "http://192.168.219.47:8089/search";
+        String url = "http://192.168.219.65:8089/search";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -190,10 +180,31 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+                            String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8"); //인코딩 해주는것
                             JSONArray jsonArray = new JSONArray(utf8String);
                             Log.d("qwer", jsonArray.toString());
                             Log.d("qwer", "onResponse: "+response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                Log.d("계약서",jsonObject.toString());
+                                // 각 필요한 데이터를 추출
+                                String id = jsonObject.getString("id");
+                                String resdata = jsonObject.getString("resdata");
+                                JSONObject resdatajson = new JSONObject(resdata);
+                                String title = resdatajson.getString("사업체명");
+                                String registertype = jsonObject.getString("registername");
+                                int draw = R.drawable.icon_irregular1;
+                                if(registertype.equals("표준근로계약서(기간의 정함이 없음)")){
+                                    draw = R.drawable.icon_contract_regular;
+                                } else if (registertype.equals("표준근로계약서(기간의 정함이 있음)")) {
+                                    draw = R.drawable.icon_contract_architect;
+                                } else if (registertype.equals("표준근로계약서(미성년자)")) {
+                                    draw = R.drawable.icon_contract_student;
+                                }
+                                // 데이터셋에 추가
+                                dataset.add(new HomeVO(id,title+" 계약서",registertype, R.drawable.icon_contract_architect));
+                            }
+                            adapter.notifyDataSetChanged();
                         }catch (Exception e){
                             e.printStackTrace();
                         }

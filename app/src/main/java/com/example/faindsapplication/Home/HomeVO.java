@@ -1,12 +1,12 @@
 package com.example.faindsapplication.Home;
 
 public class HomeVO {
-    private int contractId;
+    private String contractId;
     private String contractName;
     private String contractType;
     private int contractIcon;
 
-    public HomeVO(int contractId, String contractName, String contractType, int contractIcon) {
+    public HomeVO(String contractId, String contractName, String contractType, int contractIcon) {
         this.contractId = contractId;
         this.contractName = contractName;
         this.contractType = contractType;
@@ -16,7 +16,7 @@ public class HomeVO {
     public HomeVO() {
     }
 
-    public int getContractId() {
+    public String getContractId() {
         return contractId;
     }
 
