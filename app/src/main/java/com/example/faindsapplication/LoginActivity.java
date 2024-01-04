@@ -37,6 +37,15 @@ public class LoginActivity extends AppCompatActivity {
             queue = Volley.newRequestQueue(this);
         }
 
+        //비밀번호찾기
+        binding.loginTvFindPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SearchPwActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //로그인 기능
         binding.loginBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

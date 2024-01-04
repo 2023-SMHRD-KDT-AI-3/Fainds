@@ -59,7 +59,15 @@ public class SearchPwActivity extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
+                                    if(response.isEmpty()){
+                                        Toast.makeText(SearchPwActivity.this, "잘못된 정보 입니다.", Toast.LENGTH_SHORT).show();
+                                    }else {
+
                                     binding.tvPwResult2.setText(response);
+                                    binding.tvPwResult1.setVisibility(View.VISIBLE);
+                                    binding.tvPwResult2.setVisibility(View.VISIBLE);
+                                    binding.tvPwResult3.setVisibility(View.VISIBLE);
+                                    }
                                 }
                             }, new Response.ErrorListener() {
                         @Override
@@ -80,7 +88,7 @@ public class SearchPwActivity extends AppCompatActivity {
                             String SearchPwId = binding.tvSearchPwId.getText().toString();
                             String SearchPwEmail = binding.tvSearchPwEmail.getText().toString();
                             Map<String, String> params = new HashMap<>();
-                            params.put("SearchPwId",SearchPwEmail);
+                            params.put("SearchPwId",SearchPwId);
                             params.put("SearchPwEmail",SearchPwEmail);
                             //Spring서버에서도 "id","pw"로 받아야 함
 
