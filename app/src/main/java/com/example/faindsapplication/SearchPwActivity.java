@@ -39,11 +39,21 @@ public class SearchPwActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // 로고버튼 클릭 이벤트 처리
+        binding.imgLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchPwActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         // Volley 요청 큐 초기화
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
         }
 
+        // 비밀번호 찾기 버튼 클릭 시 이벤트 처리
         binding.btnSearchPw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
