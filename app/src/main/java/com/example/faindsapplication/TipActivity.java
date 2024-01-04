@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.SpannableString;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.faindsapplication.Board.BoardDetailActivity;
+import com.example.faindsapplication.Setting.SettingFragment;
 import com.example.faindsapplication.databinding.ActivityTipBinding;
 
 public class TipActivity extends AppCompatActivity implements View.OnClickListener{
@@ -21,7 +25,29 @@ public class TipActivity extends AppCompatActivity implements View.OnClickListen
 
         binding.btnWorkRepo1.setOnClickListener(this);
         binding.btnWorkRepo2.setOnClickListener(this);
+
+        // 로고 클릭 시 HomeFragment로 이동
+        binding.imgLogo4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TipActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 뒤로가기 버튼 클릭시 이전 화면으로 돌아가기
+        binding.imgBack4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
     }
+
+
+
 
     @Override
     public void onClick(View v) {
@@ -37,6 +63,13 @@ public class TipActivity extends AppCompatActivity implements View.OnClickListen
 
         }
         startActivity(intent);
+
+        binding.imgLogo4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 }

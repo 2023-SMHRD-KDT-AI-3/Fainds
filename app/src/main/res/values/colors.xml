@@ -10,5 +10,6 @@
     <color name="banner_1">#e8f0fd</color>
     <color name="banner_2">#fefed5</color>
     <color name="banner_3">#142b65</color>
+    <color name="tip_red">#fe725a</color>
 
 </resources>

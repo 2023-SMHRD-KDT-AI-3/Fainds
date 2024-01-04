@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="409dp"
+        android:layout_width="350dp"
         android:layout_height="169dp"
         android:layout_marginBottom="-10dp"
         android:backgroundTint="@color/white"
@@ -23,15 +23,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/btnBlue"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="410dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
                 android:paddingTop="5dp"
                 android:paddingBottom="0dp">
@@ -41,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:text="닫기"
                     android:textAlignment="center"
                     android:textColor="@color/white"
@@ -61,9 +60,9 @@
                     android:id="@+id/imageView14"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="80dp"
                     android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/icon_camera1" />
+                    app:srcCompat="@drawable/icon_camera" />
 
                 <TextView
                     android:id="@+id/btnCamera"
@@ -91,9 +90,9 @@
                     android:id="@+id/imageView17"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="80dp"
                     android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/icon_gallery1" />
+                    app:srcCompat="@drawable/icon_gallery" />
 
                 <TextView
                     android:id="@+id/btnGallery"
