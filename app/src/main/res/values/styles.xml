@@ -13,12 +13,16 @@
         <item name="android:windowBackground">@color/transparent</item>
 
 
+
     </style>
+
+    <!-- 급여계산기 시간등록 팝업-->
     <style name="workPopup">
         <item name="android:textSize">15dp</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:windowBackground">@color/transparent</item>
         <!--숫자 구분선 색상 변경-->
         <item name="colorControlNormal">@color/background</item>
+
     </style>
 </resources>

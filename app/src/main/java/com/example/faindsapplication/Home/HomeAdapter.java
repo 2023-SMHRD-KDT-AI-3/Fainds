@@ -1,18 +1,34 @@
 package com.example.faindsapplication.Home;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.Board.BoardItemClickListener;
 import com.example.faindsapplication.ContractDetail.ContractDetailActivity;
+import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.R;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
     private ArrayList<HomeVO> dataset;
@@ -35,6 +51,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
         String contractName = dataset.get(position).getContractName();
         String contractType = dataset.get(position).getContractType();
         String contractId = dataset.get(position).getContractId();
+        String res = dataset.get(position).getRes();
 
         // 계약 유형에 따라 이미지 설정
         if(contractType.equals("표준근로계약서(기간의 정함이 없음)")){
@@ -50,6 +67,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
         holder.getTvRegisterExample().setText(contractType);
         holder.getImgRegisterType().setImageResource(img);
 
+
         // 아이템 클릭 시의 이벤트 처리
         holder.listener = new BoardItemClickListener() {
             @Override
@@ -57,6 +75,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
                 // 계약 상세 화면으로 이동하는 Intent 생성
                 Intent intent = new Intent(v.getContext(), ContractDetailActivity.class);
                 intent.putExtra("contractId",contractId);
+                intent.putExtra("res",res);
                 v.getContext().startActivity(intent);
             }
         };
@@ -66,4 +85,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
     public int getItemCount() {
         return dataset.size();
     }
+
+
 }

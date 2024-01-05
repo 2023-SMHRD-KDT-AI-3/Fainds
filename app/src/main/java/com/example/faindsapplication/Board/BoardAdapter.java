@@ -1,11 +1,6 @@
 package com.example.faindsapplication.Board;
 
-import static android.app.PendingIntent.getActivity;
-import static android.content.Context.MODE_PRIVATE;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.faindsapplication.BoardEditActivity;
-import com.example.faindsapplication.LoginActivity;
 import com.example.faindsapplication.R;
 import com.example.faindsapplication.Register.RegisterViewHolder;
 import com.example.faindsapplication.databinding.ActivityBoardDetailBinding;
@@ -33,8 +27,6 @@ import java.util.Locale;
 public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
 
     private ArrayList<BoardVO> dataset;
-    
-
     public BoardAdapter(ArrayList<BoardVO> dataset) {
         this.dataset = dataset;
     }
@@ -53,23 +45,20 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         String boardTitle = dataset.get(position).getBoardTitle();
         String boardContent = dataset.get(position).getBoardContent();
         int boardCmtNum = dataset.get(position).getBoardCmtNum();
-        String createdAt = dataset.get(position).getCreated_at();
+       // String createdAt = dataset.get(position).getCreated_at().substring(0,10) +" " +dataset.get(position).getCreated_at().substring(11,16);
         int boardSeq=dataset.get(position).getBoardSeq();
-        String writer = dataset.get(position).getBoardWriter();
 
         // 뷰홀더에 데이터 설정
-        // 작성 시간을 변환하여 표시
-        String formatTime = timeDi(createdAt);
-        holder.getBoardTime().setText(formatTime);
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
         holder.getBoardCmtNum().setText(String.valueOf(boardCmtNum));
 
-       // holder.getBtnAddPopup().setVisibility(View.INVISIBLE);
-
-
+      //  holder.getBoardTime().setText(createdAt);
+        // 작성 시간을 변환하여 표시
+        String createdAt = dataset.get(position).getCreated_at();
+        String formatTime = timeDi(createdAt);
+        holder.getBoardTime().setText(formatTime);
         // 게시글 수정 삭제 버튼을 위한 팝업 메뉴 설정
-
         holder.getBtnAddPopup().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,9 +155,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
             return createdAt; // 파싱 실패 시 원본 날짜 문자열 반환
         }
     }
-
-
-
 
 
 }

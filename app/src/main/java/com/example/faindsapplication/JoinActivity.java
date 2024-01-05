@@ -47,8 +47,7 @@ public class JoinActivity extends AppCompatActivity {
         binding.imgLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(JoinActivity.this, MainActivity.class);
-                intent.putExtra("moveFl", "home");
+                Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
