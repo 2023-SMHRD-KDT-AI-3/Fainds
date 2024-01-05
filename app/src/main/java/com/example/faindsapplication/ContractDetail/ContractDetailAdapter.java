@@ -36,8 +36,10 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
         holder.getContractDetailValue().setText(ContractValue);
 
         // 특정 조건에 따라 경고 메시지 표시
-        if ("근무장소".equals(ContractKey) && !"본사 업팀".equals(ContractValue)) {
-            holder.getTvWarning().setText("경고: 본사 업팀이 아닙니다.");
+        if ("근무장소".equals(ContractKey) && !"본사 영업팀".equals(ContractValue)) {
+            holder.getTvWarning().setText("경고 : 본사 영업팀이 아닙니다.");
+        } else if (ContractValue.equals("미기입")) {
+            holder.getTvWarning().setText("경고 : "+ContractKey+"가 작성되어 있지 않습니다.");
         } else {
             // 조건이 충족되지 않으면 경고 텍스트를 숨김
             holder.getTvWarning().setVisibility(View.GONE);
