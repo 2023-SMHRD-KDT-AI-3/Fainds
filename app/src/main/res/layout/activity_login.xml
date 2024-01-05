@@ -62,14 +62,14 @@
         android:id="@+id/loginBtnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/btnBlue"
         android:text="@string/loginBtnLogin"
         android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/loginPwHint"
         app:layout_constraintStart_toStartOf="@+id/loginPwHint"
-        app:layout_constraintTop_toBottomOf="@+id/loginPwHint" />
+        app:layout_constraintTop_toBottomOf="@+id/switchAutoLogin" />
 
     <TextView
         android:id="@+id/loginTvJoin"
@@ -96,4 +96,14 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/loginTvJoin"
         app:layout_constraintTop_toTopOf="@+id/loginTvJoin" />
+
+    <Switch
+        android:id="@+id/switchAutoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="자동 로그인"
+        app:layout_constraintEnd_toEndOf="@+id/loginPwHint"
+        app:layout_constraintTop_toBottomOf="@+id/loginPwHint" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

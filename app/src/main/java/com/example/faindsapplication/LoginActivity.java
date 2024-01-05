@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,6 +33,13 @@ public class LoginActivity extends AppCompatActivity {
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        if (getUserId() != null){
+            saveUserId(getUserId(),getUserPw());
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("moveFl","home");
+            startActivity(intent);
+        }
+
         // Volley RequestQueue 초기화
         if(queue==null){
             queue = Volley.newRequestQueue(this);
@@ -43,6 +51,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SearchPwActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        // 자동로그인 스위치
+        binding.switchAutoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(buttonView.isChecked()){
+                    Toast.makeText(LoginActivity.this, "체크완료", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(LoginActivity.this, "체크해제", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -118,6 +138,11 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
+    }
+    public String getUserPw(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserPW", null);
     }
 
 }

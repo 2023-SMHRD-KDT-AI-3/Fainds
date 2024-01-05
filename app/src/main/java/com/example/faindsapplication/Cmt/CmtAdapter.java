@@ -55,17 +55,17 @@ public class CmtAdapter extends RecyclerView.Adapter<CmtViewHolder> {
         holder.getCmtTime().setText(formatTime);
         holder.getCmtTime().setText(formatTime);
 
-        holder.listener = new CmtItemClickListener() {
-            @Override
-            public void onItemClickListener(View v, int position) {
-                Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
-                intent.putExtra("cmtWriter",cmtWriter);
-                intent.putExtra("cmtContent",cmtContent);
-                intent.putExtra("createdAt",formatTime);
-
-                v.getContext().startActivity(intent);
-            }
-        };
+//        holder.listener = new CmtItemClickListener() {
+//            @Override
+//            public void onItemClickListener(View v, int position) {
+//                Intent intent = new Intent(v.getContext(), BoardDetailActivity.class);
+//                intent.putExtra("cmtWriter",cmtWriter);
+//                intent.putExtra("cmtContent",cmtContent);
+//                intent.putExtra("createdAt",formatTime);
+//
+//                v.getContext().startActivity(intent);
+//            }
+//        };
 
 
     }
