@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.faindsapplication.LargeImageActivity;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
@@ -41,6 +42,9 @@ public class ContractDetailActivity extends AppCompatActivity {
         binding = ActivityContractDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // 계약서 이미지 지정
+        //Glide.with(ContractDetailActivity.this).load(imageUrl).into(binding.imgContract);
+
         // 뒤로가기 버튼
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +68,7 @@ public class ContractDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContractDetailActivity.this, LargeImageActivity.class);
-
+                startActivity(intent);
 
             }
         });
