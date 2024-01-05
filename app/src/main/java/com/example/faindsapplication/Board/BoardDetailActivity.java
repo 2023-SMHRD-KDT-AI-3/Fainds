@@ -58,8 +58,6 @@ public class BoardDetailActivity extends AppCompatActivity {
         String boardcontent = getIntent().getStringExtra("boardContent");
         String boardWriter = getIntent().getStringExtra("boardWriter");
 
-        Log.d("board???",boardWriter);
-        Log.d("board???",getUserId());
 
         binding.boardDetailTitle.setText(boardtitle);
         binding.boardDetailContent.setText(boardcontent);
@@ -178,6 +176,7 @@ public class BoardDetailActivity extends AppCompatActivity {
                             DialogInterface.OnClickListener deleteListener =new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    boardDelete();
 
                                 }
                             };
@@ -266,5 +265,47 @@ public class BoardDetailActivity extends AppCompatActivity {
             }
         };
         queue.add(request);
+    }
+
+    public void boardDelete() {
+        // 게시글 번호 가져오기
+        getIntent().getIntExtra("boardSeq", 0);
+        String boardSeqId = String.valueOf(getIntent().getIntExtra("boardSeq", 0));
+
+        // 댓글 리스트 요청
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                "http://192.168.219.54:8089/boardDelete",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // 에러 처리
+            }
+        }
+        ) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // 게시글 번호를 파라미터로 전달
+                Map<String, String> params = new HashMap<>();
+                params.put("boardSeqId", boardSeqId);
+                Log.d("deleteboardSeqId",boardSeqId);
+                return params;
+            }
+        };
+        queue.add(request);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(BoardDetailActivity.this,MainActivity.class);
+                intent.putExtra("moveFl","board");
+                startActivity(intent);
+            }
+        }, 500); // 500 밀리초 (0.5초) 딜레이
     }
 }
