@@ -118,8 +118,8 @@ public class JoinActivity extends AppCompatActivity {
                                 // 전송할 데이터를 Map 형태로 구성
                                 String id = binding.inputJoinID.getText().toString();
                                 String pw = binding.inputJoinPw.getText().toString();
-                                String email = binding.inputJoinEmail.getText().toString();
                                 String name = binding.inputJoinName.getText().toString();
+                                String email = binding.inputJoinEmail.getText().toString();
                                 //전송방식을 POST로 지정했을 때 사용하는 메소드
                                 //데이터를 전송할 때 Map형태로 구성하여 리턴해줘야 한다.
                                 // Map<String,String> 앞은 Key 뒤는 Value 임
@@ -127,8 +127,8 @@ public class JoinActivity extends AppCompatActivity {
                                 Map<String, String> params = new HashMap<>();
                                 params.put("userId", id);
                                 params.put("userPw", pw);
-                                params.put("userEmail", email);
                                 params.put("userName", name);
+                                params.put("userEmail", email);
                                 //Spring서버에서도 "id","pw"로 받아야 함
 
                                 return params;

@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.LargeImageActivity;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
 
@@ -39,7 +40,10 @@ public class ContractDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityContractDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        Intent intent = getIntent();
+        String userid = intent.getStringExtra("contractId");
+        String url = intent.getStringExtra("url");
+        Log.d("계약서ID", "onCreate: "+userid);
         // 뒤로가기 버튼
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +62,15 @@ public class ContractDetailActivity extends AppCompatActivity {
             }
         });
 
+        // 계약서 이미지 클릭
+        binding.imgContract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContractDetailActivity.this, LargeImageActivity.class);
+
+            }
+        });
+
         // 삭제버튼 클릭
         binding.btnContractDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +78,7 @@ public class ContractDetailActivity extends AppCompatActivity {
                 DialogInterface.OnClickListener deleteListener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //deleteData(v,contractId);
+                        deleteData(v,userid);
                         Intent intent =  new Intent(v.getContext(), MainActivity.class);
                         intent.putExtra("moveFl","home");
                         v.getContext().startActivity(intent);
@@ -79,7 +92,8 @@ public class ContractDetailActivity extends AppCompatActivity {
                 };
                 // 다이얼로그 구현
                 AlertDialog.Builder builder = new AlertDialog.Builder(ContractDetailActivity.this);
-                builder.setPositiveButton("카메라",deleteListener);
+                builder.setTitle("정말 삭제하시겠습니까?");
+                builder.setPositiveButton("삭제",deleteListener);
                 builder.setNegativeButton("취소",cancelListener);
                 builder.show();
             }
@@ -122,7 +136,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.47:8089/mongo/deleteid",
+                "http://192.168.219.65:8089/mongo/deleteid",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

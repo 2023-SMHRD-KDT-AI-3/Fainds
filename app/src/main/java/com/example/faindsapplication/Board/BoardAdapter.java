@@ -1,6 +1,7 @@
 package com.example.faindsapplication.Board;
 
 import android.content.Intent;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -46,7 +47,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         int boardCmtNum = dataset.get(position).getBoardCmtNum();
        // String createdAt = dataset.get(position).getCreated_at().substring(0,10) +" " +dataset.get(position).getCreated_at().substring(11,16);
         int boardSeq=dataset.get(position).getBoardSeq();
-
+        String boardWriter = dataset.get(position).getBoardWriter();
         // 뷰홀더에 데이터 설정
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
@@ -58,33 +59,35 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         String formatTime = timeDi(createdAt);
         holder.getBoardTime().setText(formatTime);
         // 게시글 수정 삭제 버튼을 위한 팝업 메뉴 설정
-//        holder.getBtnAddPopup().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-//                popupMenu.inflate(R.menu.popupboard);
-//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        if (item.getItemId() == R.id.boardFix){
-//                            // 수정 기능 구현
-//                                Intent intent = new Intent(v.getContext(), BoardEditActivity.class);
-//                                intent.putExtra("boardTitle", boardTitle);
-//                                intent.putExtra("boardContent",boardContent);
-//                                intent.putExtra("createdAt",createdAt);
-//                                intent.putExtra("boardSeq",boardSeq);
-//                                v.getContext().startActivity(intent);
-//
-//                        } else if (item.getItemId() == R.id.boardDelete){
-//                            // 삭제 기능 구현
-//
-//                        }
-//                        return false;
-//                    }
-//                });
-//                popupMenu.show();
-//            }
-//        });
+        holder.getBtnAddPopup().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                popupMenu.inflate(R.menu.popupboard);
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.boardFix){
+                            // 수정 기능 구현
+                                Intent intent = new Intent(v.getContext(), BoardEditActivity.class);
+                                intent.putExtra("boardTitle", boardTitle);
+                                intent.putExtra("boardContent",boardContent);
+                                intent.putExtra("createdAt",createdAt);
+                                intent.putExtra("boardSeq",boardSeq);
+                                intent.putExtra("boardWriter",boardWriter);
+
+                                v.getContext().startActivity(intent);
+
+                        } else if (item.getItemId() == R.id.boardDelete){
+                            // 삭제 기능 구현
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
         // 게시글 클릭 시 상세 화면으로 이동
         holder.listener = new BoardItemClickListener() {
             @Override
@@ -94,7 +97,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 intent.putExtra("boardContent",boardContent);
                 intent.putExtra("createdAt",createdAt);
                 intent.putExtra("boardSeq",boardSeq);
+                intent.putExtra("boardWriter",boardWriter);
 
+                Log.d("boardSeq1234", String.valueOf(boardSeq));
+                Log.d("boardTitle1234", boardTitle);
+                Log.d("boardContent1234", boardContent);
+                Log.d("board????",boardWriter);
                 v.getContext().startActivity(intent);
             }
         };
@@ -150,5 +158,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
             return createdAt; // 파싱 실패 시 원본 날짜 문자열 반환
         }
     }
+
 
 }
