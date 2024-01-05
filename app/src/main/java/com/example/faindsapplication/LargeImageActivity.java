@@ -7,29 +7,29 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.example.faindsapplication.databinding.ActivityLargeImageBinding;
+
 import java.io.File;
 
 public class LargeImageActivity extends AppCompatActivity {
 
+    private ActivityLargeImageBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_large_image);
-
-        ImageView imgLarge = findViewById(R.id.imgLarge);
+        binding=ActivityLargeImageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 인텐트에서 이미지 경로 또는 리소스 ID를 받아옴
-        String imagePath = getIntent().getStringExtra("imagePath");
-
-        // imagePath가 리소스 ID일 경우
-        // int resourceId = getIntent().getIntExtra("imageResourceId", 0);
-        // imgLarge.setImageResource(resourceId);
+        String url = getIntent().getStringExtra("url");
 
         // imagePath가 파일 경로일 경우
-//        Glide.with(this).load(new File(imagePath)).into(imgLarge);
+        Glide.with(LargeImageActivity.this).load(url).into(binding.imgLarge);
 
         // 닫기 버튼 클릭 이벤트
-        ImageButton btnClose = findViewById(R.id.btnClose);
+        ImageView btnClose = findViewById(R.id.btnClose);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
