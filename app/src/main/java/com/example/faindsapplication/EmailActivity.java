@@ -99,7 +99,7 @@ public class EmailActivity extends AppCompatActivity {
 
     // 이메일 변경 요청을 서버에 전송하는 메서드
     private void sendChangeEmailRequest(String currentEmail, String newEmail) {
-        String url = "http://192.168.219.60:8089/chemail";
+        String url = "http://192.168.219.54:8089/chemail";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
