@@ -27,12 +27,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.FlaskConnect;
 import com.example.faindsapplication.FlaskResponseListener;
+import com.example.faindsapplication.LargeImageActivity;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.ProgressDialog;
 import com.example.faindsapplication.Register.RegisterFragment;
 import com.example.faindsapplication.VolleyMultipartRequest;
 import com.example.faindsapplication.databinding.ActivityRegisterDetailBinding;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import org.jetbrains.annotations.Nullable;
@@ -86,6 +89,26 @@ public class RegisterDetailActivity extends AppCompatActivity {
         if (intent.getParcelableExtra("TestImg") != null){
             bitmap = (Bitmap) intent.getParcelableExtra("TestImg");
             binding.imgTest.setImageBitmap(bitmap);
+            // Bitmap을 파일로 저장
+            File file = new File(getExternalCacheDir(), "image.png");
+            FileOutputStream outStream;
+            try {
+                outStream = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+                outStream.flush();
+                outStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 이미지 클릭 시 큰 사진을 보여주도록 이동
+            binding.imgTest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(RegisterDetailActivity.this, LargeImageActivity.class);
+                    intent.putExtra("url", file.getAbsolutePath());
+                    startActivity(intent);
+                }
+            });
         }else {
             Uri uri = intent.getParcelableExtra("TestImgUri");
             binding.imgTest.setImageURI(uri);
@@ -94,6 +117,14 @@ public class RegisterDetailActivity extends AppCompatActivity {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            binding.imgTest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(RegisterDetailActivity.this, LargeImageActivity.class);
+                    intent.putExtra("uri",uri);
+                    startActivity(intent);
+                }
+            });
         }
 
         // 서버에 이미지 업로드 및 응답 처리
