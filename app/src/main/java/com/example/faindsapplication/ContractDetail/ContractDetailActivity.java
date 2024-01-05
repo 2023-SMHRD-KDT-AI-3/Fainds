@@ -68,7 +68,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         });
 
         // 계약서 이미지 클릭
-        binding.img.setOnClickListener(new View.OnClickListener() {
+        binding.imgContract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContractDetailActivity.this, LargeImageActivity.class);
