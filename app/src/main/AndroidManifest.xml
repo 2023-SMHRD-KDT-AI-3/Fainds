@@ -43,7 +43,7 @@
             android:name=".PopupActivity"
             android:theme="@style/PopupTheme" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ContractDetail.ContractDetailActivity"
             android:exported="false" />
         <activity
             android:name=".PwActivity"
@@ -67,7 +67,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ContractDetail.ContractDetailActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

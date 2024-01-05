@@ -52,6 +52,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
         String contractType = dataset.get(position).getContractType();
         String contractId = dataset.get(position).getContractId();
         String res = dataset.get(position).getRes();
+        String url = dataset.get(position).getUrl();
 
         // 계약 유형에 따라 이미지 설정
         if(contractType.equals("표준근로계약서(기간의 정함이 없음)")){
@@ -76,6 +77,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
                 Intent intent = new Intent(v.getContext(), ContractDetailActivity.class);
                 intent.putExtra("contractId",contractId);
                 intent.putExtra("res",res);
+                intent.putExtra("url",url);
+                Log.d("계약서ID", "onCreate: "+contractId);
                 v.getContext().startActivity(intent);
             }
         };
