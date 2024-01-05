@@ -41,6 +41,10 @@ public class ContractDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityContractDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Intent intent = getIntent();
+        String userid = intent.getStringExtra("contractId");
+        String url = intent.getStringExtra("url");
+        Log.d("계약서ID", "onCreate: "+userid);
 
         // 계약서 이미지 지정
         //Glide.with(ContractDetailActivity.this).load(imageUrl).into(binding.imgContract);
@@ -80,7 +84,7 @@ public class ContractDetailActivity extends AppCompatActivity {
                 DialogInterface.OnClickListener deleteListener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //deleteData(v,contractId);
+                        deleteData(v,userid);
                         Intent intent =  new Intent(v.getContext(), MainActivity.class);
                         intent.putExtra("moveFl","home");
                         v.getContext().startActivity(intent);
@@ -94,7 +98,8 @@ public class ContractDetailActivity extends AppCompatActivity {
                 };
                 // 다이얼로그 구현
                 AlertDialog.Builder builder = new AlertDialog.Builder(ContractDetailActivity.this);
-                builder.setPositiveButton("카메라",deleteListener);
+                builder.setTitle("정말 삭제하시겠습니까?");
+                builder.setPositiveButton("삭제",deleteListener);
                 builder.setNegativeButton("취소",cancelListener);
                 builder.show();
             }
@@ -108,7 +113,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         dataset = new ArrayList<>();
         try {
             // JSON 객체 생성
-            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONObject jsonObject = new JSONObject(res);
 
             // JSON 객체의 키를 반복하면서 데이터셋에 추가
             Iterator<String> keys = jsonObject.keys();
