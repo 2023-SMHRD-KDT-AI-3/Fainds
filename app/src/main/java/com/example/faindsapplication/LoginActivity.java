@@ -32,6 +32,13 @@ public class LoginActivity extends AppCompatActivity {
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        if (getUserId() != null){
+            saveUserId(getUserId(),getUserPw());
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("moveFl","home");
+            startActivity(intent);
+        }
+
         // Volley RequestQueue 초기화
         if(queue==null){
             queue = Volley.newRequestQueue(this);
@@ -118,6 +125,11 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
+    }
+    public String getUserPw(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getString("UserPW", null);
     }
 
 }
