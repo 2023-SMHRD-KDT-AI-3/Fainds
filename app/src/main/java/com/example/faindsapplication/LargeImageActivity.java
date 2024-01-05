@@ -23,16 +23,10 @@ public class LargeImageActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // 인텐트에서 이미지 경로 또는 리소스 ID를 받아옴
-        String imagePath = getIntent().getStringExtra("imagePath");
-
-        // imagePath가 리소스 ID일 경우
-        // int resourceId = getIntent().getIntExtra("imageResourceId", 0);
-        // imgLarge.setImageResource(resourceId);
-
-        String imageUrl = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=https://k.kakaocdn.net/dn/EShJF/btquPLT192D/SRxSvXqcWjHRTju3kHcOQK/img.png";
+        String url = getIntent().getStringExtra("url");
 
         // imagePath가 파일 경로일 경우
-        Glide.with(LargeImageActivity.this).load(imageUrl).into(binding.imgLarge);
+        Glide.with(LargeImageActivity.this).load(url).into(binding.imgLarge);
 
         // 닫기 버튼 클릭 이벤트
         ImageView btnClose = findViewById(R.id.btnClose);

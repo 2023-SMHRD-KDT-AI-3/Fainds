@@ -47,7 +47,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         Log.d("계약서ID", "onCreate: "+userid);
 
         // 계약서 이미지 지정
-        //Glide.with(ContractDetailActivity.this).load(imageUrl).into(binding.imgContract);
+        Glide.with(ContractDetailActivity.this).load(url).into(binding.imgContract);
 
         // 뒤로가기 버튼
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +72,7 @@ public class ContractDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContractDetailActivity.this, LargeImageActivity.class);
+                intent.putExtra("url",url);
                 startActivity(intent);
 
             }
@@ -142,7 +143,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.47:8089/mongo/deleteid",
+                "http://192.168.219.54:8089/mongo/deleteid",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
