@@ -33,11 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         binding=ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        if (getUserId() != null){
+        if (getUserId() != null && getAutoLogin()==true){
             saveUserId(getUserId(),getUserPw());
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("moveFl","home");
             startActivity(intent);
+        } else if (getAutoLogin()==true) {
+            SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("Autologin",false);
+            editor.apply();
         }
 
         // Volley RequestQueue 초기화
@@ -58,11 +63,15 @@ public class LoginActivity extends AppCompatActivity {
         binding.switchAutoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+                // Editor를 사용하여 값을 저장
+                SharedPreferences.Editor editor = sharedPreferences.edit();
                 if(buttonView.isChecked()){
-                    Toast.makeText(LoginActivity.this, "체크완료", Toast.LENGTH_SHORT).show();
+                    editor.putBoolean("Autologin",true);
                 } else{
-                    Toast.makeText(LoginActivity.this, "체크해제", Toast.LENGTH_SHORT).show();
+                    editor.putBoolean("Autologin",false);
                 }
+                editor.apply();
             }
         });
 
@@ -72,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.54:8089/login",
+                        "http://192.168.219.41:8089/login",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -143,6 +152,11 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserPW", null);
+    }
+    public Boolean getAutoLogin(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
+        return sharedPreferences.getBoolean("Autologin",false);
     }
 
 }
