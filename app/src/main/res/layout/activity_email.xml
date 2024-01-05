@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08071136" />
+        app:layout_constraintGuide_begin="59dp" />
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -34,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="이메일 수정"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
@@ -50,6 +51,7 @@
         android:hint="@string/currentEmail"
         android:inputType="text"
         android:paddingLeft="10dp"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -62,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="현재 이메일"
+        android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/currentEmail"
@@ -76,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="새 이메일"
+        android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newEmail"
@@ -93,6 +97,7 @@
         android:hint="@string/newEmail"
         android:inputType="text"
         android:paddingLeft="10dp"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -135,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17236662" />
+        app:layout_constraintGuide_begin="126dp" />
 
     <TextView
         android:id="@+id/tvEmailCheck"

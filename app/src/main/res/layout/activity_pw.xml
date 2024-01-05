@@ -12,13 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08071136" />
+        app:layout_constraintGuide_begin="59dp" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비밀번호 수정"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
@@ -36,6 +37,7 @@
         android:hint="현재 비밀번호를 입력하세요"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView9"
@@ -47,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="현재 비밀번호"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/currentPw"
@@ -61,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="새 비밀번호"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newPw"
@@ -78,6 +82,7 @@
         android:hint="새 비밀번호를 입력하세요"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/newPW"
@@ -89,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="새 비밀번호 재입력"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/confirmPw"
@@ -106,6 +112,7 @@
         android:hint="비밀번호를 한번 더 입력하세요"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/boardCmtNum"
@@ -146,12 +153,11 @@
         android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias=".5"
         app:srcCompat="@drawable/icon_back" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -159,7 +165,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="607dp" />
+        app:layout_constraintGuide_begin="126dp" />
 
     <TextView
         android:id="@+id/tvPwCheck"
