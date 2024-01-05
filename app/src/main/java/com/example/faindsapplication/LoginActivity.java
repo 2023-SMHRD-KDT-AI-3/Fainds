@@ -67,10 +67,8 @@ public class LoginActivity extends AppCompatActivity {
                 // Editor를 사용하여 값을 저장
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 if(buttonView.isChecked()){
-                    Toast.makeText(LoginActivity.this, "체크완료", Toast.LENGTH_SHORT).show();
                     editor.putBoolean("Autologin",true);
                 } else{
-                    Toast.makeText(LoginActivity.this, "체크해제", Toast.LENGTH_SHORT).show();
                     editor.putBoolean("Autologin",false);
                 }
                 editor.apply();
@@ -83,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.65:8089/login",
+                        "http://192.168.219.41:8089/login",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
