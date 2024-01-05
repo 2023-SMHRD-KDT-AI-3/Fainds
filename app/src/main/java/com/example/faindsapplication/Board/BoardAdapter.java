@@ -47,7 +47,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
         int boardCmtNum = dataset.get(position).getBoardCmtNum();
        // String createdAt = dataset.get(position).getCreated_at().substring(0,10) +" " +dataset.get(position).getCreated_at().substring(11,16);
         int boardSeq=dataset.get(position).getBoardSeq();
-
+        String boardWriter = dataset.get(position).getBoardWriter();
         // 뷰홀더에 데이터 설정
         holder.getBoardTitle().setText(boardTitle);
         holder.getBoardContent().setText(boardContent);
@@ -74,6 +74,8 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                                 intent.putExtra("boardContent",boardContent);
                                 intent.putExtra("createdAt",createdAt);
                                 intent.putExtra("boardSeq",boardSeq);
+                                intent.putExtra("boardWriter",boardWriter);
+
                                 v.getContext().startActivity(intent);
 
                         } else if (item.getItemId() == R.id.boardDelete){
@@ -95,11 +97,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardViewHolder> {
                 intent.putExtra("boardContent",boardContent);
                 intent.putExtra("createdAt",createdAt);
                 intent.putExtra("boardSeq",boardSeq);
+                intent.putExtra("boardWriter",boardWriter);
 
                 Log.d("boardSeq1234", String.valueOf(boardSeq));
                 Log.d("boardTitle1234", boardTitle);
                 Log.d("boardContent1234", boardContent);
-
+                Log.d("board????",boardWriter);
                 v.getContext().startActivity(intent);
             }
         };

@@ -56,6 +56,10 @@ public class BoardDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String boardtitle = getIntent().getStringExtra("boardTitle");
         String boardcontent = getIntent().getStringExtra("boardContent");
+        String boardWriter = getIntent().getStringExtra("boardWriter");
+
+        Log.d("board???",boardWriter);
+        Log.d("board???",getUserId());
 
         binding.boardDetailTitle.setText(boardtitle);
         binding.boardDetailContent.setText(boardcontent);
@@ -143,6 +147,12 @@ public class BoardDetailActivity extends AppCompatActivity {
             }
         });
 
+        if (boardWriter.equals(getUserId())) {
+            binding.btnBoardPopup.setVisibility(View.VISIBLE);
+        }else{
+            binding.btnBoardPopup.setVisibility(View.INVISIBLE);
+        }
+
         // 수정삭제 팝업버튼
         binding.btnBoardPopup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,6 +208,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         // "UserID" 키로 저장된 값을 반환. 값이 없다면 null 반환
         return sharedPreferences.getString("UserID", null);
     }
+
 
     // 댓글 리스트를 서버에서 가져오는 메소드
     public void getComentData() {
