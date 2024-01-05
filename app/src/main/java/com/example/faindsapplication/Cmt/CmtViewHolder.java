@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.faindsapplication.R;
 
-public class CmtViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class CmtViewHolder extends RecyclerView.ViewHolder  {
 
     // 클릭 리스너 인터페이스
-    CmtItemClickListener listener;
+ //   CmtItemClickListener listener;
 
     // 아이템 뷰의 각 요소
     private TextView cmtWriter;
@@ -26,13 +26,13 @@ public class CmtViewHolder extends RecyclerView.ViewHolder implements View.OnCli
         this.cmtContent = itemView.findViewById(R.id.tvCmtContent);
         this.cmtTime = itemView.findViewById(R.id.tvCmtTime);
         // 아이템 뷰에 클릭 리스너 설정
-        itemView.setOnClickListener(this);
+    //    itemView.setOnClickListener(this);
     }
 
     // Getter메소드
-    public CmtItemClickListener getListener() {
-        return listener;
-    }
+//    public CmtItemClickListener getListener() {
+//        return listener;
+//    }
 
     public TextView getCmtWriter() {
         return cmtWriter;
@@ -47,8 +47,8 @@ public class CmtViewHolder extends RecyclerView.ViewHolder implements View.OnCli
     }
 
     // 클릭 이벤트 처리
-    @Override
-    public void onClick(View v) {
-        this.listener.onItemClickListener(v,getLayoutPosition());
-    }
+//    @Override
+//    public void onClick(View v) {
+//        this.listener.onItemClickListener(v,getLayoutPosition());
+//    }
 }
