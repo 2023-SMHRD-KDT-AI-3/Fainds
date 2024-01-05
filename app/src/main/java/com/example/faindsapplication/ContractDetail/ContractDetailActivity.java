@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.faindsapplication.LargeImageActivity;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
 
@@ -55,6 +56,16 @@ public class ContractDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(ContractDetailActivity.this, MainActivity.class);
                 intent.putExtra("moveFl","home");
                 startActivity(intent);
+            }
+        });
+
+        // 계약서 이미지 클릭
+        binding.imgContract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContractDetailActivity.this, LargeImageActivity.class);
+
+
             }
         });
 
