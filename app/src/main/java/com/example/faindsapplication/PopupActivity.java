@@ -5,13 +5,18 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,10 +27,15 @@ import android.widget.TextView;
 import com.example.faindsapplication.RegisterDetail.RegisterDetailActivity;
 import com.example.faindsapplication.databinding.ActivityPopupBinding;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class PopupActivity extends AppCompatActivity {
     private TextView txt;
     private ActivityPopupBinding binding;
-
+    private Uri imageUri;
 
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -37,10 +47,12 @@ public class PopupActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         String registerdata = getIntent().getStringExtra("RegisterName");
                         Log.d("계약서내용", "onActivityResult: "+registerdata);
-                        Bundle bundle = data.getExtras(); // 캡처한 이미지 저장 공간을 접근
-                        Bitmap bitmap = (Bitmap) bundle.get("data");
+//                        Bundle bundle = data.getExtras(); // 캡처한 이미지 저장 공간을 접근
+//                        Bitmap bitmap = (Bitmap) bundle.get("data");
+                        Log.d("확인용", "onActivityResult: 확인");
+                        Log.d("Uri확인용", "onActivityResult: "+imageUri);
                         Intent intent = new Intent(PopupActivity.this, RegisterDetailActivity.class);
-                        intent.putExtra("TestImg",bitmap);
+                        intent.putExtra("TestImg",imageUri);
                         intent.putExtra("RegisterName",registerdata);
                         startActivity(intent);
                     }
@@ -86,10 +98,23 @@ public class PopupActivity extends AppCompatActivity {
         binding.btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra("RegisterName", data);
-                cameraLauncher.launch(intent);
 
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    try {
+                        Log.d("확인용", "onClick: 실행");
+                        imageUri = createImageFile(); // 임시 파일의 Uri 생성
+                    } catch (IOException ex) {
+                        // 파일 생성 중 오류 발생 시 처리
+                    }
+                    if (imageUri != null) {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+//                        intent.putExtra("RegisterName", data);
+                        cameraLauncher.launch(intent);
+                    }
+                }
+//                intent.putExtra("RegisterName", data);
+//                cameraLauncher.launch(intent);
             }
         });
         // 갤러리 버튼
@@ -120,5 +145,18 @@ public class PopupActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+    private Uri createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        return FileProvider.getUriForFile(this,
+                "com.example.faindsapplication.fileprovider",
+                image);
     }
 }

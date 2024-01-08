@@ -87,25 +87,30 @@ public class RegisterDetailActivity extends AppCompatActivity {
         Log.d("계약서 종류", "onCreate: "+registername);
         Bitmap bitmap = null;
         if (intent.getParcelableExtra("TestImg") != null){
-            bitmap = (Bitmap) intent.getParcelableExtra("TestImg");
-            binding.imgTest.setImageBitmap(bitmap);
-            // Bitmap을 파일로 저장
-            File file = new File(getExternalCacheDir(), "image.png");
-            FileOutputStream outStream;
+            Uri uri = intent.getParcelableExtra("TestImg");
+            binding.imgTest.setImageURI(uri);
             try {
-                outStream = new FileOutputStream(file);
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-                outStream.flush();
-                outStream.close();
+                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
+            // Bitmap을 파일로 저장
+//            File file = new File(getExternalCacheDir(), "image.png");
+//            FileOutputStream outStream;
+//            try {
+//                outStream = new FileOutputStream(file);
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+//                outStream.flush();
+//                outStream.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             // 이미지 클릭 시 큰 사진을 보여주도록 이동
             binding.imgTest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(RegisterDetailActivity.this, LargeImageActivity.class);
-                    intent.putExtra("url", file.getAbsolutePath());
+                    intent.putExtra("url", uri);
                     startActivity(intent);
                 }
             });
