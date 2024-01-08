@@ -108,7 +108,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                     // 제목과 내용이 비어 있지 않은 경우 서버에 저장 요청
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
-                            "http://192.168.219.50:8089/boardwrite",
+                            "http://192.168.219.54:8089/boardwrite",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {

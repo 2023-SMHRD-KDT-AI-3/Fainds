@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -152,6 +153,13 @@ public class SearchFragment2 extends Fragment {
             }
         };
         queue.add(request);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dataset.clear();
+                getSearchBoardData(keyword);
+            }
+        }, 1000); // 500 밀리초 (0.5초) 딜레이
     }
     public String getUserId() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
