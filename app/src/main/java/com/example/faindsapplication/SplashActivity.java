@@ -81,7 +81,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void showPermissionDeniedToast() {
         Toast.makeText(this, "카메라 권한을 허용해야 앱을 사용할 수 있습니다.", Toast.LENGTH_SHORT).show();
-        finish(); // 또는 다른 적절한 처리를 수행
+        requestCameraPermission();
     }
 
 
