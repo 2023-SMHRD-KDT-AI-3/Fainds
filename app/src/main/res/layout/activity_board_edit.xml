@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08071136" />
+        app:layout_constraintGuide_begin="59dp" />
 
     <Button
         android:id="@+id/btnEdit"
@@ -37,14 +37,14 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:text="게시글 수정"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
         app:layout_constraintStart_toEndOf="@+id/imgBack"
-        app:layout_constraintTop_toTopOf="@+id/imgBack" />
+        app:layout_constraintTop_toTopOf="@+id/imgBack"
+        app:layout_constraintVertical_bias="0.50" />
 
     <EditText
         android:id="@+id/edtTv"
@@ -59,6 +59,7 @@
         android:hint="@string/edtTv"
         android:inputType="text"
         android:paddingLeft="16dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -77,6 +78,7 @@
         android:inputType="textMultiLine"
         android:paddingLeft="16dp"
         android:paddingTop="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="@+id/edtTv"
         app:layout_constraintHorizontal_bias="0.0"
@@ -99,12 +101,11 @@
         android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="16dp"
         android:src="@drawable/icon_back"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias=".5" />
 
     <TextView
         android:id="@+id/textView5"
@@ -112,12 +113,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="제목"
+        android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
     <TextView
         android:id="@+id/textView13"
@@ -125,6 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="내용"
+        android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/edtTv"
@@ -137,5 +140,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_begin="126dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

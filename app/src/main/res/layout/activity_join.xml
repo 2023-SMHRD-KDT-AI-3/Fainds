@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.0809816" />
+        app:layout_constraintGuide_begin="59dp" />
 
     <EditText
         android:id="@+id/inputJoinID"
@@ -25,6 +25,7 @@
         android:hint="@string/joinIdHint"
         android:inputType="text"
         android:paddingStart="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,6 +39,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="@string/joinTvId"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
@@ -51,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/joinTvPw"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinID"
@@ -68,6 +71,7 @@
         android:hint="@string/joinPwHint"
         android:inputType="textPassword"
         android:paddingStart="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinID"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,6 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/joinTvName"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView23"
         app:layout_constraintHorizontal_bias="0.0"
@@ -96,6 +101,7 @@
         android:hint="@string/joinNameHint"
         android:inputType="text"
         android:paddingStart="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="@+id/tvPwCheck"
         app:layout_constraintHorizontal_bias="0.0"
@@ -108,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/joinTvEmail"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinName"
         app:layout_constraintHorizontal_bias="0.0"
@@ -124,6 +131,7 @@
         android:hint="@string/joinEmailHint"
         android:inputType="textEmailAddress"
         android:paddingStart="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinName"
         app:layout_constraintHorizontal_bias="0.0"
@@ -162,11 +170,10 @@
         android:id="@+id/imgBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintStart_toStartOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias=".5"
         app:srcCompat="@drawable/icon_back" />
 
     <TextView
@@ -174,19 +181,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="회원가입"
+        android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack"
         app:layout_constraintStart_toEndOf="@+id/imgBack"
         app:layout_constraintTop_toTopOf="@+id/imgBack"
-        app:layout_constraintVertical_bias="0.263" />
+        app:layout_constraintVertical_bias=".50" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17099863" />
+        app:layout_constraintGuide_begin="126dp" />
 
     <TextView
         android:id="@+id/textView23"
@@ -194,6 +202,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="비밀번호 확인"
+        android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinPw"
@@ -211,6 +220,7 @@
         android:hint="비밀번호를 한번 더 입력하세요"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
+        android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="@+id/inputJoinPw"
         app:layout_constraintStart_toStartOf="@+id/inputJoinPw"

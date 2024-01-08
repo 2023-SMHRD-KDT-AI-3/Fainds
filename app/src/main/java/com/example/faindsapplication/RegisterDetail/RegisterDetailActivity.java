@@ -94,23 +94,12 @@ public class RegisterDetailActivity extends AppCompatActivity {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            // Bitmap을 파일로 저장
-//            File file = new File(getExternalCacheDir(), "image.png");
-//            FileOutputStream outStream;
-//            try {
-//                outStream = new FileOutputStream(file);
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-//                outStream.flush();
-//                outStream.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
             // 이미지 클릭 시 큰 사진을 보여주도록 이동
             binding.imgTest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(RegisterDetailActivity.this, LargeImageActivity.class);
-                    intent.putExtra("url", uri);
+                    intent.putExtra("uri", uri);
                     startActivity(intent);
                 }
             });
@@ -143,7 +132,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         //=============================================================================
         // 이미지를 서버에 업로드하기 위한 URL
-        String url = "http://192.168.219.65:8089/getimg";
+        String url = "http://192.168.219.47:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         // 이미지를 JPEG 형식으로 압축하여 바이트 배열로 변환
@@ -264,7 +253,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.65:8089/mongo/mongoinsert",
+                "http://192.168.219.47:8089/mongo/mongoinsert",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
