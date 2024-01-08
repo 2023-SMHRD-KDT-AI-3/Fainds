@@ -23,7 +23,7 @@ public class FlaskConnect {
         isRequesting = true;
         this.context = context;
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url ="http://192.168.219.65:5000/receive_data";
+        String url ="http://192.168.219.47:5000/receive_data";
 
 
         // 전송할 JSON 데이터

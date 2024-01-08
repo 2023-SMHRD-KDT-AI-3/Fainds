@@ -37,10 +37,11 @@ public class PopupActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         String registerdata = getIntent().getStringExtra("RegisterName");
                         Log.d("계약서내용", "onActivityResult: "+registerdata);
+                        Uri imgUri = data.getData();
                         Bundle bundle = data.getExtras(); // 캡처한 이미지 저장 공간을 접근
                         Bitmap bitmap = (Bitmap) bundle.get("data");
                         Intent intent = new Intent(PopupActivity.this, RegisterDetailActivity.class);
-                        intent.putExtra("TestImg",bitmap);
+                        intent.putExtra("TestImg",imgUri);
                         intent.putExtra("RegisterName",registerdata);
                         startActivity(intent);
                     }
