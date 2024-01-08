@@ -99,7 +99,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(RegisterDetailActivity.this, LargeImageActivity.class);
-                    intent.putExtra("url", uri);
+                    intent.putExtra("uri", uri);
                     startActivity(intent);
                 }
             });
