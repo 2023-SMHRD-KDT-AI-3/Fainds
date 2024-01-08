@@ -27,12 +27,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.faindsapplication.FlaskConnect;
 import com.example.faindsapplication.FlaskResponseListener;
+import com.example.faindsapplication.LargeImageActivity;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.ProgressDialog;
 import com.example.faindsapplication.Register.RegisterFragment;
 import com.example.faindsapplication.VolleyMultipartRequest;
 import com.example.faindsapplication.databinding.ActivityRegisterDetailBinding;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import org.jetbrains.annotations.Nullable;
@@ -84,8 +87,22 @@ public class RegisterDetailActivity extends AppCompatActivity {
         Log.d("계약서 종류", "onCreate: "+registername);
         Bitmap bitmap = null;
         if (intent.getParcelableExtra("TestImg") != null){
-            bitmap = (Bitmap) intent.getParcelableExtra("TestImg");
-            binding.imgTest.setImageBitmap(bitmap);
+            Uri uri = intent.getParcelableExtra("TestImg");
+            binding.imgTest.setImageURI(uri);
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), uri);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            // 이미지 클릭 시 큰 사진을 보여주도록 이동
+            binding.imgTest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(RegisterDetailActivity.this, LargeImageActivity.class);
+                    intent.putExtra("uri", uri);
+                    startActivity(intent);
+                }
+            });
         }else {
             Uri uri = intent.getParcelableExtra("TestImgUri");
             binding.imgTest.setImageURI(uri);
@@ -94,6 +111,14 @@ public class RegisterDetailActivity extends AppCompatActivity {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            binding.imgTest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(RegisterDetailActivity.this, LargeImageActivity.class);
+                    intent.putExtra("uri",uri);
+                    startActivity(intent);
+                }
+            });
         }
 
         // 서버에 이미지 업로드 및 응답 처리
@@ -107,7 +132,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         //=============================================================================
         // 이미지를 서버에 업로드하기 위한 URL
-        String url = "http://192.168.219.65:8089/getimg";
+        String url = "http://192.168.219.47:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         // 이미지를 JPEG 형식으로 압축하여 바이트 배열로 변환
@@ -228,7 +253,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.65:8089/mongo/mongoinsert",
+                "http://192.168.219.47:8089/mongo/mongoinsert",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

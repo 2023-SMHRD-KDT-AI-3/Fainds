@@ -27,7 +27,11 @@ import com.example.faindsapplication.Home.HomeFragment;
 import com.example.faindsapplication.Setting.SettingFragment;
 import com.example.faindsapplication.databinding.ActivityBoardWriteBinding;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class BoardWriteActivity extends AppCompatActivity {
@@ -60,6 +64,30 @@ public class BoardWriteActivity extends AppCompatActivity {
             }
         });
 
+        // Intent로 전달된 데이터 확인
+        if (getIntent().hasExtra("res")) {
+            String jsonData = getIntent().getStringExtra("res");
+
+            try {
+                JSONObject jsonObject = new JSONObject(jsonData);
+
+                // StringBuilder를 사용하여 텍스트를 쌓아나감
+                StringBuilder contentBuilder = new StringBuilder();
+
+                // 모든 키-값 쌍을 StringBuilder에 추가
+                for (Iterator<String> it = jsonObject.keys(); it.hasNext(); ) {
+                    String key = it.next();
+                    contentBuilder.append(key).append(": ").append(jsonObject.get(key)).append("\n");
+                }
+
+                // 최종적으로 StringBuilder에 있는 내용을 TextView에 설정
+                binding.edtContent.setText(contentBuilder.toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         // Volley RequestQueue 초기화
         if (queue == null) {
             queue = Volley.newRequestQueue(this);
@@ -80,7 +108,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                     // 제목과 내용이 비어 있지 않은 경우 서버에 저장 요청
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
-                            "http://192.168.219.54:8089/boardwrite",
+                            "http://192.168.219.50:8089/boardwrite",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {

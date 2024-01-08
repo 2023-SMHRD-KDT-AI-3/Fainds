@@ -33,6 +33,7 @@
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
+        android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +51,7 @@
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/black"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="@+id/loginIdHint"
         app:layout_constraintHorizontal_bias="0.0"
@@ -60,14 +62,14 @@
         android:id="@+id/loginBtnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/btnBlue"
         android:text="@string/loginBtnLogin"
         android:textStyle="bold"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/loginPwHint"
         app:layout_constraintStart_toStartOf="@+id/loginPwHint"
-        app:layout_constraintTop_toBottomOf="@+id/loginPwHint" />
+        app:layout_constraintTop_toBottomOf="@+id/switchAutoLogin" />
 
     <TextView
         android:id="@+id/loginTvJoin"
@@ -75,6 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/loginTvJoin"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/loginTvFindPw"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -87,9 +90,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="@string/loginTvFindPw"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/loginTvJoin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/loginTvJoin"
         app:layout_constraintTop_toTopOf="@+id/loginTvJoin" />
+
+    <Switch
+        android:id="@+id/switchAutoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="자동 로그인"
+        app:layout_constraintEnd_toEndOf="@+id/loginPwHint"
+        app:layout_constraintTop_toBottomOf="@+id/loginPwHint" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

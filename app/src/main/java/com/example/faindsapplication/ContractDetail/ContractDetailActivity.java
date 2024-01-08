@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.faindsapplication.BoardWriteActivity;
 import com.example.faindsapplication.LargeImageActivity;
 import com.example.faindsapplication.MainActivity;
 import com.example.faindsapplication.databinding.ActivityContractDetailBinding;
@@ -124,10 +125,21 @@ public class ContractDetailActivity extends AppCompatActivity {
 
                 // 각 key-value 쌍을 dataset에 추가
                 dataset.add(new ContractDetailVO(1, key, value));
+
             }
         }catch (JSONException e) {
             e.printStackTrace();
         }
+
+        // 질문하기
+        binding.btnAsk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ContractDetailActivity.this, BoardWriteActivity.class);
+                intent.putExtra("res",res);
+                startActivity(intent);
+            }
+        });
 
         // 리사이클러뷰 설정
         LinearLayoutManager manager = new LinearLayoutManager(this);

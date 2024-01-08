@@ -8,22 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.faindsapplication.R;
 
-public class RegisterDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class RegisterDetailViewHolder extends RecyclerView.ViewHolder {
 
-    RegisterDetailItemClickListener listener;
     private TextView contractDetailKey;
     private TextView contractDetailValue;
+    private TextView tvWarning;
     public RegisterDetailViewHolder(@NonNull View itemView) {
         super(itemView);
         // 레이아웃에서 각 요소를 찾아와 변수에 할당
         this.contractDetailKey = itemView.findViewById(R.id.contractDetailKey);
         this.contractDetailValue = itemView.findViewById(R.id.contractDetailValue);
-        // 클릭 이벤트 리스너 등록
-        itemView.setOnClickListener(this);
-    }
-
-    public RegisterDetailItemClickListener getListener() {
-        return listener;
+        this.tvWarning = itemView.findViewById(R.id.tvWarning);
     }
 
     public TextView getContractDetailKey() {
@@ -33,9 +28,6 @@ public class RegisterDetailViewHolder extends RecyclerView.ViewHolder implements
     public TextView getContractDetailValue() {
         return contractDetailValue;
     }
+    public TextView getTvWarning(){ return tvWarning; }
 
-    @Override
-    public void onClick(View v) {
-        this.listener.onItemClickListener(v,getLayoutPosition());
-    }
 }
