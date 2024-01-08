@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- 인터넷통신을 위한 권한설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <queries>
+        <package android:name="com.android.camera2" />
+    </queries>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -75,6 +77,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.faindsapplication.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
+
 
 </manifest>

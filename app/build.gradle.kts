@@ -44,7 +44,7 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     // 이미지 넘길때 위치 표시해주는 효과
     implementation("me.relex:circleindicator:2.1.4")
-    // 글라이더
+    // 글라이드
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
