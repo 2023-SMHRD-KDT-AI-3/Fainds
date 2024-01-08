@@ -5,12 +5,16 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.PaintDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -25,6 +29,10 @@ import com.example.faindsapplication.databinding.ActivityPopupBinding;
 public class PopupActivity extends AppCompatActivity {
     private TextView txt;
     private ActivityPopupBinding binding;
+
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 100;
+
+    private static final int GALLERY_PERMISSION_REQUEST_CODE = 101;
 
 
     private ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
@@ -86,6 +94,7 @@ public class PopupActivity extends AppCompatActivity {
         binding.btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra("RegisterName", data);
                 cameraLauncher.launch(intent);
@@ -121,4 +130,6 @@ public class PopupActivity extends AppCompatActivity {
         }
         return true;
     }
+
+
 }
