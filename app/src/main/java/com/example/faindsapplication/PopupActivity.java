@@ -23,6 +23,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.Manifest;
 
 import com.example.faindsapplication.RegisterDetail.RegisterDetailActivity;
 import com.example.faindsapplication.databinding.ActivityPopupBinding;
@@ -98,7 +99,7 @@ public class PopupActivity extends AppCompatActivity {
         binding.btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                requestPermissions();
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     try {
@@ -158,5 +159,23 @@ public class PopupActivity extends AppCompatActivity {
         return FileProvider.getUriForFile(this,
                 "com.example.faindsapplication.fileprovider",
                 image);
+    }
+    private static final int PERMISSIONS_REQUEST_CODE = 1;
+    private static final String[] PERMISSIONS_REQUIRED = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    private void requestPermissions() {
+        // 권한이 이미 부여되었는지 확인
+        boolean hasCameraPermission = ContextCompat.checkSelfPermission(
+                this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+        boolean hasWriteStoragePermission = ContextCompat.checkSelfPermission(
+                this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+
+        // 필요한 권한이 없으면 사용자에게 권한 요청
+        if (!hasCameraPermission || !hasWriteStoragePermission) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS_REQUIRED, PERMISSIONS_REQUEST_CODE);
+        }
     }
 }
