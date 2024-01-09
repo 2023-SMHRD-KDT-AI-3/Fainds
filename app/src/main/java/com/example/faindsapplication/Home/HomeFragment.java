@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
     public void mongofindall(String userid){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/mongo/findall",
+                "http://192.168.219.47:8089/mongo/findall",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
