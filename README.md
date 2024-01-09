@@ -1,22 +1,24 @@
-# 📎 OCR 활용 계약서 정보 확인 및 클라우드 보관 서비스
+# 📎 OCR 활용 계약서 정보 확인 및 클라우드 보관 서비스(팀명 : Fainder)
 
 
 ## 👀 서비스 소개
-* 서비스명 : 
-* 서비스설명 :
+* 계약서 미작성 및 오작성으로 인한 피해를 방지하기 위한 계약서 정보 확인 서비스
+* 사용자가 등록한 계약서의 내용을 간편하게 파악할 수 있는 요약 서비스
+* 계약서의 내용 중 위반사항이나 미작성 항목을 파악해서 보여주는 서비스
 <br>
 
 ## 📅 프로젝트 기간
+2023.12.08 ~ 2024.01.16
 <br>
 
 ## ⭐ 주요 기능
-*기능1 :
+* 기능1 :
 
-*기능2 :
+* 기능2 :
 
-*기능3 :
+* 기능3 :
 
-*기능4 :
+* 기능4 :
 
 <br>
 
@@ -30,14 +32,13 @@
         <td>사용언어</td>
         <td>
             <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>            
-            <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"/>
-           <img src="https://img.shields.io/badge/Android-34A853?style=for-the-badge&logo=Android&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"/>        
         </td>
     </tr>
     <tr>
         <td>라이브러리</td>
         <td>
-            <img src="https://img.shields.io/badge/apachemaven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white"/>
+            <img src="https://img.shields.io/badge/apachemaven-C71A36?style=for-the-adge&logo=apachemaven&logoColor=white"/>
             <img src="https://img.shields.io/badge/lombok-4285F4?style=for-the-badge&logo=lombok&logoColor=white"/>
             <img src="https://img.shields.io/badge/mybatis-ECD53F?style=for-the-badge&logo=mybatis&logoColor=white"/>
             <img src="https://img.shields.io/badge/gson-000000?style=for-the-badge&logo=gson&logoColor=white"/>
@@ -45,7 +46,6 @@
             <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"/>
             <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
             <img src="https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=openai&logoColor=white"/>
-            <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -55,6 +55,7 @@
             <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=VisualStudioCode&logoColor=white"/>
             <img src="https://img.shields.io/badge/Anaconda-44A833?style=for-the-badge&logo=Anaconda&logoColor=white"/>
             <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white"/>
+            <img src="https://img.shields.io/badge/Android-34A853?style=for-the-badge&logo=Android&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -67,7 +68,7 @@
         <td>데이터베이스</td>
         <td>
             <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
-            <img src="https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white"/>
+            <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -75,6 +76,12 @@
         <td>
             <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"/> 
             <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
+        </td>
+    </tr>
+    <tr>
+        <td>디자인도구</td>
+        <td>
+            <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"/>
         </td>
     </tr>
 </table>
@@ -107,19 +114,25 @@
     <td align="center"><strong>윤대호</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>프로젝트 총괄(PM), DB 설계, UI 구성, 기획</b></td>
-    <td align="center"><b>Back-end, DB 설계, 크롤링</b></td>
-    <td align="center"><b>Back-end, DB 설계, 크롤링</b></td>
-    <td align="center"><b>Fron-end, UI 설계</b></td>
-    <td align="center"><b>Fron-end</b></td>
+    <td align="center"><b>프로젝트 총괄(PM), DB 설계, 화면 설계, 주요기능 구현,Front-End,Back-End</b></td>
+    <td align="center"><b>Back-end, 데이터 흐름 설계,서버통신,주요기능 및 알고리즘 구현</b></td>
+    <td align="center"><b>Back-end, DB 설계, 서버통신 및 기능구현</b></td>
+    <td align="center"><b>Front-end,Back-End ,UI 설계</b></td>
+    <td align="center"><b>Front-end,Back-End</b></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/ttuttae" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/dao7179" target='_blank'>github</a></td>
   </tr>
 </table>
 
 ## 🤾‍♂️ 트러블슈팅
+  
+* 문제1<br>
+ 문제점 설명 및 해결방안
+ 
+* 문제2<br>
+ 문제점 설명 및 해결방안
