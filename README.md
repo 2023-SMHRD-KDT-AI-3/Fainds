@@ -12,21 +12,20 @@
 <br>
 
 ## ⭐ 주요 기능
-* 기능1 : OCR을 활용한 문서 텍스트 추출 및 요약
-  * ㄴㅇㄹㄴㅇㄹ
-  * ㄴㅇㄹㄴㅇㄹ
-
-* 기능2 : 계약 위반사항 판별 및 보관 서비스
-
-
+* 기능1 : 계약 위반사항 등록 및 보관 서비스
+  * 앱에서 원하는 계약서 종류를 선택하고 카메라의 스캐너기능,이미지 및 파일 업로드를 이용하여 계약서를 등록,계약서를 종류별로 분류하고 저장
+  
+* 기능2 : OCR을 활용한 문서 텍스트 추출 및 요약
+  * 사용자가 원하는 계약서의 내용을 OCR을 통해 텍스트로 추출하여 주로 관심 있는 항목을 요약하여 시각적으로 제공함으로써 계약서 내용을 빠르게 파악 가능
+  
 * 기능3 : 출퇴근시간을 통한 급여 계산
-
+  * 출퇴근 시간을 입력하여 해당 근무시간동안의 총 급여와 캘린터를 통해 매일의 총 급여와 근무정보 확인 가능
 
 * 기능4 : 유저 간 질문 게시판
-
+  * 사용자들 간에 계약 내용에 대한 의견을 공유하고 질문에 답하는 게시판을 제공하여 커뮤니케이션을 촉진
 
 * 기능5 : 계약 미작성 신고 채널 연결
-
+  * 계약을 작성하지 않았거나 누락된 부분이 있을 경우 신고할 수 있는 채널을 제공하여 불완전한 계약을 방지 
 
 <br>
 
@@ -136,7 +135,7 @@
     <td align="center"><strong>?</strong></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/hw-Shin" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/ttuttae" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
