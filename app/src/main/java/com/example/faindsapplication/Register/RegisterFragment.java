@@ -54,4 +54,5 @@ public class RegisterFragment extends Fragment {
 
         return binding.getRoot();
     }
+
 }
