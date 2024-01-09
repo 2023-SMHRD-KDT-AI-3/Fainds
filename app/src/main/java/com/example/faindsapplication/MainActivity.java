@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String moveFl = getIntent().getStringExtra("moveFl");
         if(moveFl.equals("home")){
+            binding.bnv.setSelectedItemId(R.id.tab1);
             getSupportFragmentManager().beginTransaction().replace(
                     // 1) 어디에
                     R.id.fl,
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     new HomeFragment()
             ).commit();
         } else if (moveFl.equals("register")) {
+            binding.bnv.setSelectedItemId(R.id.tab2);
             getSupportFragmentManager().beginTransaction().replace(
                     // 1) 어디에
                     R.id.fl,
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     new RegisterFragment()
             ).commit();
         } else if (moveFl.equals("board")) {
+            binding.bnv.setSelectedItemId(R.id.tab3);
             getSupportFragmentManager().beginTransaction().replace(
                     // 1) 어디에
                     R.id.fl,
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     new BoardFragment()
             ).commit();
         } else if (moveFl.equals("setting")) {
+            binding.bnv.setSelectedItemId(R.id.tab4);
             getSupportFragmentManager().beginTransaction().replace(
                     // 1) 어디에
                     R.id.fl,

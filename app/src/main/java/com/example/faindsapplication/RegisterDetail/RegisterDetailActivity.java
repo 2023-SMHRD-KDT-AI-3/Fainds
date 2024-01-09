@@ -132,7 +132,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
 
         //=============================================================================
         // 이미지를 서버에 업로드하기 위한 URL
-        String url = "http://192.168.219.47:8089/getimg";
+        String url = "http://192.168.219.66:8089/getimg";
 //        String url = "http://192.168.219.46:5000/upload";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         // 이미지를 JPEG 형식으로 압축하여 바이트 배열로 변환
@@ -253,7 +253,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
         }
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.47:8089/mongo/mongoinsert",
+                "http://192.168.219.66:8089/mongo/mongoinsert",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
