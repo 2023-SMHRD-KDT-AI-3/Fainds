@@ -95,7 +95,7 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조)
-![image](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/7bcae55b-33ae-4ae4-ac5a-436ee265e788)
+![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/34fc6333-df60-4278-acf6-ae4c6354f39b)
 
 ## 📌 SW유스케이스
 ![FAINDS](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/306beca9-8a36-42bf-90a0-310f1a2e23dc)
