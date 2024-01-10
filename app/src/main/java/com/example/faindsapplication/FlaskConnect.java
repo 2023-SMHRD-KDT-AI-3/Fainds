@@ -16,7 +16,7 @@ import org.json.JSONObject;
 public class FlaskConnect {
     private Context context;
     private boolean isRequesting = false;
-    public void flaskconn(String imgurl, Context context, FlaskResponseListener listener){
+    public void flaskconn(String imgurl,String contracttype, Context context, FlaskResponseListener listener){
         if (isRequesting){
             return;
         }
@@ -30,7 +30,7 @@ public class FlaskConnect {
         JSONObject postData = new JSONObject();
         try {
             postData.put("Data", imgurl);
-            postData.put("Data2", "data2");
+            postData.put("Data2", contracttype);
         } catch (JSONException e) {
             e.printStackTrace();
         }

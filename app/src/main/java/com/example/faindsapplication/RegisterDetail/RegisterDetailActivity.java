@@ -149,7 +149,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
                         Log.d("ResponseSuccess", "onResponse: "+responseData);
                         imgurl = responseData;
                         FlaskConnect flask = new FlaskConnect();
-                        flask.flaskconn(responseData, RegisterDetailActivity.this, new FlaskResponseListener() {
+                        flask.flaskconn(responseData, registername,RegisterDetailActivity.this, new FlaskResponseListener() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 progressDialog.dismiss();
