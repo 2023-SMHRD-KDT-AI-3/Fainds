@@ -95,13 +95,13 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조)
-![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/34fc6333-df60-4278-acf6-ae4c6354f39b)
+![그림3](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/af83f5cd-affa-4389-a835-b460137f5ffa)
 
 ## 📌 SW유스케이스
 ![FAINDS](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/306beca9-8a36-42bf-90a0-310f1a2e23dc)
 
 ## 📌 서비스 흐름도
-![그림2](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/942f3fd1-20e7-4109-a23c-149fe41780bb)
+![그림4](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/a9c4e821-f3a5-428a-9700-268c9136c5cd)
 
 ## 📌 ER다이어그램
 ![KakaoTalk_20240109_144418016](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f8bbb6e2-3d8a-4900-b75b-2b11e48a6629)
