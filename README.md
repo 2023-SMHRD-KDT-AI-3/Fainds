@@ -1,4 +1,4 @@
-# 📎 OCR 활용 계약서 정보 확인 및 클라우드 보관 서비스(팀명 : Fainder)
+# 📎 OCR 활용 계약서 정보 확인 및 클라우드 보관 서비스 (팀명 : Fainder)
 
 
 ## 👀 서비스 소개
@@ -8,17 +8,24 @@
 <br>
 
 ## 📅 프로젝트 기간
-2023.12.08 ~ 2024.01.16
+### 2023.12.08 ~ 2024.01.16
 <br>
 
 ## ⭐ 주요 기능
-* 기능1 :
+* 기능1 : 계약 위반사항 등록 및 보관 서비스
+  * 앱에서 원하는 계약서 종류를 선택하고 카메라의 스캐너기능,이미지 및 파일 업로드를 이용하여 계약서를 등록,계약서를 종류별로 분류하고 저장
+  
+* 기능2 : OCR을 활용한 문서 텍스트 추출 및 요약
+  * 사용자가 원하는 계약서의 내용을 OCR을 통해 텍스트로 추출하여 주로 관심 있는 항목을 요약하여 시각적으로 제공함으로써 계약서 내용을 빠르게 파악 가능
+  
+* 기능3 : 출퇴근시간을 통한 급여 계산
+  * 출퇴근 시간을 입력하여 해당 근무시간동안의 총 급여와 캘린터를 통해 매일의 총 급여와 근무정보 확인 가능
 
-* 기능2 :
+* 기능4 : 유저 간 질문 게시판
+  * 사용자들 간에 계약 내용에 대한 의견을 공유하고 질문에 답하는 게시판을 제공하여 커뮤니케이션을 촉진
 
-* 기능3 :
-
-* 기능4 :
+* 기능5 : 계약 미작성 신고 채널 연결
+  * 계약을 작성하지 않았거나 누락된 부분이 있을 경우 신고할 수 있는 채널을 제공하여 불완전한 계약을 방지 
 
 <br>
 
@@ -42,8 +49,7 @@
             <img src="https://img.shields.io/badge/lombok-4285F4?style=for-the-badge&logo=lombok&logoColor=white"/>
             <img src="https://img.shields.io/badge/mybatis-ECD53F?style=for-the-badge&logo=mybatis&logoColor=white"/>
             <img src="https://img.shields.io/badge/gson-000000?style=for-the-badge&logo=gson&logoColor=white"/>
-            <img src="https://img.shields.io/badge/flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
-            <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"/>
+            <img src="https://img.shields.io/badge/flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>           
             <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
             <img src="https://img.shields.io/badge/openai-412991?style=for-the-badge&logo=openai&logoColor=white"/>
         </td>
@@ -69,6 +75,7 @@
         <td>
             <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>
             <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"/>
+            <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"/>
         </td>
     </tr>
     <tr>
@@ -88,15 +95,15 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조)
-
+이미지
 ## 📌 SW유스케이스
-
+이미지
 ## 📌 서비스 흐름도
-
+이미지
 ## 📌 ER다이어그램
-
+이미지
 ## 🖥 화면 구성
-
+이미지
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
   <tr>
@@ -112,7 +119,6 @@
     <td align="center"><strong>박재영</strong></td>
     <td align="center"><strong>박주영</strong></td>
     <td align="center"><strong>윤대호</strong></td>
-  </tr>
   <tr>
     <td align="center"><b>프로젝트 총괄(PM), DB 설계, 화면 설계, 주요기능 구현,Front-End,Back-End</b></td>
     <td align="center"><b>Back-end, 데이터 흐름 설계,서버통신,주요기능 및 알고리즘 구현</b></td>
@@ -120,8 +126,16 @@
     <td align="center"><b>Front-end,Back-End ,UI 설계</b></td>
     <td align="center"><b>Front-end,Back-End</b></td>
   </tr>
+    </tr>
+    <tr>
+    <td align="center"><strong>뭐</strong></td>
+    <td align="center"><strong>했</strong></td>
+    <td align="center"><strong>는</strong></td>
+    <td align="center"><strong>지</strong></td>
+    <td align="center"><strong>?</strong></td>
+  </tr>
   <tr>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/hw-Shin" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/ttuttae" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
