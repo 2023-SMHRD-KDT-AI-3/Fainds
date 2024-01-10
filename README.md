@@ -107,7 +107,22 @@
 ![KakaoTalk_20240109_144418016](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f8bbb6e2-3d8a-4900-b75b-2b11e48a6629)
 
 ## 🖥 화면 구성
-이미지
+스플래시
+![스플래시](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/519e9710-b249-4ee2-b0db-a14e2a0c7bd8)
+로그인/회원가입/비밀번호 찾기
+![로그인,회원가입,찾기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5c5d0543-e500-42db-aaea-7f1f7c5844c1)
+계약서 보관함/ 상세보기/ 계약서를 이용한 질문
+![계약서,상세보기,질문](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/3843d506-8170-4855-b98d-04678ad45716)
+계약서 종류선택/등록방식 선택/계약서 간편보기
+![제목 없는 디자인](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/47cbb57c-595c-48b1-a606-b425540cde8e)
+질문 게시판
+![질문게시판](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/1ea54724-12b6-421b-a665-7448c757cf0c)
+질문 게시판 상세보기
+![게시판 상세보기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/2f00a270-f2a1-43e2-bb77-1688663edae3)
+게시글 수정
+![게시글 수정](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/cf382ad5-0958-4a8a-ba4f-8f1e5435ed6e)
+
+
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
   <tr>
