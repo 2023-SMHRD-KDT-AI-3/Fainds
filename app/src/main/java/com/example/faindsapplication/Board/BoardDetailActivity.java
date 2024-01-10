@@ -120,7 +120,7 @@ public class BoardDetailActivity extends AppCompatActivity {
                 // 댓글 작성 요청
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                         Request.Method.POST,
-                        "http://192.168.219.54:8089/cmtwrite",
+                        "http://192.168.219.47:8089/cmtwrite",
                         jsonBody,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -218,7 +218,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         // 댓글 리스트 요청
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/cmtlist",
+                "http://192.168.219.47:8089/cmtlist",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -275,7 +275,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         // 댓글 리스트 요청
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/boardDelete",
+                "http://192.168.219.47:8089/boardDelete",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

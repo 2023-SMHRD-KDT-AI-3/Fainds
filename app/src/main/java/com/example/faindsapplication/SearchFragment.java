@@ -114,7 +114,7 @@ public class SearchFragment extends Fragment {
     public void getSearchBoardData(String keyword) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.66:8089/boardSearch",
+                "http://192.168.219.47:8089/boardSearch",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

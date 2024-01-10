@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,11 +54,11 @@ public class HomeFragment extends Fragment {
     private int num_page = 3;
 
     private Handler sliderHandler = new Handler();
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater,container,false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         // 메인페이지에서 보여줄 게시판 목록 리스트
         dataset = new ArrayList<>();
@@ -82,7 +84,7 @@ public class HomeFragment extends Fragment {
     }
 
     // 배너 초기화 메소드
-    private void Banner(){
+    private void Banner() {
         // banner
         vp = binding.banner;
         // adaptor
@@ -96,12 +98,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                if(positionOffsetPixels == 0){
+                if (positionOffsetPixels == 0) {
                     vp.setCurrentItem(position);
                 }
             }
+
             @Override
-            public void onPageSelected(int position){
+            public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(sliderRun);
                 sliderHandler.postDelayed(sliderRun, 2000);
@@ -124,7 +127,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         sliderHandler.postDelayed(sliderRun, 10000);
     }
@@ -136,10 +139,10 @@ public class HomeFragment extends Fragment {
         return sharedPreferences.getString("UserID", null);
     }
 
-    public void mongofindall(String userid){
+    public void mongofindall(String userid) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.66:8089/mongo/findall",
+                "http://192.168.219.47:8089/mongo/findall",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -147,10 +150,10 @@ public class HomeFragment extends Fragment {
                             String utf8String = new String(response.getBytes("ISO-8859-1"), "UTF-8"); //인코딩 해주는것
                             JSONArray jsonArray = new JSONArray(utf8String);
                             Log.d("qwer", jsonArray.toString());
-                            Log.d("qwer", "onResponse: "+response);
+                            Log.d("qwer", "onResponse: " + response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Log.d("계약서",jsonObject.toString());
+                                Log.d("계약서", jsonObject.toString());
                                 // 각 필요한 데이터를 추출
                                 String id = jsonObject.getString("id");
                                 String resdata = jsonObject.getString("resdata");
@@ -160,7 +163,7 @@ public class HomeFragment extends Fragment {
                                 String url = jsonObject.getString("url");
                                 String res = jsonObject.getString("resdata");
                                 int draw = R.drawable.icon_irregular1;
-                                if(registertype.equals("표준근로계약서(기간의 정함이 없음)")){
+                                if (registertype.equals("표준근로계약서(기간의 정함이 없음)")) {
                                     draw = R.drawable.icon_contract_regular;
                                 } else if (registertype.equals("표준근로계약서(기간의 정함이 있음)")) {
                                     draw = R.drawable.icon_contract_architect;
@@ -168,10 +171,10 @@ public class HomeFragment extends Fragment {
                                     draw = R.drawable.icon_contract_student;
                                 }
                                 // 데이터셋에 추가
-                                dataset.add(new HomeVO(id,title+" 계약서",registertype, R.drawable.icon_contract_architect,url,res));
+                                dataset.add(new HomeVO(id, title + " 계약서", registertype, R.drawable.icon_contract_architect, url, res));
                             }
                             adapter.notifyDataSetChanged();
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -182,11 +185,11 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        ){
+        ) {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
+                Map<String, String> params = new HashMap<>();
                 params.put("userid", userid);
                 return params;
             }

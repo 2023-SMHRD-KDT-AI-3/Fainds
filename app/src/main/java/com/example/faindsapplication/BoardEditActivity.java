@@ -79,7 +79,7 @@ public class BoardEditActivity extends AppCompatActivity {
                     // 제목과 내용이 비어 있지 않은 경우 서버에 저장 요청
                     StringRequest request = new StringRequest(
                             Request.Method.POST,
-                            "http://192.168.219.66:8089/boardedit",
+                            "http://192.168.219.47:8089/boardedit",
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
