@@ -44,6 +44,7 @@ public class PopupActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
+
                         // 기본 갤러리에서 선택한 이미지를 Uri값으로 가져온 후 ImageView에 초기화
                         Intent data = result.getData();
                         String registerdata = getIntent().getStringExtra("RegisterName");

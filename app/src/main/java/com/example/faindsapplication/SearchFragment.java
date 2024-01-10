@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,7 +114,7 @@ public class SearchFragment extends Fragment {
     public void getSearchBoardData(String keyword) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.65:8089/boardSearch",
+                "http://192.168.219.47:8089/boardSearch",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -168,6 +169,13 @@ public class SearchFragment extends Fragment {
             }
         };
         queue.add(request);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dataset.clear();
+                getSearchBoardData(keyword);
+            }
+        }, 1000); // 500 밀리초 (0.5초) 딜레이
     }
     public String getUserId() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyAppPreferences", MODE_PRIVATE);

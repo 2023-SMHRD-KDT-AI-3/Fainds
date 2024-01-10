@@ -11,12 +11,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.provider.MediaStore;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.faindsapplication.Board.BoardDetailActivity;
 import com.example.faindsapplication.ContractDetail.ContractDetailAdapter;
 import com.example.faindsapplication.ContractDetail.ContractDetailVO;
 import com.android.volley.NetworkResponse;
@@ -149,7 +151,7 @@ public class RegisterDetailActivity extends AppCompatActivity {
                         Log.d("ResponseSuccess", "onResponse: "+responseData);
                         imgurl = responseData;
                         FlaskConnect flask = new FlaskConnect();
-                        flask.flaskconn(responseData, RegisterDetailActivity.this, new FlaskResponseListener() {
+                        flask.flaskconn(responseData, registername,RegisterDetailActivity.this, new FlaskResponseListener() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 progressDialog.dismiss();
@@ -157,9 +159,14 @@ public class RegisterDetailActivity extends AppCompatActivity {
                                 //버튼 클릭시 이벤트 몽고DB로 데이터 전송
                                 binding.btnContractRegister.setOnClickListener(v -> {
                                     mongoinsert(getUserId(), imgurl, response);
-                                    Intent intent = new Intent(RegisterDetailActivity.this, MainActivity.class);
-                                    intent.putExtra("moveFl","home");
-                                    startActivity(intent);
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(RegisterDetailActivity.this, MainActivity.class);
+                                            intent.putExtra("moveFl","home");
+                                            startActivity(intent);
+                                        }
+                                    }, 500); // 500 밀리초 (0.5초) 딜레이
                                 });
                             }
 

@@ -59,7 +59,7 @@ public class SettingFragment extends Fragment {
                 // 서버에 사용자 이메일을 가져오기 위한 요청 보내기
                 StringRequest request = new StringRequest(
                         Request.Method.POST,
-                        "http://192.168.219.54:8089/settingemail",
+                        "http://192.168.219.47:8089/settingemail",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {

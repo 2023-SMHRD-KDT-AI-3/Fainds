@@ -1,5 +1,6 @@
 package com.example.faindsapplication.ContractDetail;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,11 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
         if (ContractValue.equals("미기입")) {
             holder.getTvWarning().setText("경고 : " + ContractKey + "가 작성되어 있지 않습니다.");
         } else if (ContractKey.equals("근로 시간") && isOver52Hours(ContractValue)) {
-            holder.getTvWarning().setText("경고 : " + ContractKey + "이 주 32시간 이상입니다.");
+            holder.getTvWarning().setText("경고 : " + ContractKey + "이 주 40시간 이상입니다.");
         } else if (ContractKey.equals("근로시간") && isOver52Hours(ContractValue)) {
-            holder.getTvWarning().setText("경고 : " + ContractKey + "이 주 32시간 이상입니다.");
-        } else if (ContractKey.equals("월급") && isSalaryValid(ContractValue)) {
-            holder.getTvWarning().setText("경고 : " + ContractKey + "이 4000만원 이하입니다.");
+            holder.getTvWarning().setText("경고 : " + ContractKey + "이 주 40시간 이상입니다.");
+        } else if (ContractKey.equals("시급") && isSalaryValid(ContractValue)) {
+            holder.getTvWarning().setText("경고 : " + ContractKey + "이 9860원 이하입니다.");
         } else {
             // 조건이 충족되지 않으면 경고 텍스트를 숨김
             holder.getTvWarning().setVisibility(View.GONE);
@@ -60,7 +61,7 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
     private boolean isOver52Hours(String timeString) {
         // 시간 형식에서 숫자만 추출하여 비교
         int hours = extractNumberFromTimeString(timeString);
-        return hours > 32;
+        return hours > 40;
     }
 
     private int extractNumberFromTimeString(String timeString) {
@@ -84,25 +85,27 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
     // 월급 판별
     private boolean isSalaryValid(String salaryString) {
         int salary = getSalaryAmount(salaryString);
-        return salary <= 4000;
+        return salary <= 9860;
     }
 
+
     private int getSalaryAmount(String salaryString) {
+        salaryString = salaryString.replace(",","");
         // 정규표현식을 사용하여 월급에서 숫자만 추출
-        Pattern pattern = Pattern.compile("\\d+만원");
+        Pattern pattern = Pattern.compile("\\d+원");
         Matcher matcher = pattern.matcher(salaryString);
+        StringBuilder numbers = new StringBuilder();
+
         while (matcher.find()) {
-            try {
-                // 추출된 문자열이 "만원"이라면 숫자 1을 반환
-                if ("만원".equals(matcher.group())) {
-                    return 1;
-                }
-                // 추출된 문자열을 숫자로 변환하여 반환
-                return Integer.parseInt(matcher.group());
-            } catch (NumberFormatException ignored) {
-            }
+            numbers.append(matcher.group());
         }
-        return 0;
+        // 모든 숫자를 이어붙인 문자열을 int로 변환하여 반환
+        try {
+            return Integer.parseInt(numbers.toString());
+        } catch (NumberFormatException e) {
+            return 0; // 숫자 변환에 실패한 경우
+        }
+
     }
 
 
