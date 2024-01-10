@@ -193,3 +193,5 @@
 ## 🤾‍♂️ 트러블슈팅
 
 ![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/cad2e542-2086-4dd4-aec6-e0c1987178b2)
+![그림6](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/3515a7a1-aa2d-4b5c-b052-163076714f0f)
+![그림7](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5b4798c7-dbce-4d7d-94fa-06f4522bcd0f)
