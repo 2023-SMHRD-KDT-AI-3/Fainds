@@ -107,11 +107,11 @@
 ![KakaoTalk_20240109_144418016](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f8bbb6e2-3d8a-4900-b75b-2b11e48a6629)
 
 ## 🖥 화면 구성
-- ### 스플래시
+- ### 스플래시 페이지
 ![스플래시](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/519e9710-b249-4ee2-b0db-a14e2a0c7bd8)
 <hr>
 
-- ### 로그인/회원가입/비밀번호 찾기
+- ### 로그인/회원가입/비밀번호 찾기 페이지
 ![로그인,회원가입,찾기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5c5d0543-e500-42db-aaea-7f1f7c5844c1)
 <hr>
 
@@ -127,10 +127,29 @@
 ![질문게시판](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/1ea54724-12b6-421b-a665-7448c757cf0c)
 <hr>
 
-- ### 게시글 수정
+- ### 게시글 수정 페이지
 ![게시글 수정](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/cf382ad5-0958-4a8a-ba4f-8f1e5435ed6e)
 <hr>
 
+- ### 더보기 페이지
+![더보기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/73ebe6e3-ecd5-4a00-bc33-2fb1aae388d6)
+<hr>
+
+- ### 이메일 수정 페이지
+![이메일 수정](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/15a1a407-842b-4250-a5b3-5ca9205012e7)
+<hr>
+
+- ### 비밀번호 수정 페이지
+![비밀번호 수정](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/9a4c0d64-7e46-4a7d-bd02-b464de01596d)
+<hr>
+
+- ### 팁 게시판
+![팁게시판](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/22b1bc53-d63f-496b-9240-1f2758e630dc)
+<hr>
+
+- ### 급여계산기/근무기록 등록/근무기록 상세보기
+![제목 없는 디자인](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f0461cff-bd3c-492f-a32a-480bdc779b0d)
+<hr>
 
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
