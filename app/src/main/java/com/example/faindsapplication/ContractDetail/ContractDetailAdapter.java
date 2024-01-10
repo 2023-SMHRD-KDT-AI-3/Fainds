@@ -88,6 +88,7 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
         return salary <= 9860;
     }
 
+
     private int getSalaryAmount(String salaryString) {
         salaryString = salaryString.replace(",","");
         // 정규표현식을 사용하여 월급에서 숫자만 추출
