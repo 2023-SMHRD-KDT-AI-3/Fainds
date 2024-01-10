@@ -1,5 +1,6 @@
 package com.example.faindsapplication.ContractDetail;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,21 +89,22 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
     }
 
     private int getSalaryAmount(String salaryString) {
+        salaryString = salaryString.replace(",","");
         // 정규표현식을 사용하여 월급에서 숫자만 추출
         Pattern pattern = Pattern.compile("\\d+원");
         Matcher matcher = pattern.matcher(salaryString);
+        StringBuilder numbers = new StringBuilder();
+
         while (matcher.find()) {
-            try {
-                // 추출된 문자열이 "원"이라면 숫자 1을 반환
-                if ("원".equals(matcher.group())) {
-                    return 1;
-                }
-                // 추출된 문자열을 숫자로 변환하여 반환
-                return Integer.parseInt(matcher.group());
-            } catch (NumberFormatException ignored) {
-            }
+            numbers.append(matcher.group());
         }
-        return 0;
+        // 모든 숫자를 이어붙인 문자열을 int로 변환하여 반환
+        try {
+            return Integer.parseInt(numbers.toString());
+        } catch (NumberFormatException e) {
+            return 0; // 숫자 변환에 실패한 경우
+        }
+
     }
 
 
