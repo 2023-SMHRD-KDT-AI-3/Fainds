@@ -191,9 +191,5 @@
 </table>
 
 ## 🤾‍♂️ 트러블슈팅
-  
-* 문제1<br>
- 문제점 설명 및 해결방안
- 
-* 문제2<br>
- 문제점 설명 및 해결방안
+
+![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/cad2e542-2086-4dd4-aec6-e0c1987178b2)
