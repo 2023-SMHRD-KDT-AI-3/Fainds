@@ -191,5 +191,13 @@
 </table>
 
 ## 🤾‍♂️ 트러블슈팅
-
+- ### 보안키 관리의 중요성
 ![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/cad2e542-2086-4dd4-aec6-e0c1987178b2)
+<hr>
+
+- ### 이미지 파일 사이즈 제한
+![그림6](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/3515a7a1-aa2d-4b5c-b052-163076714f0f)
+<hr>
+
+- ### 비트맵 이미지 축소화
+![그림7](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5b4798c7-dbce-4d7d-94fa-06f4522bcd0f)
