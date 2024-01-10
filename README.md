@@ -95,13 +95,17 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조)
-이미지
+![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/34fc6333-df60-4278-acf6-ae4c6354f39b)
+
 ## 📌 SW유스케이스
-이미지
+![FAINDS](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/306beca9-8a36-42bf-90a0-310f1a2e23dc)
+
 ## 📌 서비스 흐름도
-이미지
+![그림2](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/942f3fd1-20e7-4109-a23c-149fe41780bb)
+
 ## 📌 ER다이어그램
-이미지
+![KakaoTalk_20240109_144418016](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f8bbb6e2-3d8a-4900-b75b-2b11e48a6629)
+
 ## 🖥 화면 구성
 이미지
 ## 👨‍👩‍👦‍👦 팀원 역할
