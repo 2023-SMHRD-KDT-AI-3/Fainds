@@ -184,7 +184,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
     private void RegisterSalary(String formattedDate, String startTime, String endTime, String salary, String userId, String dailySalary) {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/regiSalary",
+                "http://192.168.219.47:8089/regiSalary",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -296,7 +296,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
     public  void updatesal(String formattedDate, String startTime, String endTime, String salary, String userId,String dailySalary){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/updatesal",
+                "http://192.168.219.47:8089/updatesal",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -334,7 +334,7 @@ public class CalenderDetailActivity extends AppCompatActivity {
     public  void deletesal(int workSeq){
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/deletesal",
+                "http://192.168.219.47:8089/deletesal",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

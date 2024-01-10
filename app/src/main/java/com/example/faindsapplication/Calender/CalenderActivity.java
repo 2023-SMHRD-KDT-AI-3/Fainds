@@ -263,7 +263,7 @@ public class CalenderActivity extends Activity {
     protected void getSalData() {
         StringRequest request = new StringRequest(
                 Request.Method.POST,
-                "http://192.168.219.54:8089/calenderInfo",
+                "http://192.168.219.47:8089/calenderInfo",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
