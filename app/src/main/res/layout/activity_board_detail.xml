@@ -11,7 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="59dp" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline20"
+        app:layout_constraintGuide_begin="59dp"
+        app:layout_constraintStart_toEndOf="@+id/scrollView3" />
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -29,8 +31,11 @@
         android:id="@+id/guideline20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="411dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="126dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="126dp"
+        app:layout_constraintStart_toEndOf="@+id/guideline19" />
 
     <ImageView
         android:id="@+id/imgBack"
@@ -54,94 +59,118 @@
         app:layout_constraintTop_toTopOf="@+id/imgBack"
         app:layout_constraintVertical_bias="0.50" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cmtRV"
+    <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCmtWrite"
-        app:layout_constraintVertical_bias="0.504" />
+        app:layout_constraintTop_toTopOf="@+id/guideline20">
 
-    <TextView
-        android:id="@+id/boardDetailTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="제목"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline20" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvWriteTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="2023-12-23"
-        android:textColor="@color/navColor"
-        app:layout_constraintStart_toStartOf="@+id/boardDetailTitle"
-        app:layout_constraintTop_toBottomOf="@+id/boardDetailTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
 
-    <TextView
-        android:id="@+id/boardDetailContent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWriteTime" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cmtRV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCmtWrite"
+                    app:layout_constraintVertical_bias="0.504" />
 
-    <EditText
-        android:id="@+id/tvCmtWrite"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/cmtstyle"
-        android:ems="10"
-        android:hint="댓글을 입력하세요"
-        android:inputType="text"
-        android:paddingLeft="10dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/boardDetailContent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/boardDetailContent"
-        app:layout_constraintTop_toBottomOf="@+id/boardDetailContent" />
+                <TextView
+                    android:id="@+id/boardDetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="제목"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgCmtWrite"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCmtWrite"
-        app:layout_constraintEnd_toEndOf="@+id/tvCmtWrite"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/tvCmtWrite"
-        app:layout_constraintTop_toTopOf="@+id/tvCmtWrite"
-        app:srcCompat="@drawable/icon_cmt1" />
+                <TextView
+                    android:id="@+id/tvWriteTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="2023-12-23"
+                    android:textColor="@color/navColor"
+                    app:layout_constraintStart_toStartOf="@+id/boardDetailTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/boardDetailTitle" />
 
-    <ImageView
-        android:id="@+id/btnBoardPopup"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline20"
-        app:srcCompat="@drawable/icon_addpopup" />
+                <TextView
+                    android:id="@+id/boardDetailContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.521"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvWriteTime" />
+
+                <EditText
+                    android:id="@+id/tvCmtWrite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/cmtstyle"
+                    android:ems="10"
+                    android:hint="댓글을 입력하세요"
+                    android:inputType="text"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/boardDetailContent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/boardDetailContent"
+                    app:layout_constraintTop_toBottomOf="@+id/boardDetailContent" />
+
+                <ImageView
+                    android:id="@+id/imgCmtWrite"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvCmtWrite"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCmtWrite"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/tvCmtWrite"
+                    app:layout_constraintTop_toTopOf="@+id/tvCmtWrite"
+                    app:srcCompat="@drawable/icon_cmt1" />
+
+                <ImageView
+                    android:id="@+id/btnBoardPopup"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_addpopup" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
