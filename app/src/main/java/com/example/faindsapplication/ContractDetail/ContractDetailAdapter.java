@@ -43,7 +43,7 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
 
         // 특정 조건에 따라 경고 메시지 표시
         if (ContractValue.equals("미기입")) {
-            holder.getTvWarning().setText("경고 : " + ContractKey + "가 작성되어 있지 않습니다.");
+            holder.getTvWarning().setText("경고 : " + ContractKey + "이(가) 작성되어 있지 않습니다.");
         } else if (ContractKey.equals("근로 시간") && isOver52Hours(ContractValue)) {
             holder.getTvWarning().setText("경고 : " + ContractKey + "이 주 40시간 이상입니다.");
         } else if (ContractKey.equals("근로시간") && isOver52Hours(ContractValue)) {
@@ -92,7 +92,7 @@ public class ContractDetailAdapter extends RecyclerView.Adapter<ContractDetailVi
     private int getSalaryAmount(String salaryString) {
         salaryString = salaryString.replace(",","");
         // 정규표현식을 사용하여 월급에서 숫자만 추출
-        Pattern pattern = Pattern.compile("\\d+원");
+        Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(salaryString);
         StringBuilder numbers = new StringBuilder();
 
