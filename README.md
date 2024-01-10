@@ -95,19 +95,62 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조)
-![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/34fc6333-df60-4278-acf6-ae4c6354f39b)
+![그림3](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/af83f5cd-affa-4389-a835-b460137f5ffa)
 
 ## 📌 SW유스케이스
 ![FAINDS](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/306beca9-8a36-42bf-90a0-310f1a2e23dc)
 
 ## 📌 서비스 흐름도
-![그림2](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/942f3fd1-20e7-4109-a23c-149fe41780bb)
+![그림4](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/a9c4e821-f3a5-428a-9700-268c9136c5cd)
 
 ## 📌 ER다이어그램
 ![KakaoTalk_20240109_144418016](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f8bbb6e2-3d8a-4900-b75b-2b11e48a6629)
 
 ## 🖥 화면 구성
-이미지
+- ### 스플래시 페이지
+![스플래시](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/519e9710-b249-4ee2-b0db-a14e2a0c7bd8)
+<hr>
+
+- ### 로그인/회원가입/비밀번호 찾기 페이지
+![로그인,회원가입,찾기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5c5d0543-e500-42db-aaea-7f1f7c5844c1)
+<hr>
+
+- ### 계약서 보관함/ 상세보기/ 계약서를 이용한 질문
+![계약서,상세보기,질문](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/3843d506-8170-4855-b98d-04678ad45716)
+<hr>
+
+- ### 계약서 종류선택/등록방식 선택/계약서 간편보기
+![제목 없는 디자인](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/47cbb57c-595c-48b1-a606-b425540cde8e)
+<hr>
+
+- ### 질문 게시판
+![질문게시판](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/1ea54724-12b6-421b-a665-7448c757cf0c)
+<hr>
+
+- ### 게시글 수정 페이지
+![게시글 수정](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/cf382ad5-0958-4a8a-ba4f-8f1e5435ed6e)
+<hr>
+
+- ### 더보기 페이지
+![더보기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/73ebe6e3-ecd5-4a00-bc33-2fb1aae388d6)
+<hr>
+
+- ### 이메일 수정 페이지
+![이메일 수정](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/15a1a407-842b-4250-a5b3-5ca9205012e7)
+<hr>
+
+- ### 비밀번호 수정 페이지
+![비밀번호 수정](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/9a4c0d64-7e46-4a7d-bd02-b464de01596d)
+<hr>
+
+- ### 팁 게시판
+![팁게시판](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/22b1bc53-d63f-496b-9240-1f2758e630dc)
+<hr>
+
+- ### 급여계산기/근무기록 등록/근무기록 상세보기
+![제목 없는 디자인](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f0461cff-bd3c-492f-a32a-480bdc779b0d)
+<hr>
+
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
   <tr>
@@ -148,9 +191,13 @@
 </table>
 
 ## 🤾‍♂️ 트러블슈팅
-  
-* 문제1<br>
- 문제점 설명 및 해결방안
- 
-* 문제2<br>
- 문제점 설명 및 해결방안
+- ### 보안키 관리의 중요성
+![그림1](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/cad2e542-2086-4dd4-aec6-e0c1987178b2)
+<hr>
+
+- ### 이미지 파일 사이즈 제한
+![그림6](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/3515a7a1-aa2d-4b5c-b052-163076714f0f)
+<hr>
+
+- ### 비트맵 이미지 축소화
+![그림7](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5b4798c7-dbce-4d7d-94fa-06f4522bcd0f)
