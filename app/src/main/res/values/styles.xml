@@ -23,6 +23,15 @@
         <item name="android:windowBackground">@color/transparent</item>
         <!--숫자 구분선 색상 변경-->
         <item name="colorControlNormal">@color/background</item>
+    </style>
+
+    <!-- 하단 네비게이션 바 클릭시 뒷배경 없애기 -->
+    <style name="Theme.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/transparent</item>
 
     </style>
+
+
+
+
 </resources>
