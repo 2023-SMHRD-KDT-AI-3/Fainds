@@ -1,4 +1,4 @@
-# 📎 OCR 활용 계약서 정보 확인 및 클라우드 보관 서비스 (팀명 : Fainder)
+# 📎 OCR 및 생성형 AI모델 활용 계약서 정보 확인 및 클라우드 보관 서비스 (팀명 : FAINDERS)
 
 
 ## 👀 서비스 소개
@@ -107,15 +107,12 @@
 ![KakaoTalk_20240109_144418016](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/f8bbb6e2-3d8a-4900-b75b-2b11e48a6629)
 
 ## 🖥 화면 구성
-- ### 스플래시 페이지
-![스플래시](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/519e9710-b249-4ee2-b0db-a14e2a0c7bd8)
-<hr>
 
 - ### 로그인/회원가입/비밀번호 찾기 페이지
 ![로그인,회원가입,찾기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5c5d0543-e500-42db-aaea-7f1f7c5844c1)
 <hr>
 
-- ### 계약서 보관함/ 상세보기/ 계약서를 이용한 질문
+- ### 계약서 보관/계약 위반사항 판별/계약 내용 질문
 ![계약서,상세보기,질문](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/3843d506-8170-4855-b98d-04678ad45716)
 <hr>
 
