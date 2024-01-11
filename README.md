@@ -112,7 +112,7 @@
 ![로그인,회원가입,찾기](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/5c5d0543-e500-42db-aaea-7f1f7c5844c1)
 <hr>
 
-- ### 계약서 보관함/ 상세보기/ 계약서를 이용한 질문
+- ### 계약서 보관/계약 위반사항 판별/계약 내용 질문
 ![계약서,상세보기,질문](https://github.com/2023-SMHRD-KDT-AI-3/Fainds/assets/144747174/3843d506-8170-4855-b98d-04678ad45716)
 <hr>
 
