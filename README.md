@@ -8,7 +8,7 @@
 <br>
 
 ## 📅 프로젝트 기간
-### 2023.12.08 ~ 2024.01.16
+### 2023.12.05 ~ 2024.01.16
 <br>
 
 ## ⭐ 주요 기능
@@ -163,6 +163,7 @@
     <td align="center"><strong>박재영</strong></td>
     <td align="center"><strong>박주영</strong></td>
     <td align="center"><strong>윤대호</strong></td>
+  </tr>
   <tr>
     <td align="center"><b>프로젝트 총괄(PM), DB 설계, 화면 설계, 주요기능 구현,Front-End,Back-End</b></td>
     <td align="center"><b>Back-end, 데이터 흐름 설계,서버통신,주요기능 및 알고리즘 구현</b></td>
@@ -170,20 +171,34 @@
     <td align="center"><b>Front-end,Back-End ,UI 설계</b></td>
     <td align="center"><b>Front-end,Back-End</b></td>
   </tr>
-    </tr>
-    <tr>
-    <td align="center"><strong>뭐</strong></td>
-    <td align="center"><strong>했</strong></td>
-    <td align="center"><strong>는</strong></td>
-    <td align="center"><strong>지</strong></td>
-    <td align="center"><strong>?</strong></td>
+   <tr>
+    <td align="center">
+        <pre>
+        </pre>
+    </td>
+    <td align="center">
+        <pre>
+        </pre>
+  </td>
+    <td align="center">
+        <pre>
+        </pre>
+    </td>
+    <td align="center">
+        <pre>
+        </pre>
+    </td>
+    <td align="center">
+        <pre>
+        </pre>
+   </td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/hw-Shin" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/ttuttae" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
-    <td align="center"><a href="https://github.com/dao7179" target='_blank'>github</a></td>
+    <td align="center"><a href="https://github.com/hw-Shin" target='_blank'>신현욱님의 github</a></td>
+    <td align="center"><a href="https://github.com/KoYoungJ" target='_blank'>고영준님의 github</a></td>
+    <td align="center"><a href="https://github.com/ttuttae" target='_blank'>박재영님의 github</a></td>
+    <td align="center"><a href="https://github.com/Zuzzang" target='_blank'>박주영님의 github</a></td>
+    <td align="center"><a href="https://github.com/dao7179" target='_blank'>윤대호님의 github</a></td>
   </tr>
 </table>
 
