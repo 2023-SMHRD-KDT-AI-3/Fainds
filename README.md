@@ -165,33 +165,11 @@
     <td align="center"><strong>윤대호</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>프로젝트 총괄(PM), DB 설계, 화면 설계, 주요기능 구현,Front-End,Back-End</b></td>
-    <td align="center"><b>Back-end, 데이터 흐름 설계,서버통신,주요기능 및 알고리즘 구현</b></td>
-    <td align="center"><b>Back-end, DB 설계, 서버통신 및 기능구현</b></td>
-    <td align="center"><b>Front-end,Back-End ,UI 설계</b></td>
-    <td align="center"><b>Front-end,Back-End</b></td>
-  </tr>
-   <tr>
-    <td align="center">
-        <pre>
-        </pre>
-    </td>
-    <td align="center">
-        <pre>
-        </pre>
-  </td>
-    <td align="center">
-        <pre>
-        </pre>
-    </td>
-    <td align="center">
-        <pre>
-        </pre>
-    </td>
-    <td align="center">
-        <pre>
-        </pre>
-   </td>
+    <td align="center"><b>프로젝트 총괄<br> DB 설계<br> 화면 설계<br> 안드로이드 기능 개발<br>발표 ppt 제작</b></td>
+    <td align="center"><b>Back-end<br>통신 및 데이터 전달<br>Mongo DB 구축 및 관리<br>Python Flask 및 API 관리<br>OpenAI 모델 튜닝</b></td>
+    <td align="center"><b>Back-end<br>Spring을 통한 데이터 관리<br>회원정보 관리<br>게시판 CRUD<br>댓글정보 관리<br>검색기능 구현</b></td>
+    <td align="center"><b>Front-end<br>화면설계<br>Android 화면 구성<br>게시글 수정 기능 구현</b></td>
+    <td align="center"><b>Front-end<br>Android 화면 구성<br>이메일 수정기능 구현<br>게시글 삭제기능 구현</b></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/hw-Shin" target='_blank'>신현욱님의 github</a></td>
